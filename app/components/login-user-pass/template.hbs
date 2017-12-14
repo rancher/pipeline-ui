@@ -1,0 +1,29 @@
+<form {{action "authenticate" on="submit"}} class="text-left">
+  <div>
+    {{#if isCaas}}
+      <label>{{t 'loginUserPass.caasLabel'}}</label>
+    {{else}}
+      <label>{{t 'loginUserPass.userLabel'}}</label>
+    {{/if}}
+    <div>
+      {{input type="text" class="form-control login-user" value=username placeholder=(t 'loginUserPass.userPlaceholder')}}
+    </div>
+  </div>
+
+  <div class="pt-15 pb-30">
+    <label>{{t 'loginUserPass.passwordLabel'}}</label>
+    <div>
+      {{input type="password" class="form-control login-pass" value=password}}
+    </div>
+  </div>
+
+  <p class="text-center">
+    <button disabled={{waiting}} class="btn bg-primary" {{action "authenticate"}}>
+      {{#if waiting}}
+        <i class="icon icon-spinner icon-spin"></i> {{t 'loginUserPass.loggingInLabel'}}
+      {{else}}
+        {{t 'loginUserPass.loginLabel'}}
+      {{/if}}
+    </button>
+  </p>
+</form>

@@ -1,0 +1,57 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+header {
+  clear: both;
+}
+
+.header {
+  border-bottom: solid 2px $border;
+  margin: 0 0 16.5px 0;
+
+  h1 {
+    margin: 5px 0 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 21px;
+    margin-right: 10px;
+    line-height: 45px;
+  }
+
+  .right-buttons {
+    @include clearfix;
+    float: right;
+    padding: 15px 0;
+
+    > .resource-actions {
+      .btn.btn-sm {
+        padding: 4px 7px;
+      }
+    }
+  }
+}
+
+.basics {
+  padding: 10px;
+  font-size: 14px;
+  line-height: 14px;
+  display: flex !important;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+
+  > .inline-block {
+    text-align: center;
+    padding: 0 25px;
+    border-right: solid 2px $info;
+    flex: 1 1;
+
+    label, span, div {
+      vertical-align: bottom;
+    }
+
+    &:last-child {
+      border: 0;
+    }
+  }
+}

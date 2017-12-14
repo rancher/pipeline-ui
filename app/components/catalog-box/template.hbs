@@ -1,0 +1,17 @@
+{{yield 'header' this model}}
+{{#if model.certified}}
+  <div class="{{model.certifiedClass}}">
+    <span>{{model.certified}}</span>
+  </div>
+{{/if}}
+{{#if showIcon}}
+  <div class="catalog-icon">
+    <img src="{{app.baseAssets}}assets/images/generic-catalog.svg" data-src={{model.links.icon}}/>
+  </div>
+{{/if}}
+<div class="itemwrap mt-25">
+  {{yield 'body' this model}}
+</div>
+<div class="footer">
+  {{yield 'footer' this model}}
+</div>

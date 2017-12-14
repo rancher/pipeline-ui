@@ -1,0 +1,41 @@
+.badge-state {
+  @include tag;
+  text-transform: capitalize;
+
+  // Successful states are de-emphasized by using [text-]color instead of background-color
+  &.bg-success {
+    background-color: transparent;
+    color: $success;
+  }
+
+  &.text-success:hover {
+    color: $success;
+  }
+
+  // Successful states are de-emphasized by using [text-]color instead of background-color
+  &.bg-muted {
+    background-color: transparent;
+    color: $text-muted;
+  }
+
+  &.text-success:hover {
+    color: $text-muted;
+  }
+}
+
+.grid TD.state {
+  .badge-state {
+    @include clip;
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    padding: 1px 5px;
+    font-size: 1em;
+    max-width: 110px;
+    font-size: .85em;
+
+    &.bg-success {
+      padding: 0px 5px;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{{#if labelArray.length}}
+  <table class="table fixed no-lines mt-20">
+    <thead>
+      <tr>
+        <th class="acc-label" width="200">{{t 'newPipelineStage.conditions'}}</th>
+        <td width="20"></td>
+        <th class="acc-label" width="200">{{t 'newPipelineStage.env'}}</th>
+        <th width="20"></th>
+        <th class="acc-label" width="60">{{t 'newPipelineStage.operator'}}</th>
+        <th width="20"></th>
+        <th class="acc-label" width="150">{{t 'newPipelineStage.value'}}</th>
+        <th width="40"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each labelArray as |rule index|}}
+        {{pipeline/expression-row
+          pipeline=pipeline
+          editing=editing
+          rule=rule
+          remove="removeSchedulingRule"
+          isGlobal=isGlobal
+          index=index
+          labelArray=labelArray
+          conditions=conditions
+        }}
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="text-muted pt-10">{{t 'newPipelineStep.stepType.noExpression'}}</div>
+{{/if}}
+{{#if editing}}
+  <div class="pull-right">
+    <button class="btn bg-link icon-btn" {{action "addSchedulingRule"}}>
+      <span class="darken"><i class="icon icon-plus text-small"/></span>
+      <span>{{t 'newPipelineStep.stepType.addExpression'}}</span>
+    </button>
+  </div>
+{{/if}}

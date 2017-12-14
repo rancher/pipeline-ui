@@ -1,0 +1,11 @@
+{{#container-shell
+  instance=originalModel
+  cols=80
+  rows=24
+  dismiss=(action "cancel")
+  disconncted=(action "cancel")
+}}
+  <div class="footer-actions">
+    <button {{action "cancel"}} class="btn bg-primary">{{t 'generic.closeModal'}}</button>
+  </div>
+{{/container-shell}}

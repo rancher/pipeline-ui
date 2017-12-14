@@ -1,0 +1,26 @@
+<div class="pipeline-approval-tip">
+  <div class="approval-head">
+    <span class="head-content">{{t 'pipelineHistories.waitingApproval'}}</span>
+  </div>
+  <div class="approval-content">
+    <span class="content-text">
+        {{#if activity.approversName}}
+          User({{activity.approversName}}) 
+        {{else}}
+          Someone
+        {{/if}}
+        need to approve Stage <span class="text-info">{{activity.pendingStageName}}</span> {{#if showName}}of <a href="{{href-to "pipelines.activity" activity.id}}"> #{{activity.runSequence}} by {{activity.pipelineSource.name}}</a>{{/if}}
+    </span>
+
+    {{#if activity.actionLinks.approve}}
+    <div class="approval-actions" style="padding-bottom: 0">
+      {{#if activity.isApproving}}
+        <i class="icon icon-spinner icon-spin"></i>
+      {{else}}
+        <a class="mr-10 text-error" href="javascript:void(0);" {{action "sendAction" activity "deny"}} style="color: red"><i class="icon icon-thumbs-down"></i>&nbsp;{{t 'pipelineHistories.deny'}}</a>
+        <a class="text-success" href="javascript:void(0);" {{action "sendAction" activity "approve"}} ><i class="icon icon-thumbs-up"></i>&nbsp;{{t 'pipelineHistories.approve'}}</a>
+      {{/if}}
+    </div>
+    {{/if}}
+  </div>
+</div>

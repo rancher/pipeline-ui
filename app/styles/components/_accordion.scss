@@ -1,0 +1,172 @@
+$accordion-header: lighten($bg-default, 2) !default;
+$accordion-header-border: darken($bg-default, 5) !default;
+
+.accordion-wrapper {
+  margin-bottom: 10px;
+}
+
+.accordion {
+  @extend .accordion-wrapper;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .accordion-header {
+    @include no-select;
+    @extend .hand;
+    @extend .clearfix;
+    background: $accordion-header;
+    border: solid $accordion-header-border thin;
+    padding: 10px;
+    display: table;
+    vertical-align: middle;
+    width: 100%;
+
+    .expand,
+    .title,
+    .badge-state, {
+      display: table-cell;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .expand {
+      width: 40px;
+    }
+
+    .badge-state {
+      padding: 10px;
+      width: 140px;
+      text-align: right;
+    }
+
+    &.header-pipeline {
+      position: relative;
+      top: 0;
+      border: none;
+      padding: 5px 10px 5px 60px;
+      &.item {
+        padding: 2px 10px;
+      }
+      &.Success {
+        background-color: lighten($success,50%);
+        color: $success;
+        *{
+          color: $success !important;
+        }
+        .expand {
+          background-color: $success;
+          color: white;
+          i{
+            color: white !important;
+          }
+        }
+      }
+      &.Fail {
+        background-color: rgba(241, 83, 84, 0.2);
+        color: $error;
+        *{
+          color: $error !important;
+        }
+        .expand {
+          background-color: $error;
+          color: white;
+          i{
+            color: white !important;
+          }
+        }
+      }
+      &.Building {
+        background-color: lighten($primary,50%);
+        color: $primary;
+        *{
+          color: $primary !important;
+        }
+        .expand {
+          background-color: $primary;
+          color: white;
+          i{
+            color: white !important;
+          }
+        }
+      }
+      &.Waiting {
+        background-color: lighten($mid-grey,50%);
+        color: $mid-grey;
+        *{
+          color: $mid-grey !important;
+        }
+        .expand {
+          background-color: $mid-grey;
+          color: white;
+          i{
+            color: white !important;
+          }
+        }
+      }
+
+      .text-cell {
+        display: inline-block;
+        width: 200px;
+        height: 20px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .badge-state {
+        width: 200px;
+      }
+      .expand {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 50px;
+        .icon{
+          position: absolute;
+          top: 5px;
+          right: 8px;
+        }
+      }
+    }
+  }
+
+  .accordion-content {
+    position: relative;
+    padding: 20px;
+    border: solid 1px $border;
+    border-top: 0;
+
+    .radio {
+      padding: 5px 0;
+    }
+    .search-group {
+      display: none;
+      position: relative;
+
+      > .input-group-btn {
+        position: absolute;
+      }
+    }
+    &.content-pipeline{
+      border: none;
+      padding: 10px 0 10px 50px;
+    }
+  }
+}
+
+.physical-attrs {
+  .accordion-content {
+    > .row > .col.span-6 > .col.span-12 {
+      padding: 10px;
+      border-bottom: 1px solid $accent-border;
+    }
+  }
+}
+
+.acc-label {
+  color: $primary;
+  padding-bottom: 10px;
+  font-size: .85em;
+}

@@ -1,0 +1,14 @@
+<div class="banner-icon">
+  <i class="icon icon-alert"></i>
+</div>
+<div class="banner-message">
+    {{#each errors as |error|}}
+      {{#if (is-array error)}}
+        {{#each error as |line|}}
+          <p>{{line}}</p>
+        {{/each}}
+      {{else}}
+        <p>{{error}}</p>
+      {{/if}}
+    {{/each}}
+</div>

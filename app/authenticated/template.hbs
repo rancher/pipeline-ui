@@ -1,0 +1,17 @@
+{{#unless isPopup}}
+  {{page-header
+    currentPath=currentPath
+    hasCattleSystem=hasCattleSystem
+    switchProject="switchProject"
+    switchNamespace="switchNamespace"
+    goToPrevious="goToPrevious"
+  }}
+{{/unless}}
+<main class="clearfix">
+  {{outlet}}
+</main>
+{{#unless isPopup}}
+  {{page-footer
+    showAbout="showAbout"
+  }}
+{{/unless}}

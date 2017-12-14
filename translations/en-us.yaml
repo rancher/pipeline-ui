@@ -1,0 +1,3780 @@
+languageName: "English"
+languageContribute: "Help Translate Rancher"
+
+##############################
+# Really generic things used in multiple places (use sparingly)
+##############################
+generic:
+  actions: Actions
+  activate: Activate
+  add: Add
+  all: All
+  any: Any
+  as: As
+  branch: Branch
+  cancel: Cancel
+  closeModal: Close
+  command: Command
+  collapseAll: Collapse All
+  confirm: Confirm
+  containers: Containers
+  created: Created
+  createdDate: "Created {date}"
+  default: Default
+  description: Description
+  details: Details
+  disable: Disable
+  disabled: Disabled
+  domainName: Domain Name
+  dockerId: Docker ID
+  emptyString: ""
+  edit: Edit
+  enable: Enable
+  enabled: Enabled
+  entrypoint: Entrypoint
+  environment: Environment
+  expandAll: Expand All
+  hardware: Hardware
+  healthy: Healthy
+  host: Host
+  id: ID
+  image: Image
+  internal: Internal
+  ipAddress: IP Address
+  limit: Limit
+  limits: Limits
+  loading: "Loading..."
+  mibibyte: 'MiB'
+  missing: "*%MISSING%*"
+  moreActions: More Actions
+  message: Message
+  na: 'n/a'
+  name: Name
+  none: None
+  noRating: No Rating
+  ports: Ports
+  remove: Remove
+  role: Role
+  repository: Repository
+  save: Save
+  saved: Saved
+  saving: Saving
+  search: Search
+  seconds: seconds
+  select: Select
+  service: Service
+  stack: Stack
+  state: State
+  status: Status
+  test: Test
+  testing: Testing
+  to: To
+  total: Total
+  type: Type
+  unknown: Unknown
+  uuid: UUID
+  no: "No"
+  yes: "Yes"
+
+realmNames:
+  all: All
+  usWest: US West
+  usEast: US East
+  asia: Asia
+  euWest: EU West
+  euEast: EU East
+
+##############################
+# Routes
+##############################
+accountsPage:
+  index:
+    header: Accounts
+    localLink: Add Account
+    table:
+      id: ID
+      kind: Kind
+      username: Username
+      identity: Identity
+      noData: There are no accounts yet
+      noName: None
+  new:
+    header: Add Account
+    errors:
+      usernameReq: Login Username is requried.
+      usernameInExists: Login Username is already in use. Please choose a new username.
+      pwReq: Password is requried.
+    form:
+      username:
+        labelText: Login Username
+        placeholder: "e.g. jsmith"
+      password:
+        labelText: Password
+      name:
+        labelText: Name
+        placeholder: "e.g. John Smith"
+      type:
+        labelText: Account Type
+      description:
+        labelText: Description
+        placeholder: "e.g. This account is for John Smith"
+
+apiPage:
+  header: Environment API Keys
+  actionButton: Add Environment API Key
+  content: |
+    Environment API keys are tied to this specific Environment (<code>{displayName}</code>) and can only manipulate resources within there.  Other accounts with access to this Environment can also manage these keys.
+  currentEndpoint: 'Endpoint:'
+  table:
+    state: State
+    name: Name
+    description: Description
+    publicValue: Access Key
+    created: Created
+    noData: There are no keys for this Environment yet.
+    noName: None
+    noDescription: None
+    noPublicValue: No public value
+  account:
+    header: Account API Keys
+    buttonText: Add Account API Key
+    content:
+      paragraph1: Account API Keys are tied to your specific account
+      paragraph2: "and can create, delete, and manipulate all Environments which you have access to."
+    table:
+      noData: There are no keys for this Account yet.
+
+auditLogsPage:
+  header: Audit Logs
+  form:
+    eventType:
+      placeholder: Event Type
+    resourceType:
+      placeholder: "Resource Type:"
+      dropdownPlaceholder: 'Select a Resource Type:'
+    resourceId:
+      placeholder: Resource ID
+    requestIp:
+      placeholder: Request IP
+    authType:
+      placeholder: "Auth Type:"
+      dropdownPlaceholder: 'Select an Auth Type:'
+    clearButtonText: Clear Filters
+    searchButtonText: Search
+  table:
+    time: Time
+    eventType: Event Type
+    description: Description
+    environment: Environment
+    resourceTypeId: "Resource Type:ID"
+    identity: Identity
+    authIp: "Auth & IP"
+
+authPage:
+  shibboleth:
+    enabled:
+      header: "{providerName} is enabled"
+      required: |
+        {appName} is configured to allow access to {orgs, plural,
+          =0 {no organizations}
+          =1 {# organization}
+          other {# organizations}
+        } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+        }.
+      restricted: |
+        {appName} is configured to allow access to environment members, {orgs, plural,
+          =0 {no organizations}
+          =1 {# organization}
+          other {# organizations}
+        } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+        }.
+      unrestricted: "{appName} is configured to allow access to any {providerName} user."
+      authenticated:
+        header:
+          text: Authentication
+      disableAccess:
+        header: "Danger Zone&trade;"
+        warning: '<b class="text-danger">Caution:</b> Disabling access control will give complete control over {appName} to anyone that can reach this page or the API.'
+        confirmDisable: "Are you sure?  Click again to really disable access control"
+        disable: Disable access control
+      groupsField: 'Groups:'
+      displayName: 'Display Name:'
+      userName: 'Username:'
+      userId: 'User ID:'
+    disabled:
+      header: '1. Configure Shibboleth Account'
+      label: "{providerName} is not configured"
+      warning: "{appName} can be configured to restrict access to a set of {providerName} users and groups.  This is not currently set up, so anybody that reach this page (or the API) has full control over the system."
+      name:
+        labelText: Display Name Field
+      username:
+        labelText: User Name Field
+      uid:
+        labelText: UID Field
+      groups:
+        labelText: Groups Field
+      testAuth:
+        header: '2. Test and enable authentication'
+        subtext: 'Check that your application is configured correctly by testing authentication with it:'
+        buttonText:
+          pre: Authenticate with IDP
+          post: Waiting to hear back from IDP
+
+
+    providerName:
+      shibboleth: Shibboleth
+  root:
+    header: Access Control
+  github:
+    standard: GitHub
+    enterprise: GitHub Enterprise
+    header:
+      enabled:
+        label: "{github} is enabled"
+        required: |
+          {appName} is configured to allow access to {orgs, plural,
+            =0 {no organizations}
+            =1 {# organization}
+            other {# organizations}
+          } and {users, plural,
+            =0 {no users}
+            =1 {# user}
+            other {# users}
+          }.
+        restricted: |
+          {appName} is configured to allow access to environment members, {orgs, plural,
+            =0 {no organizations}
+            =1 {# organization}
+            other {# organizations}
+          } and {users, plural,
+            =0 {no users}
+            =1 {# user}
+            other {# users}
+          }.
+        unrestricted: "{appName} is configured to allow access to any {github} user."
+      disabled:
+        label: GitHub is not configured
+        labelGitlab: GitLab is not configured
+        warning: "{appName} can be configured to restrict access to a set of GitHub users and organization members.  This is not currently set up, so anybody that reach this page (or the API) has full control over the system."
+
+    authenticated:
+      header:
+        text: Authentication
+        enterpriseHostName: "Enterprise Host:"
+        clientId:
+          text: "Client ID:"
+          helpText: "To change the configured GitHub application, disable access control below and then set it up again."
+      disableAccess:
+        header: "Danger Zone&trade;"
+        warning: '<b class="text-danger">Caution:</b> Disabling access control will give complete control over {appName} to anyone that can reach this page or the API.'
+        confirmDisable: "Are you sure?  Click again to really disable access control"
+        disable: Disable access control
+    notAuthenticated:
+      header: "1. Setup a GitHub Application"
+      headerVariable: "1. Setup a {GitHub} Application"
+      ul:
+        li1:
+          text: 'For standard GitHub, <a href="https://github.com/settings/developers" target="_blank">click here</a> to go applications settings in a new window.'
+          gitlabText: 'For standard GitLab, click <a target="blank" href="https://gitlab.com/profile/applications">here</a> to go applications settings in a new window.'
+          ul:
+            li1: "For Github Enterprise, login to your account.  Click on Settings, then Applications."
+        li2:
+          text: 'Click "Register new application" and fill out the form:'
+          text2: 'Fill out the "Add new application" form:'
+          ul:
+            li1: '<b>Application name:</b> <span class="text-muted">Anything you like, e.g. My {appName}</span>'
+            li1_2: '<b>Name:</b> <span class="text-muted">Anything you like, e.g. My {appName}</span>'
+            li2: Homepage URL
+            li3: '<b>Application description:</b> <span class="text-muted">Anything you like, optional</span>'
+            li4: Authorization callback URL
+            li4_2: 'Redirect URI:'
+        li3:
+          text: 'Click "Register Application" '
+          text2: 'Click "Save application" '
+      form:
+        header: '2. Configure {appName} to use your application for authentication'
+        subtext: 'Copy and paste the Client ID and Secret from the upper-right corner of your newly-created application.'
+        clientId:
+          labelText: Client ID
+        clientSecret:
+          labelText: Client Secret
+        ghEnterprise:
+          labelText: Use a private GitHub Enterprise installation
+        glPrivate:
+          labelText: Use a private GitLab installation
+        isGHEnterprise:
+          labelText: Use a secure connection
+        glEnterprise:
+          labelText: Use a private GitLab Enterprise installation
+        enterpriseHost:
+          labelText: Enterprise Host
+          placeholder: 'e.g. github.example.com'
+          placeholder2: 'e.g. gitlab.example.com'
+    testAuth:
+      header: '3. Test and enable authentication'
+      subtext: 'Check that your application is configured correctly by testing authentication with it:'
+      buttonText:
+        pre: Authenticate with GitHub
+        preVariable: Authenticate with {GitHub}
+        post: Waiting to hear back from GitHub
+
+  azuread:
+    header:
+      enabled: 'Azure AD Authentication is <b>enabled</b>'
+      disabled: 'Azure AD Authentication is not configured'
+    subtext:
+      enabled: '{appName} is configured to allow access to accounts in Azure AD'
+      disabled: '{appName} can be configured to restrict access to a set of accounts defined in the {appName} database.  This is not currently set up, so anybody that reach this page (or the API) has full control over the system.'
+    enabled:
+      header: 'Danger Zone&trade;'
+      warning: '<b class="text-danger">Caution:</b> Disabling access control will give complete control over {appName} to anyone that can reach this page or the API.'
+      reallyDisable: 'Are you sure?  Click again to really disable access control'
+      promptDisable: Disable access control
+    configure:
+      header: '1. Configure Azure AD Account'
+      tenantId:
+        label: Tenant ID
+        placeholder: A long UUID string
+        help: From the Azure AD portal
+      clientId:
+        label: Client ID
+        placeholder: A long UUID string
+      domain:
+        label: Domain
+        placeholder: e.g. youcompany.onmicrosoft.com
+      adminAccountUsername:
+        label: Admin Account Username
+        placeholder: e.g. rancher-admin
+        help: A user that can read information about other users
+      adminAccountPassword:
+        label: Admin Account Password
+    test:
+      header: '2. Test and enable authentication'
+      help: 'Check that everything is configured correctly by testing authentication with your account:'
+      username:
+        label: Login Username
+        placeholder: 'e.g. jsmith'
+      password:
+        label: Login Password
+      pre: Authenticate with Azure
+      post: Waiting to hear back from Azure
+
+
+  localAuth:
+    header:
+      enabled: 'Local Authentication is <b>enabled</b>'
+      disabled: '<p>Local Authentication is not configured</p>'
+    subtext:
+      enabled:
+        text: '{appName} is configured to allow access to accounts in its local database.'
+        linkText: Manage Accounts
+      disabled: '{appName} can be configured to restrict access to a set of accounts defined in the {appName} database.  This is not currently set up, so anybody that reach this page (or the API) has full control over the system.'
+    accessEnabled:
+      header: 'Danger Zone&trade;'
+      warning: '<b class="text-danger">Caution:</b> Disabling access control will give complete control over {appName} to anyone that can reach this page or the API.'
+      buttonText:
+        disable: 'Are you sure?  Click again to really disable access control'
+        prompt: Disable access control
+    accessDisabled:
+      header: '1. Setup an Admin user'
+      helpText: 'This user will become the admin that has full control over {appName}.'
+      form:
+        login:
+          labelText: Login Username
+          placeholder: 'e.g. jsmith'
+        name:
+          labelText: Full Name
+          placeholder: 'e.g. John Smith'
+        password:
+          labelText: Password
+        confirmPassword:
+          labelText: Confirm Password
+    accessControl:
+      header: '2. Enable Access Control'
+      helpText: 'Click to enable access control and log in.'
+      buttonText:
+        pre: Enable Local Auth
+        post: 'Enabling...'
+
+catalogPage:
+  index:
+    header: Catalog
+    refreshBtn: Refresh
+    manage: Manage
+    search:
+      label: Search
+    filters:
+      label: Catalog Filter
+    certified:
+      rancher:
+        rancher: Rancher Labs
+        partner: Official
+      pl:
+        rancher: Core
+        partner: Official
+    noData:
+      singular: There are no compatible templates.
+      plural: There are no compatible templates in this catalog.
+    action:
+      launch: View Details
+      notCompatible: Not Compatible
+      alreadyDeployed: Already Deployed
+
+certificatesPage:
+  table:
+    cn: Domain Name
+    expiresDate: Expires
+  detail:
+    header: 'Certificate: {name}'
+    description: Description
+    info:
+      labelText: Info
+      valid: Valid Beginning
+      expires: Expires
+      algorithm: Algorithm
+      issuer: Issuer
+      serialNumber: Serial Number
+      version: Version
+    domainNames:
+      labelText: Domain Names
+  index:
+    header: Certificates
+    linkTo: Add Certificate
+    table:
+      header:
+        state: State
+        name: Name
+        domain: Domain Name
+        expires: Expires
+      body:
+        noData: You do not have any certificates yet.
+  new:
+    header: Add Certificate
+    form:
+      name:
+        placeholder: e.g. mydomain.com
+      description:
+        placeholder: e.g. EV cert for mydomain.com
+
+containerPage:
+  header: 'Container: {name}'
+  portsTab:
+    header: Ports
+    detail: 'Mappings of container listening ports to host ports on public IP addresses'
+    hostPrimaryIp: '({ip})'
+  linksTab:
+    header: Links
+    detail: 'These properties show the links between containers in this container.'
+    noData: This Container has no links
+  volumesTab:
+    header: Volumes
+    detail: 'These properties show the volumes attached to your container.'
+    table:
+      path: Mount Point
+      shared: Shared With
+      writable: Writable
+      noData: This container has no volumes mounted
+      noMatch: No volumes match the current search
+      noContainers: No other containers
+
+containersPage:
+  table:
+    sparkPrefixCpu: "CPU: "
+    sparkPrefixMemory: "Memory: "
+    sparkPrefixNetwork: "Network: "
+    sparkPrefixStorage: "Storage: "
+    noData: There are no containers to show.
+    noMatch: No containers match the current search.
+  welcome:
+    container: Get started right away
+    containerLink: Add a container
+    orchestrator: Install another orchestrator
+    kubernetesLink: Install Kubernetes
+
+
+containerSubpod:
+  childContainers: Containers
+  childSidekicks: Sidekicks
+
+dnsPage:
+  noMatch: No records match the current search
+  noData: No DNS records
+  table:
+    target: Target
+
+editDns:
+  title:
+    new: Add DNS Record
+    edit: Edit DNS Record
+  name:
+    placeholder: e.g. myapp
+  description:
+    placeholder: e.g. Current version of MyApp
+  selectorContainer:
+    label: Container Selector
+    placeholder: e.g. mylabel=somevalue
+  mode:
+    label: "Resolves To"
+    dnsservice: One or more other services
+    service: The set of containers which match a selector
+    externalip: One or more external IP addresses
+    externalhostname: An external hostname
+  targetIp:
+    label: Target IP Addresses
+    add: Add Target IP Address
+  hostname:
+    label: Target Hostname
+    placeholder: e.g. foobar.com
+  errors:
+    ipRequired: 'One or more "Target IP Addresses" are requried'
+    hostnameRequired: '"Target Hostname" is required'
+    serviceRequired: 'One or more "Targets" are required'
+    selectorRequired: '"Container Selector" is required'
+
+editVolume:
+  define:
+    global: Define Volume
+    stack: Define Volume Template
+    container: Define Volume Template
+    action: Define
+  add:
+    global: Add Volume
+    stack: Add Volume Template
+    container: Add Volume Template
+  edit:
+    global: Edit Volume
+    stack: Edit Volume Template
+    container: Edit Volume Template
+  name:
+    placeholder: e.g. myvol
+  scope:
+    label: Scope
+    global: One volume for the whole environment
+    stack: One volume within a specific stack
+    container: Separate volumes for each container
+  driver:
+    label: Driver
+    local: Local host disk
+    nfs: Rancher NFS
+    ebs: Rancher EBS
+    efs: Rancher EFS
+    longhorn: Rancher Longhorn
+    standard: Standard
+    custom:
+      label: Custom
+      placeholder: Custom driver name
+  driverOpts:
+    label: Driver Options
+    addAction: Add Option
+
+pipelinesPage:
+  table:
+    status: Status
+    noData: There are no pipelines to show.
+    noMatch: No pipelines match the current search.
+  add: Add Pipeline
+  pipelines: Pipelines
+  import: Import pipeline.yml
+  active: Active
+  inactive: Inactive
+  lastActivity: LastActivity
+  nextRun: NextRun
+
+pipelinesSetting:
+  gitAuthentication: Git Authentication
+  authenticateWithGit: Authenticate with git repository
+  changeConfiguration: To change the configured {oauthType} application, disable OAuth Authentication below and then set it up again.
+  authenticatedUsers: Authenticated Users
+  sureToDisableOAuth: Are You Sure To Disable OAuth Authentication?
+  disableOAuth: Disable OAuth Authentication
+  dataClear: Data Clear
+  resetData: Reset all of the pipeline related data.
+  clearing: Clearing
+  sureToClearData: Are You Sure To Clear Data?
+  clearData: Clear Data
+pipelineHistories:
+  history: History
+  all: All
+  running: Running
+  success: Success
+  fail: Fail
+  pending: Pending
+  pipline: Pipeline
+  repository: Repository
+  time: Time
+  status: Status
+  deny: Deny
+  approve: Approve
+  rerun: Rerun
+  waitingApproval: Waiting Approval
+  runPipeline: Run Pipeline
+
+newPipeline:
+  header: Add Pipeline
+  name:
+    placeholder: Name
+  description:
+    placeholder: Description
+  approvers:
+    label: Approvers
+    noAccounts: Every one can approve it if there are no specific users selected
+  build:
+    variable: Build Variables
+    add: Add Another
+  git:
+    repo:
+      label: Repository
+      placeholder: e.g. https://github.com/mycompany/mypipeline.git
+    branch: Branch
+  image:
+    label: Target image
+    placeholder: builded
+  builder:
+    label: Builder Image
+    buildIn: Build In
+    custom: Custom
+  save: Save
+  add: Add
+  schedule:
+    title: Schedule
+    detail: Schedule to trigger pipeline
+    interval: Internal Pattern
+    custom: Custom
+    cronSyntax: Cron Syntax
+    everyDay: Every day(at 4:00am)
+    cronTimezone: Cron Timezone
+    tip: Run when there is new commit
+  parameters: Parameters
+  parameterTip: Set the pipeline environment variables
+  active: Active
+
+newPipelineStage:
+  header:
+    create: Add a Stage
+    edit: Edit Stage
+  runningMode: Step Running Mode
+  modeParallel: parallel
+  modeSerial: serial
+  parallelTip: Make steps running simultaneously
+  serialTip: Make steps running sequentially
+  conditions: Conditions 
+  requireApproval: Requires Approval
+  approvers: Approvers
+  env: Env
+  operator: Operator
+  value: Value
+  name: Name
+  addStep: Add a Step
+
+newPipelineStep:
+  header:
+    create: Add a step to stage
+    edit: Edit step
+  stepType:
+    label: Step Type
+    image: Image
+    scm:
+      label: Source Code Management
+      warning: To create your pipeline, please specify the source code repository
+      user: User
+      branch: Branch
+      webhook: Webhook
+      webhookTip: Automatically run pipeline after commits
+      noPermission: no permissions
+      settingWarning1: Please finish the OAuth of GitHub in
+      settingWarning2: click here
+      settingWarning3: to load your repository
+      note: Note
+      finishOauth1: Have finished the OAuth? 
+      finishOauth2: click here
+      finishOauth3: to load your repository
+    build:
+      label: build
+      source: Source of Dockerfile
+      readSourceCode: Read from source code
+      readFile: Read from a file
+      dockerFilePath: Dockerfile Path(relative to workspace)
+      imageTag: Image Tag
+      buildPath: Build Path(relative to workspace)
+      push: push
+      pushTo: This image will be pushed to
+      pushWarning1: The registry 
+      pushWarning2: haven't been authenticated, click
+      pushWarning3: to authenticate it.
+    task:
+      label: Task
+      runAsService: Run As a Service
+      runAsServiceTip: Click this to make it a long running process/container.
+      shellScript: Shell Script
+      customEntryPoint: Custom Entrypoint
+      command: Command
+      commandLabel: 'sh'
+      entryPoint: EntryPoint
+    stack:
+      label: upgradeStack
+      stackName: Stack Name
+      editTemplate: Edit your Template Using CI parameters
+      editTemplateTip: You just need to write supplement of the compose file.
+    catalog:
+      label: upgradeCatalog
+      select: Select
+      authWarning: Please add Authentication
+      selectApp: Select App
+      selectAppTip: select the app you want to upgrade
+      editTemplate: Edit your Template Using CI parameters
+      selectTemplate: Select Template From Old Version
+      selectTemplateTip: Select a version as the template to upgrade
+      upgrade: Upgrade to the latest version
+      upgradeTip: This option will help you upgrade catalog stack to the latest version.
+    deploy:
+      label: Deploy
+      name: Name
+      count: Count
+    timeout: Timeout
+    timeoutWarning: If a step does not complete by the specified amount of time (in minutes; at least 3), then the build will be terminated automatically and marked as Fail.
+    minutes: minutes
+    conditions: Conditions
+    addExpression: Add Expressions
+    noExpression: No Expressions yet.
+    allThese: Any of these
+    allTheseInfo: Run when at least one of the conditions are met
+    anyThese: All of these
+    anyTheseInfo: Run when all of the conditions are met
+    targetEnv:
+      label: Target another environment
+      tip: Default target is current environment, if you want target another enviroment, then check this option.
+# If you change translations here also change the translation in app/utils/constants.js under the FALLBACK_TRANSLATIONS key
+# those are present in case we have an error in the app and can not load the translations file
+# the error page will at least make a little sense
+failWhalePage:
+  header: Error
+  reloadButton: |
+    <a href="#" onclick="window.location.href = window.location.href; return false;">Reload</a> to try again or
+  logoutButton: log out
+
+haPage:
+  header: High Availability
+  setup:
+    prefix: "Multiple server containers can be deployed on different hosts so that {appName} keeps running even if one of the hosts fail.  "
+    link: See documentation
+    suffix: " for information on setup and usage."
+  table:
+    address: Advertised  Address
+    port: Port
+    heartbeat: Last Seen
+    clustered: Clustered
+
+helpPage:
+  header: Helpful links & Information
+  banner: 'Latest Release {released}:'
+  environment:
+    header: What is an environment?
+    content: |
+      <p>{appName} supports grouping resources into multiple environments. Each one gets its own set of services and infrastructure resources, and is owned by one or more GitHub users, teams or organizations.</p>
+        <p>For example, you might create separate "dev", "test", and "production" environments to keep things isolated from each other, and give "dev" access to your entire organization but restrict the "production" environment to a smaller team.</p>
+    manageLink: Manage Environments
+  host:
+    header: What is a host?
+    content: |
+      Before adding your first service or launching a container, you must add at least a single Linux host that supports Docker {minVersion} or higher and be able to reach the {appName} server via HTTP. {appName} supports adding Linux hosts in the form of a virtual or physical
+          machine from any public cloud providers, privately hosted clouds, or even bare metal servers.
+    contentLink: Learn More
+    addHostLink: Add Host
+  stacks:
+    header: What are stacks and services?
+    content:
+      paragraph1: |
+        A service is simply a group of containers created from the same Docker image but extends Docker's "link" concept to leverage {appName}'s lightweight distributed DNS service for service discovery. Services can be added individually or by deploying an item from the Catalog.
+      paragraph2: A service is also capable of leveraging other {appName} built-in services such as load balancers, health monitoring, upgrade support, and high availability.
+      #' fixes syntax highlighting so i dont go crazy
+      link: Learn More
+    addServiceLink: Manage Services
+    addCatalogLink: Add From Catalog
+    noHosts: You currently have no hosts. Please add a host before adding Services.
+    manageServiceLink: Manage Services
+  issues:
+    header:
+      text: Issues & Documentation
+      tagline: Uh oh, Find an issue?
+      fileBug: File a Bug
+    content:
+      paragraph1: |
+        {appName} is an open source software platform that implements a purpose-built infrastructure for running containers in production. Docker containers, as an increasingly popular application workload, create new requirements in infrastructure services such as networking, storage, load balancer, security, service discovery, and resource management.
+      graphic1:
+        text: Find a bug?
+        link: File an issue on GitHub.
+      graphic2:
+        text: For more information
+        link: |
+          <a href="{docsLink}" target="_blank">about using {appName} Visit our docs.</a>
+          <br/>or <a href="{companyLink}/learn/" target="_blank">check out our getting started documentation.</a>
+      graphic3:
+        text: Need help troubleshooting?
+        link: Check out our FAQs
+  forums:
+    header: From the Forums
+    tagline: Join the conversation
+    buttonText: On the forums
+    announcements:
+      header: Announcements
+      buttonText: View More Annoucement Topics
+    general:
+      header: General
+      buttonText: View More General Topics
+    rancherOs:
+      header: RancherOS
+      buttonText: View More RancherOS Topics
+    rancher:
+      header: Rancher
+      buttonText: View More Rancher Topics
+  commercial:
+    header: Commercial Support
+    content: |
+      At Rancher Labs we provide commercial, enterprise-grade support for {appName}, including an available 24x7 support team, and priority bug fixes.  In addition we provide implementation, integration and consulting services for organizations looking to implement and scale {appName}.  For more information on any of these services, please email our sales team: <a href="mailto:sales@rancher.com">sales@rancher.com</a>
+
+hostsPage:
+  cloudHostsPage:
+    addPage:
+      launch: Launch
+      header: Add Host
+      name:
+        label: Host Name
+        placeholder: e.g. host01
+      transferUnit: TB
+      instance: 'Type:'
+      storage: 'Storage:'
+      transfer: 'Transfer:'
+      zone: 'Zone:'
+      env: 'Environment:'
+      size: 'Size:'
+      os: 'OS:'
+      driver: 'Driver:'
+      template: 'Template Name:'
+  addContainer: Add Container
+  index:
+    header: Hosts
+    addHost: Add Host
+    tooltip:
+      listView: List
+      iconView: State Icons
+      groupedView: Grouped Stacks & Sidekicks
+    columns:
+      emptyMessage: No hosts or containers yet.
+    table:
+      memory: RAM
+      docker: Docker
+      instanceState: Container States
+      instanceStateWithIcon: States
+      noData: You do not have any hosts yet
+      noMatch: No hosts match the current search
+  new:
+    header:
+      customText: Add Custom Host
+      text: Add Host
+    manageLink: Manage available machine drivers
+    custom: Add Custom Host
+    name:
+      placeholder: e.g. host01
+  hostPage:
+    header:
+      title: 'Host: {name}'
+    limits:
+      cpu: 'CPU Limit:'
+      memory: 'Memory Limit:'
+      storage: 'Volumes Local Limit:'
+    infoMultiStats:
+      ip: 'IP'
+      cpu: 'CPU'
+      memory: 'Memory'
+      storage: 'Volumes'
+      provider:
+        labelText: 'Provider:'
+        noHost: Custom
+      kernel: 'Kernel'
+      docker: 'Docker:'
+      os: 'OS'
+      milliCpu:
+        labelText: mCPU
+    containersTab:
+      header: Containers
+      detail: A list of containers running on this host
+    portsTab:
+      header: Ports
+      detail: 'These properties show what ports have been mapped and where.'
+      table:
+        header:
+          ip: IP Address
+          port: Port
+          service: Service
+          container: Container
+        body:
+          noData: This host does not have any ports
+    storageTab:
+      header: Volumes
+      detail: 'These properties show the volume details of your host.'
+      table:
+        header:
+          state: State
+          hostPath: Host Path
+          mounts: Mounts
+        body:
+          noData: This host does not have any volumes
+
+k8sImport:
+  instructions: 'Select or paste in a kubeconfig file to import...'
+  placeholder: kubeconfig file contents
+  actionLabel: Import
+  detail:
+    version: Kubernetes 1.7 and higher are supported
+    detail2: Business business business
+    detail3: Numbers
+    detail4: Is this working?
+  importing: 'Importing cluster...'
+
+k8sTab:
+  dashboard:
+    header: Kubernetes Dashboard
+    dashboard:
+      header: Dashboard
+      content: Kubernetes Dashboard is a general purpose, web-based UI for Kubernetes clusters. It allows users to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself.
+      button: Kubernetes UI
+  kubectl:
+    header: Kubernetes CLI
+    stepOne:
+      generateConfigText: |
+        To use <a href="{downloadUrl}" target="_blank">kubectl</a> (v1.4+ only) on your workstation, click the button to generate an API key and config file:
+      generateButton: Generate Config
+    stepTwo:
+      progress: Generating...
+    stepThree:
+      helpText: |
+        Put this into <code>~/.kube/config</code>:
+      downloadText: |
+        Then <a href="{downloadUrl}" target="_blank">download</a> (if needed) and run <code>kubectl</code>
+
+loginPage:
+  greeting: "Howdy!<br><span>Welcome to {appName}</span>"
+  githubMessage: "{appName} uses GitHub to manage accounts and teams.  Click the button below to log in and give us read-only access to your basic GitHub account information."
+  shibbolethMessage: "{appName} uses Shibboleth to manage accounts.  Click the button below to log in to the configured Shibboleth IDP."
+  shibbolethError:
+    401: "Unauthorized"
+    500: "Internal Server Error"
+    generic: "There was an error ({errorCode}) while trying to log you in. Please try again."
+  error:
+    authFailed: Username or Password incorrect.
+    timedOut: Your session has timed out.  Log in again to continue.
+
+
+machinePage:
+  header: Machine Drivers
+  inactive: Inactive
+  subtext: "Additional <code>docker-machine</code> drivers can be loaded here and used in the Add Host screen."
+  add: Add Machine Driver
+  builtin: Built-In
+
+# If you change translations here also change the translation in app/utils/constants.js under the FALLBACK_TRANSLATIONS key
+# those are present in case we have an error in the app and can not load the translations file
+# the error page will at least make a little sense
+notFoundPage:
+  header: "The page you were looking for doesn't exist!"
+  linkTo: Go Home
+
+projectList:
+  index:
+    header: Environments
+    new: Add Environment
+    subtext: |
+      <p>{appName} supports grouping resources into multiple <b>environments</b>.  Each one gets its own set of services and infrastructure resources, and is owned by one or more users or groups.</p>
+      <p>For example, you might create separate &quot;dev&quot;, &quot;test&quot;, and &quot;production&quot; environments to keep things isolated from each other, and give &quot;dev&quot; access to your entire organization but restrict the &quot;production&quot; environment to a smaller team.</p>
+
+    alert: There are no active environments.  You will need to create or activate one before you can do anything else.
+    table:
+      header:
+        orchestration: Orchestration
+  indexTemplate:
+    header: Environment Templates
+    new: Add Template
+    subtext: |
+      <p>An environment template allows users to define a different combination of infrastructure services to be deployed.</p>
+      <p>The infrastructure services includes but not limited to container orchestration (i.e. cattle, kubernetes, networking) or rancher services (i.e healthcheck, dns, metadata, scheduling, service discovery and storage)</p>
+    table:
+      header:
+        stacks: Stacks
+        isPublic: Public
+      body:
+        noData: "You don't have any environment templates yet"
+
+registriesPage:
+  index:
+    header: Registries
+    linkTo: Add Registry
+    table:
+      header:
+        state: State
+        address: Address
+        username: Username
+        created: Created
+      body:
+        noData: "You don't have any registries yet"
+  new:
+    header: Add Registry
+    form:
+      custom:
+        labelText: Address
+        placeholder: e.g. registry.example.com
+        help: Just the hostname or IP address, do not include the protocol (https://)
+      username:
+        labelText: Username
+        placeholder: e.g. username
+      password:
+        labelText: Password
+        placeholder: e.g. password
+
+secretsPage:
+  index:
+    header: Secrets
+    linkTo: Add Secret
+    noData: You do not have any Secrets yet
+    noMatch: No Secrets match the current search
+
+servicePage:
+  header: '{type}: {name}'
+  globalScale: '{scale} per host'
+  multistat:
+    fqdn: 'FQDN:'
+    scale: 'Scale:'
+    image: 'Image:'
+  external:
+    externalIp: External IPs
+    externalHostname: 'External Hostname:'
+  containersTab:
+    title: 'Containers'
+    detail: 'The containers running in this service.'
+  linksTab:
+    header: Links
+    detail: 'These properties show the links between containers in this service.'
+    noData: This Service has no links
+    status: |
+      {count, plural,
+      =0 {No links}
+      =1 {# link}
+      other {# links}
+      }
+  certsTab:
+    title: Certificates
+    detail: 'Certificates used for TLS-termination of requests.'
+    default: Default Certificate
+    additional: Additional SNI Certificates
+  new:
+    form:
+      name:
+        placeholder: e.g. myapp
+      description:
+        placeholder: e.g. My application
+  newBalancer:
+    upgradeImage: "The balancer software image will be upgraded from <code>{from}</code> to <code>{to}</code>."
+    form:
+      name:
+        placeholder: e.g. website
+      description:
+        placeholder: e.g. Balancer for mycompany.com
+  portsTab:
+    title: Ports
+    detail: 'Mappings of container listening ports to host ports on public IP addresses.'
+    status: |
+      {count, plural,
+      =0 {No Ports}
+      =1 {# port}
+      other {# ports}
+      }
+    notActive: Ports are only available while the service is Active.
+  logTab:
+    title: Service Log
+    detail: 'Recent orchestration events that have occurred for this service'
+    status: |
+      {count, plural,
+      =0 {No logs}
+      =1 {# log}
+      other {# logs}
+      }
+  type:
+    service: Service
+    selectorservice: Selector
+    loadbalancerservice: Load Balancer
+    dnsservice: Alias
+    externalservice-ip: External IP
+    externalservice-host: External Name
+    kubernetesservice: K8s Service
+    composeservice: Compose Service
+    networkdriverservice: Network Service
+    storagedriverservice: Storage Service
+  sidekick:
+    tabHeader: Sidekick
+    header: Service & Sidekicks
+    helpBlock: Select the main service launch config or one of the sidekick launch configs
+
+settingsPage:
+  header: Settings
+
+signupPage:
+  header: 'Signup for {appName}'
+  form:
+    button: Register
+    labels:
+      loginUsername: Name
+      email: Email
+  emailSuccess:
+    header: 'Welcome to {appName}'
+    confirm:
+      subtext: Confirm your email by clicking the verification link we just sent to your inbox.
+      resend: Resend Email
+
+stackPage:
+  header:
+    singleBanner: Viewing a single Stack
+    backLink: Back to all stacks
+  containers:
+    header: Containers
+    detail: Standalone Containers that are not part of a Service or Load Balancer
+    status: |
+      {count, plural,
+      =0 {No containers}
+      =1 {# container}
+      other {# containers}
+      }
+  loadBalancers:
+    header: Load Balancers
+    detail: 'Load Balancer containers that are apart of this stack'
+    status: |
+      {count, plural,
+      =0 {No balancers}
+      =1 {# balancer}
+      other {# balancers}
+      }
+  dnsServices:
+    header: DNS Entries
+    detail: 'Load Balancers that are apart of this stack'
+    status: |
+      {count, plural,
+      =0 {No entries}
+      =1 {# entry}
+      other {# entries}
+      }
+  scalingGroups:
+    header: Scaling groups
+    detail: 'Containers existing in this scaling group'
+    status: |
+      {count, plural,
+      =0 {No containers}
+      =1 {# container}
+      other {# containers}
+      }
+
+newStack:
+  header: Import Compose.yml
+  name:
+    placeholder: e.g. myapp
+  description:
+    placeholder: e.g. MyApp Stack
+  dockerCompose:
+    placeholder: Contents of compose.yml
+  files:
+    label: Additional Compose Files
+    addActionLabel: Add Compose File
+    namePlaceholder: File Name
+    valuePlaceholder: File Contents
+  answers:
+    label: Answers (variable substitutions)
+    addActionLabel: Add Answer
+
+  startOnCreate:
+    label: After creating services
+    on: Automatically start them
+    off: Leave them stopped
+
+storagePoolsPage:
+  header: Storage Drivers
+  index:
+    noData: No storage drivers
+  newVolume:
+    header: Add Volume
+    form:
+      driverOptions: Driver Options
+      addActionLabel: Add Option
+
+userPreferencesPage:
+  header: Preferences
+  theme:
+    header: Theme
+    light: Light
+    auto: Auto
+    autoDetail: Auto will transition to dark from 6pm-6am
+    dark: Dark
+  generalInfo:
+    header: My Account
+    name:
+      label: Name
+    username:
+      label: Username
+    email:
+      label: Email
+    password:
+      text: Edit Account
+
+processesPage:
+  header: Processes
+  tab:
+    summary: Summary
+    pools: Pools
+    running: Running
+    delayed: Delayed
+    ready: Ready
+    completed: Recently Completed
+  summary:
+    noData: No processes are currently scheduled
+    table:
+      running: Running
+      ready: Ready
+      delay: Delayed
+  pools:
+    noData: No pools found
+    noMatch: No pools match the current search
+    table:
+      activeTasks: Active
+      poolSize: Pool Size
+      rejectedTasks: Rejected
+      completedTasks: Completed
+      queueSize: Queue Size
+      queueRemainingCapacity: Queue Remain
+
+  list:
+    table:
+      resource: Resource
+      exitReason: Exit Reason
+      startTime: Start Time
+      endTime: End Time
+      runTime: Run Time
+      runAfter: Run After
+    noData: 'No processes are currently {which}'
+    noMatch: No processes match the current search
+
+verifyPage:
+  header: "You've successfully verified your email!"
+  subtext: We need a few more pieces of information before we can finalize your account.
+  account:
+    header: Account Created
+    subtext: Click the link below to be to taken to the login page.
+    linkText: Login
+
+verifyResetPasswordPage:
+  header: Reset Password
+  button: Update password
+  success:
+    header: Password Reset!
+    subtext: Click the link below to be to taken to the login page.
+    linkText: Login
+
+
+waitingPage:
+  hosts:
+    setup:
+      kubernetes: Setting up Kubernetes
+
+##############################
+# Partials
+##############################
+hostPartial:
+  host:
+    addCommon:
+      quanity: Quantity
+      new:
+        form:
+          name:
+            placeholder: e.g. host01
+
+ldap:
+  providerName:
+    openldap: OpenLDAP
+    ad: Active Directory
+  header:
+    enabled:
+      label: "{providerName} is enabled"
+      required: |
+        {appName} is configured to allow access to {groups, plural,
+          =0 {no groups}
+          =1 {# group}
+          other {# groups}
+        } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+        }.
+      restricted: |
+        {appName} is configured to allow access to environment members, {groups, plural,
+          =0 {no groups}
+          =1 {# group}
+          other {# groups}
+        } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+        }.
+      unrestricted: "{appName} is configured to allow access to any {providerName} user."
+    disabled:
+      label: "{providerName} is not configured"
+      warning: "{appName} can be configured to restrict access to a set of {providerName} users and groups.  This is not currently set up, so anybody that reach this page (or the API) has full control over the system."
+
+  accessEnabled:
+    header: Authentication
+    subtext: "To change the server configuration, disable access control below and then set it up again."
+    general:
+      header: General
+      server: "Server:"
+      tls: "TLS:"
+      serviceAccount: "Service Account:"
+      searchBase: "Search Base:"
+      defaultDomain: "Default Domain:"
+    users:
+      header: Users
+      objectClass: "Object Class:"
+      login: "Login Field:"
+      name: "Name Field:"
+      search: "Search Field:"
+      enabled: "Status Field:"
+      disabledBitMask: "Disabled BitMask:"
+    group:
+      header: Group
+      objectClass: "Object Class:"
+      name: "Name Field:"
+      search: "Search Field:"
+    disable:
+      header: "Danger Zone&trade;"
+      warning: '<b class="text-danger">Caution:</b> Disabling access control will give complete control over {appName} to anyone that can reach this page or the API.'
+      confirmDisable:
+        pre: Disable access control
+        post: "Are you sure?  Click again to really disable access control"
+  accessConfig:
+    header: "1. Configure an {providerName} server"
+    subtext1: "Enter the address, port, and protocol to connect to your {providerName} server.  <code>389</code> is the standard port for insecure, <code>636</code> for TLS."
+    subtext2: "{appName} needs a service account that has (read-only) access to all of the domains that will be able to login, so that we can determine what groups a user is a member of when they make a request with an API key."
+    hostName:
+      labelText: Hostname or IP Address
+    port:
+      labelText: Port
+      checkbox: TLS
+    serviceUsername:
+      labelText: Service Account Username
+    servicePassword:
+      labelText: Service Account Password
+    userSearchBase:
+      labelText: User Search Base
+      placeholder: "e.g. ou=Users,dc=mycompany,dc=com"
+      helpText: "Only users below this base will be used."
+    groupSearchBase:
+      labelText: Group Search Base
+      placeholder: "e.g. ou=Groups,dc=mycompany,dc=com"
+      helpText: "If set, groups will be searched for only under this base instead of under the User Search Base."
+    defaultDomain:
+      helpText: "This domain will be used if a user logs in without specifing one."
+      labelText: Default Login Domain
+      placeholder: "e.g. mycompany"
+  customizeSchema:
+    header: "2. Customize Schema"
+    helpText: "If your schema does not match the standard ActiveDirectory format, you can customize it here."
+    users:
+      header: Users
+      objectClass:
+        labelText: Object Class
+      login:
+        labelText: Login Field
+      name:
+        labelText: Name Field
+      search:
+        labelText: Search Field
+      status:
+        labelText: Status Field
+      disabledBitMask:
+        labelText: Disabled Status Bitmask
+      userMemberAttribute:
+        labelText: User Member Attribute
+    groups:
+      header: Groups
+      objectClass:
+        labelText: Object Class
+      name:
+        labelText: Name Field
+      search:
+        labelText: Search Field
+      groupMemberUser:
+        labelText: Group Member User Attribute
+        placeholder: uid
+      groupMemberMapping:
+        labelText: Group Member Mapping Attribute
+      groupDN:
+        labelText: Group DN Field
+        placeholder: distinguishedName
+  testAuth:
+    header: "3. Test and enable authentication"
+    helpText: "Check that everything is configured correctly by testing authentication with your {providerName} account:"
+    userName:
+      labelText: Your Username
+    password:
+      labelText: Your Password
+    authenticate:
+      pre: Authenticate
+      post: "Testing..."
+
+servicePartial:
+  noContainers:
+    label: No containers yet.
+    inactive:
+      start: Start
+
+##############################
+# Components
+##############################
+accordionRow:
+  status:
+    none: None
+    incomplete: Incomplete
+    error: Error
+    notConfigured: Not Configured
+    configured: Configured
+    countConfigured: "{count} Configured"
+    standard: Default
+    custom: Customized
+    specific: Specific
+    any: Any
+    rule: "{count, plural, =1 {# Rule} other {# Rules}}"
+
+advancedSection:
+  showText: Show advanced options
+  hideText: Hide advanced options
+
+billingInfo:
+  header: Billing Info
+  addNew: Add Payment Method
+  card: "{brand}: ...{last}"
+  noSub: You do not have an active payment method
+  table:
+    title:
+      cardType: "Brand: {brand}"
+      last4: "Last Four: {last}"
+      exp: "Exp Date: {exp}"
+      name: "Name On Card: {name}"
+      actions: Actions
+
+
+
+caasLogin:
+  resetHeader: Reset Password
+  new: Create Account
+  reset: Reset Password
+  resetSuccess: Success! Check your email for a link to change your password.
+  error: There was an error retrieving your email. Ensure your email is correct and try again.
+  invalidEmail: You input is not a valid email address. Please enter a valid email address and try again.
+  login: Login Page
+  form:
+    email: Email
+
+catalogSettings:
+  header: Catalog
+  subtext: Catalogs contain templates that allow users to easily deploy applications by answering a few questions
+  certified:
+    header:
+      rancher: "{appName} Certified Library"
+      pl: Certified Library
+    detail:
+      rancher: Templates required for core Rancher features such as Kubernetes orchestration support.  Maintained and supported by Rancher Labs.
+      pl: Officially maintained templates required for core features such as Kubernetes.
+  community:
+    header:
+      rancher: Community Contributed
+      pl: Community Contributed
+    detail:
+      rancher: Templates created and maintained by community members.  Not certified by Rancher Labs.
+      pl: Templates created and maintained by community members.
+  more:
+    header: Custom
+    helpText: You can define your own custom catalog sources here.  Each one needs a unique name and a URL that <code>git clone</code> can handle (see <a href="https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a" target="_blank">docs</a> for more info).
+    addActionLabel: Add Catalog
+    name:
+      label: Name
+      placeholder: e.g. mycatalog
+    url:
+      label: URL
+      placeholder: 'e.g. https://github.com/mycompany/mycatalog.git'
+    kind:
+      label: Kind
+      native: Native
+      helm: Helm
+    branch:
+      label: Branch
+      placeholder: 'e.g. master'
+
+
+confirmDelete:
+  title: 'Are you sure you want to delete'
+  environmentNote: 'Note: All resources inside this Environment will be permanently removed, including any Hosts that were created through {appName}.'
+  protip: 'ProTip: Hold the {key} key while clicking Delete to bypass this confirmation.'
+  confirmAction: Delete
+  cancelAction: Cancel
+  largeDeleteText: '{key} and {othersCount} others'
+
+containerLogs:
+  title: "Logs: {instanceName}"
+  onlyCombined: "<b>Note:</b> Only combined stdout/stderr logs are available for this container because it was run with the TTY (-t) flag."
+  combined: Combined
+  stdout: Standard Out
+  stderr: Standard Error
+  protip: "ProTip: Hold the {key} key when opening logs to launch a new window."
+  scrollTop: Scroll to Top
+  scrollBottom: Scroll to Bottom
+  clear: Clear Screen
+  status:
+    initializing: Initializing...
+    connecting: Connecting...
+    connected: Connected
+    disconnected: Disconnected
+    closed: Closed
+
+containerShell:
+  protip: "ProTip: Hold the {key} key when opening shell access to launch a new window."
+  status:
+    initializing: Initializing...
+    error: "Error: {error}"
+    connecting: Connecting...
+    connected: Connected
+    disconnected: Disconnected
+    closed: Closed
+
+copyToClipboard:
+  tooltip: Copy to Clipboard
+  copied: Copied!
+
+dangerZone:
+  header: Advanced Settings
+  subtext: "Proceed with caution; typical users will not need to change these.  Incorrect values can break your {appName} installation.  Settings which have been changed are shown in bold."
+  showLabel: I understand that I can break things by changing advanced settings.
+
+devicePermissions:
+  all: All
+  none: None
+  read: Read
+  write: Write
+  mknod: Mknod
+
+editAccount:
+  title: Edit Account
+  form:
+    name:
+      label: Name
+      placeholder: e.g. John Smith
+    kind:
+      label: Account Type
+      user: User
+      admin: Admin
+    description:
+      label: Description
+      placeholder: e.g. This account is for John Smith
+    publicValue:
+      label: Login Username
+    oldPassword:
+      label: Current Password
+    newPassword:
+      label: New Password
+    confirmPassword:
+      label: Confirm Password
+    identity:
+      label: Identity
+
+editApiKey:
+  title:
+    justCreated: API Key Created
+    editing: Edit API Key
+    new: New API Key
+  publicValue:
+    label: Access Key (Username)
+  secretValue:
+    label: Secret Key (Password)
+  name:
+    placeholder: e.g. App servers
+  description:
+    placeholder: e.g. This key is used by the app servers to deploy containers
+  saveWarning1: Save the keys above!  This is the only time you'll be able to see the secret.
+  saveWarning2: If you lose it, you'll need to create a new API key.
+  noteOptional: Name and/or description are optional to help you remember what it's used for.  You can just create a key by clicking Create.
+
+editCertificate:
+  title: Edit Certificate
+  name:
+    placeholder: e.g. mydomain.com
+  description:
+    placeholder: e.g. EV cert for mydomain.com
+  noteKeyWriteOnly: "Note: The Private Key is intentionally blank because the field is write-only.  You will do not need to provide the Private Key unless you are intending on changing it."
+
+editContainer:
+  title:
+    vm: Edit VM
+    container: Edit Container
+  name:
+    placeholder: e.g. myapp
+  description:
+    placeholder: e.g. My Application
+
+editHost:
+  title: Edit Host
+  hostname:
+    label: Hostname
+    help: As reported by the host operating system.
+  customName:
+    label: Custom Name
+    placeholder: e.g. dev1
+    help: If this is left empty, the Hostname will be shown as the Name.
+  description:
+    label: Description
+    placeholder: e.g. My development host
+  labels:
+    label: Labels
+  ips:
+    label: Scheduler IPs
+    valueLabel: IP Address
+    valuePlaceholder: e.g. 1.2.3.4
+    addActionLabel: Add IP
+    help:  If provided, the scheduler will select and bind published ports to one of the given public IP addresses.
+  requireAny:
+    label: Require Container Label
+    help: If provided, containers must have one or more of the given labels in order to be eligible for scheduling onto this host.  If the value is left empty, a container with a matching key is eligible regardless of value.  <code>io.rancher.container.system</code> is required to allow system containers on to the host.
+    addActionLabel: Add Required Label
+
+editRegistry:
+  title: Edit Registry
+  address:
+    label: Address
+  email:
+    label: Email
+    placeholder: e.g. you@example.com
+  username:
+    label: Username
+    placeholder: e.g. username
+  password:
+    label: Password
+    placeholder: e.g. password
+
+editService:
+  title: Edit Service
+
+editStack:
+  title: Edit Stack
+  name:
+    label: Name
+    placeholder: e.g. myapp
+  description:
+    label: Description
+    placeholder: e.g. MyApp Stack
+  group:
+    label: Tags
+    placeholder: e.g. frontend, production
+    help: Comma-separated list of tags.  The Stacks list can be filtered by individual tags.
+
+envCatalog:
+  header: Catalog
+  subtext: You can define your own custom catalog sources here. Catalogs added here will only be availabel to the environemnt in which they were added. Each one needs a unique name and a URL that <code>git clone</code> can handle (see <a href="https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a" target="_blank">docs</a> for more info).
+  addActionLabel: Add Catalog
+
+stackHeader:
+  title: 'Stack: {name}'
+  outputs: Outputs
+
+stacksPage:
+  table:
+    standalone: Standalone
+    endpoints: Endpoints
+    scale: Scale
+    instanceState: Container States
+    instanceStateWithIcon: States
+
+formatIp:
+  noIp: None
+
+formBalancerConfig:
+  title: Custom Config File
+  detail: Provide your own custom configuration file to be applied on top of the config generated by {appName}
+  custom: |
+    See <a href="https://cbonte.github.io/haproxy-dconv/1.6/configuration.html" target="_blank" rel="nofollow noopener">haproxy documentation</a> fore more info about specific options that can go into the the config file.  When overriding the <code>backend</code> or similar lines which include the IP address of the target container, use <code>$IP</code> where the address goes and {appName} will generate the appropriate line(s).
+  config:
+    prompt: Custom haproxy.cfg content
+
+formBalancerListeners:
+  label: Listeners & Target Rules
+  detail: Control the mapping of requests coming into the balancer to the desired target.
+  status: |
+    {count, plural,
+    =0 {No rules}
+    =1 {# rule}
+    other {# rules}
+    }
+  noRules: No Ports
+  addPortLabel: Add a Listening Port
+  removePortLabel: Remove this Listening Port
+  showBackendLabel: "Customize backend names"
+  access:
+    label: Access
+    public: Public
+    internal: Internal
+  protocol:
+    label: Protocol
+  sourceIp:
+    label: Host IP
+    placeholder: "e.g. 1.2.3.4; Default: All"
+  sourcePort:
+    label: Listening Port
+    placeholder: e.g. 80
+  help: "Host and Path rules are matched top-to-bottom in the order shown.  Backends will be named randomly by default; to customize the generated backends, provide a name and then refer to that name in your custom haproxy.cfg."
+
+formBalancerRules:
+  label: Target Rules
+  detail: Map requests to different targets depending on host, port, path, or IP address.
+  status: |
+    {count, plural,
+    =0 {No rules}
+    =1 {# rule}
+    other {# rules}
+    }
+  noRules: No Rules
+  addServiceLabel:  Add a Service
+  addInstanceLabel: Add a Container
+  addSelectorLabel: Add a Selector
+  addTargetLabel:   Add a Rule
+  access:
+    label: Access
+    public: Public
+    internal: Internal
+  protocol:
+    label: Protocol
+  sourceIp:
+    label: Host IP
+    placeholder: "e.g. 1.2.3.4; Default: All"
+  sourcePort:
+    label: Listening Port
+    placeholder: e.g. 80
+  path:
+    label: Path
+    placeholder: e.g. /foo
+  hostname:
+    label: Request Host
+    placeholder: e.g. example.com
+  backendName:
+    label: Backend
+    placeholder: e.g. webapp
+  targetPort:
+    label: Port
+    placeholder: e.g. 80
+  priority:
+    label: Priority
+  target: Target
+  selector:
+    label: Selector
+    placeholder: e.g. foo=bar
+
+formCommand:
+  title: Command
+  detail: Configuration of the executable that will be run when the container is started.
+  command:
+    label: Command
+    placeholder: e.g. /usr/sbin/httpd -f httpd.conf
+  entryPoint:
+    label: Entrypoint
+    placeholder: e.g. /bin/sh
+  environment:
+    label: Environment Labels
+  workingDir:
+    label: Working Dir
+    placeholder: e.g. /myapp
+  user:
+    label: User
+    placeholder: e.g. apache
+  console:
+    label: Console
+    both: 'Interactive &amp; TTY <span class="text-muted">(-i -t)</span>'
+    interactive: 'Interactive <span class="text-muted">(-i)</span>'
+    terminal: 'TTY <span class="text-muted">(-t)</span>'
+    none: None
+  autoRestart:
+    label: Auto Restart
+    no: Never
+    onFailure: 'On failure <span class="text-muted">(non-0 exit code)</span>, forever'
+    onFailureCondPrefix: On failure, up to
+    onFailureCondSuffix: |
+      {limit, plural,
+        =1 {time}
+        other {times}
+      }
+    always: Always
+  logDriver:
+    label: Log Driver
+    placeholder: "e.g. syslog; Default: The driver configured on the host daemon"
+  logConfig:
+    label: Log Options
+    addActionLabel: Add Option
+    keyPlaceholder: e.g. syslog-facility
+    valuePlaceholder: e.g. daemon
+
+formContainerLinks:
+  title: Links
+  detail: Define relationships between this and other containers.
+  addActionLabel: Add Link
+  name:
+    label: Destination Container
+  alias:
+    label: As Name
+    placeholder: e.g. database
+
+formCount:
+  label: Count
+
+formDisks:
+  addDiskLabel: Add Disk
+  addRootDiskLabel: Add Root Disk
+  name:
+    rootDisk: Root Disk
+    label: Name
+    placeholder: e.g. data
+  size:
+    label: Size
+    rootDisk: Determined by root image
+  readIops:
+    label: Read Iops
+    placeholder: e.g. 1000
+  writeIops:
+    label: Write Iops
+    placeholder: e.g. 1000
+  driver:
+    label: Driver
+
+formEngineOpts:
+  engineInstallUrl:
+    label: Docker Install URL
+    placeholder: e.g. http://get.docker.com/
+    recommended: Recommended
+    latest: Latest
+  engineStorageDriver:
+    label: Storage Driver
+    placeholder: e.g. overlay
+  engineOpts:
+    label: Engine Options
+    addActionLabel: Add Engine Option
+    keyPlaceholder: e.g. log-driver
+    valuePlaceholder: e.g. syslog
+  engineLabels:
+    label: Engine Labels
+    addActionLabel: Add Engine Label
+    keyLabel: Label
+  engineEnv:
+    label: Engine Environment
+    addActionLabel: Add Environment Variable
+    keyLabel: Variable
+    keyPlaceholder: e.g. HTTP_PROXY
+    valuePlaceholder: e.g. http://your-proxy:8080
+  engineInsecureRegistry:
+    label: Insecure Registries
+    addActionLabel: Add Insecure Registry
+    valueLabel: Registry Domain
+    valuePlaceholder: e.g. registry.example.com
+  engineRegistryMirror:
+    label: Registry Mirrors
+    addActionLabel: Add Registry Mirror
+    valueLabel: Mirror URL
+    valuePlaceholder: e.g. https://my-mirror.example.com:5000
+
+formEnvVar:
+  title: Environment Variables
+  detail: Enviroment Variables that were added at creation.
+  noData: No Environment Variables
+  status: |
+    {count, plural,
+    =0 {Not Configured}
+    =1 {# variable}
+    other {# variables}
+    }
+  labels:
+    key: Key
+    value: Value
+
+formHealthCheck:
+  title: Health Check
+  detail: Periodically make a request to the container to see if it is responding correctly.  An unhealthy container will be excluded from Load Balancers.  Services can automatically replace unhealthy containers with a new one.
+  detailDns: A health check allows {appName} to know if the external resource is healty or not.  An unhealthy target will be exlcluded from Load Balancers.
+  checkType:
+    none: None
+    tcp: Check that a TCP connection opens successfully
+    http: Check that a HTTP request responds with a successful (2xx or 3xx) status code
+  request:
+    label: HTTP Request
+  method:
+    prompt: "Select a HTTP Method:"
+  path:
+    placeholder: Request Path e.g. /healthcheck
+  version:
+    prompt: "Select a HTTP Version:"
+  host:
+    label: Host Header
+    placeholder: e.g. www.example.com
+  port:
+    label: Listening Port
+    placeholder: e.g. 80
+  initializingTimeout:
+    label: Initializing Timeout
+    unit: ms
+  reinitializingTimeout:
+    label: Reinitializing Timeout
+    unit: ms
+  interval:
+    label: Check Interval
+    unit: ms
+  timeout:
+    label: Check Timeout
+    unit: ms
+  healthyThreshold:
+    label: Healthy After
+    unit: successes
+  unhealthyThreshold:
+    label: Unhealthy After
+    unit: failures
+  strategy:
+    label: When Unhealthy
+    none: Take no action
+    recreate: Re-create
+
+formKeyValue:
+  addAction: Add Pair
+  key:
+    label: Key
+    placeholder: Key
+  separator: "="
+  value:
+    label: Value
+    placeholder: Value
+  protip: 'ProTip: Paste lines of key=value pairs into any key field for easy bulk entry.'
+
+formImage:
+  label: Docker Image
+  container:
+    placeholder: "e.g. ubuntu:xenial"
+
+formNameDescription:
+  name:
+    label: Name
+    placeholder: Name
+  description:
+    label: Description
+    placeholder: Description
+    expand: Add a Description
+
+formNetwork:
+  title: Networking
+  detail: Configure the networking and DNS options for the container.
+  networkMode:
+    label: Network
+    bridge:
+      label: Bridged
+      detail: Attach to the default docker0 bridge
+    container:
+      label: Container
+      detail: Attach to the network namespace of an existing container
+    host:
+      label: Host
+      detail: Attach to the network namespace of the host
+    managed:
+      label: Managed
+      detail: Automatic mesh network between all containers
+    nat:
+      label: NAT
+      detail: Network Address Translation on the physical host
+    ipsec:
+      label: IPSec
+    transparent:
+      label: Transparent
+      detail: Direct access to the physical host network
+    none:
+      label: None
+      detail: No networking
+  container:
+    label: Container
+  requestedIp:
+    label: Request IP
+    placeholder: Optional; e.g. 10.42.2.24
+    help: Request a specific IP in the 10.42.0.0/16 block.  If already in use, a random one will be assigned.
+  retainIp:
+    label: Retain IP
+    reuse: Reuse existing IP on upgrade or replace
+  dns:
+    label: Service Discovery
+    enable: Enable discovery and use local caching resolver
+    disable: Disable discovery and directly use remote resolving servers
+  hostname:
+    label: Hostname
+    placeholder: e.g. web
+    dockerId: Use the Docker container ID
+    hostName: Use the host's hostname
+    containerName: Use the container name
+    custom: Set a specific hostname
+  domainName:
+    label: Domain Name
+    placeholder: e.g. example.com
+  resolvingServers:
+    label: Resolving Servers
+    addActionLabel: Add Server
+    placeholder: e.g. 8.8.4.4
+  searchDomains:
+    label: Search Domains
+    placeholder: e.g. prod.example.com
+    addActionLabel: Add Domain
+
+formPorts:
+  header: Port Mapping
+  addAction: Add Port
+  bindAddress:
+    label: Host IP
+    placeholder: "Default: All"
+  public:
+    label: Host Port
+    placeholder: "e.g. 80"
+  private:
+    label: Container Port
+    placeholder: "e.g. 8080"
+  protocol:
+    label: Protocol
+  noPorts: This container has no port maps.
+  error:
+    privateRequired: Private Container Port is required for each port rule.
+    publicRequired: Public Host Port is required if Host IP is specified.
+    mixedIpPort: "Port {ip}:{port}/{proto} has more than one mapping."
+    mixedPort: "Port {port}/{proto} has more than one mapping."
+  showIpLink: Customize Host IPs
+
+formScale:
+  label: Scale
+  showAdvanced: Scaling options
+  mode:
+    containerPrefix: "Standalone container"
+    containerSuffix: ""
+    servicePrefix: "Service with a scale of"
+    serviceSuffix: ""
+    globalPrefix: "Global service with a scale of"
+    globalSuffix: "per host"
+    sidekickInactive: "Sidekick: Match the scale and scheduling of a service"
+    sidekickPrefix: "Sidekick: Match the scale and scheduling of"
+    sidekickSuffix: ""
+
+formScheduling:
+  title: Host Scheduling
+  detail: Configure what hosts the containers can be deployed to.
+  status: |
+    {count, plural,
+    =0 {No rules}
+    =1 {# rule}
+    other {# rules}
+    }
+  canRequestHost:
+    vm: Run <b>all</b> virtual machines on a specific host
+    containers: Run <b>all</b> containers on a specific host
+  runSpecific: Run on a specific host
+  noRules: No scheduling rules, run containers on any host.
+  autoRun: "Automatically run on every host matching scheduling rules:"
+  autoPick:
+    vm: "Automatically pick hosts for each virtual machine matching scheduling rules:"
+    container: "Automatically pick hosts for each container matching scheduling rules:"
+    host: "Automatically pick a host matching scheduling rules:"
+  addRule: Add Scheduling Rule
+  condition: Condition
+  field: Field
+  key: Key
+  value: Value
+  scaling:
+    minMaxDetail: If set, the scale will not be allowed to be adjusted by user or API call above or below these limits.
+    incrementDetail: If set, the scale must be a multiple of the increment
+    hostMaxDetail: If set, schedule containers for this service to a maximum of this many hosts.
+  scaleMin: Minimum Scale
+  scaleMax: Maximum Scale
+  scaleIncrement: Scale Increment
+  hostMax: Maximum Hosts
+  perHost: per host
+
+
+
+formSecrets:
+  title: Secrets
+  detail: Secrets allow you to inject passwords, keys, or other sensitive information into the containers that need them.
+  noneDefined: You do not have any secrets to use.
+  noData: No Secrets
+  addLabel: Add Secret
+  name:
+    label: As Name
+    placeholder: e.g. db_password
+  secret:
+    label: Secret
+  uid:
+    label: User ID
+    placeholder: e.g. 0 (root)
+  gid:
+    label: Group ID
+    placeholder: e.g. 0 (wheel)
+  mode:
+    label: File Mode (octal)
+    placeholder: e.g. 0444 (octal)
+  help:
+    prefix: "Secrets will be available in <code>/run/secrets/</code> inside the Container with the given filename.  "
+    showPermissionsLink: "Customize file ownership & permissions"
+    suffix: ""
+
+formSecurity:
+  title: Security & Host Config
+  detail: Grant or limit the abilities of the container to affect the host it is running on.
+  pullImage:
+    label: Pull Image
+    enableService: Every time a new container is created
+    enableContainer: Even if already present on the host
+    disable: Only if not already present on the host
+  privileged:
+    label: Privileged
+    disable: No
+    enable: "Yes: container has full access to the host"
+  pidMode:
+    label: PID Mode
+    disable: Normal
+    enable: Host
+  memoryLimit:
+    label: Physical Memory
+    unlimited: Unlimited
+    set: Limit to
+  swapLimit:
+    label: Swap Memory
+    unlimited: Unlimited
+    set: Limit to
+    default: Limit to double the physical limit
+    none: Do not allow swap
+  swappiness:
+    label: Swappiness
+    default: Use the host's default
+    none: Minimum
+    set: Custom (1-100)
+  cpuPinning:
+    label: CPU Pinning
+    placeholder: "e.g. 0,1,3; Default: All"
+  shares:
+    label: CPU Shares
+    placeholder: e.g. 1024
+  capabilities:
+    add: Add Capabilities
+    drop: Drop Capabilities
+    helpBlock:
+      text: Capabilities allow you to provide fine-grained control over superuser privileges available to the container.
+      link: More information
+  deviceBinding:
+    label: Device Binding
+    addActionLabel: Add Binding
+    pathHost:
+      label: Path in Host
+      placeholder: e.g. /dev/sdc
+    pathContainer:
+      label: Path in Container
+      placeholder: e.g. /dev/xsdc
+    permissions:
+      label: Permissions
+  memoryReservation:
+    label: Memory Reservation
+    placeholder: Scheduling will reserve this much RAM for the container
+  milliCpuReservation:
+    label: CPU Reservation
+    unit: milli CPUs
+  isolation:
+    label: Isolation
+    default: Default (Container)
+    hyperv: HyperV (VM)
+
+formServiceLinks:
+  title: Links
+  detail: Define relationships between this and other services.
+  addAction: Add Link
+  service:
+    label: Destination Service
+  name:
+    label: As Name
+    placeholder: e.g. database
+
+formSslTermination:
+  title: SSL/TLS Certificates
+  detail: Configure the certificates that will be presented for requests to encrypted ports.
+  defaultCertificate:
+    prompt: Choose a Certificate...
+  alternateCertificate:
+    prompt: Choose a Certificate...
+  certificate: Certificate
+  alternateCerts: Alternate Certs
+  addAlternate: Add Alternate Certificate
+  noCertificates: There are no certificates to use.
+  noAlternateCertificates: There are no other certificates to use.
+  helpBlock: |
+    "Note: Some older SSL/TLS clients do not support <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_blank">Server Name Indication (SNI)</a>; these clients will always be offered the main Certificate.  Modern clients will be offered an appropriate certificate from the Alternate Certificates list if a match is found."
+  notNeeded: There are no SSL/TLS Listening Ports configured with a valid Target Rule.
+
+formStack:
+  label:
+    reuse: Stack
+    create: Stack
+  toggle:
+    simple: Customize
+    reuse: Use an existing stack
+    create: Add to a new stack
+  reuse:
+    prompt: Choose a Stack...
+  create:
+    placeholder: e.g. myapp
+  errors:
+    noneChosen: You must choose a stack.
+    validation: "Stack: {error}"
+
+formStickiness:
+  title: Target Routing
+  detail: Configure the balancer to send requests for a given client to a consistent target container or to the same host the balancer is running on..
+  balancerTarget: Target Container Preference
+  any: Send requests to a healthy target container on any host.
+  preferLocal: Prefer containers on the same host as the balancer.  (If none are healthy, send to containers on a different host)
+  onlyLocal: "Use only containers on the same host as the balancer.  (If none are healthy, return <code>503</code>)"
+
+  sticky: Sticky Sessions
+  none: None
+  newCookie: Load Balancer defines a stickiness cookie
+  cookieName: Cookie Name
+  mode: Mode
+  domain: Domain
+  options: Options
+  indirect: Indirect
+  sendHeader: Send no-cache header
+  onPost: Only set cookie on POST
+  noPorts: There are no valid Target Rules configured for a HTTP listener.
+
+  placeholder:
+    sticky: e.g. sticky
+    domain: e.g. mydomain.com
+
+formTargets:
+  title: Targets
+  addAction: Add Target
+  hostname:
+    label: Request Host Header
+    placeholder: e.g. svc.com
+  srcPort:
+    label: Source Port
+    placeholder: e.g. 80
+  value:
+    label: Target Service
+  path:
+    label: Request Path
+    placeholder: e.g. /svc
+  dstPort:
+    label: Target Port
+    placeholder: e.g. 8080
+  advanced:
+    toggle: Show advanced routing options
+    detail: Direct requests to different services based on port, Host header, or request path
+    help1: |
+      If Request Host and/or Path are specified, connections to HTTP listening ports will be routed to the appropriate target based on the request.
+      For example, you could use this to send traffic for domain1.com to a different service than domain2.com, or domain3.com/admin to a different service than domain3.com.
+    help2: |
+      Matching requests will be sent to the Target Service on the Target Port.
+      If that is not set, then the Default Target port for the Source Port.  If that is also not set, then the Source Port.
+
+formUserData:
+  placeholder: "e.g. Configuration information for the container"
+  isVmPlaceholder: "e.g. Configuration information for the virtual machine"
+
+formUserLabels:
+  title: Labels
+  detail: Labels are key/value pairs that can be used to annotate containers and make scheduling decisions.
+  hostDetail: Labels are key/value pairs that can be applied to hosts and used to make scheduling decisions for containers.
+  addAction: Add Label
+  key:
+    label: Key
+    placeholder: e.g. foo
+  separator: "="
+  value:
+    label: Value
+    placeholder: e.g. bar
+  protip: "ProTip: Paste one or more lines of key=value pairs into any key field for easy bulk entry."
+
+formUpgrade:
+  title: Upgrade Policy
+  detail: Configure how containers are replaced when performing an upgrade.
+  batchSize:
+    label: Batch Size
+    detail: Up to this many containers will be replaced at once.
+  interval:
+    label: Batch Interval
+    detail: After finishing a batch of containers, wait this long before starting the next batch
+  behavior:  Replacement Behavior
+  startFirst:
+    label: Start new, then stop old
+    detail: Start new containers before stopping the old ones.  If the service publishes a port, there must be enough eligible hosts availeble to run Batch Size new containers, because the old containers are still actively using the ports.
+  stopFirst:
+    label: Stop old, then start new
+    detail: Stop the old containers (up to the Batch Size), then start new ones.  This allows the reuse of published ports.  Adjust Batch Size to ensure that you keep enough active capacity to run your application.
+  prePull:
+    label: Pre-Pull Image
+    detail: The new image can be pre-pulled onto hosts before the upgrade is started, to minimize the disruption of launching the new containers.
+    all: On all hosts
+    existing: On the hosts that the service is currently on
+    none: On no hosts
+
+formValueArray:
+  addActionLabel: Add Value
+  valueLabel: Value
+  valuePlaceholder: Value
+  protip: "ProTip: Paste one or more lines of values into any field for easy bulk entry."
+
+formVirtualMachines:
+  vcpus: vCPUs
+  memory: Memory
+
+formVolumeRow:
+  mode:
+    volume: Existing volume
+    newVolume: New volume
+    bindMount: Bind-mount
+    volumesFrom: Volumes from
+    volumesFromLaunchConfig: Volumes from
+    custom: Custom
+  edit: Edit
+  hostPath:
+    label: Host Path
+    placeholder: e.g. /home/foo
+  mountPoint:
+    label: Mount Point
+    placeholder: e.g. /mnt/foo
+  volume:
+    prompt: Select a Volume...
+  volumesFrom:
+    prompt: Select a Container...
+  volumesFromLaunchConfig:
+    prompt: Select a Launch Config...
+  custom:
+    placeholder: Custom --volume value
+  opts:
+    ro: Read-Only
+    rw: Read-Write
+    custom:
+      label: Custom
+      placeholder: e.g. rw,z
+
+formVolumes:
+  title: Volumes
+  detail: Persist and share data separate from the lifecycle of an individual container.
+  value:
+    prompt: Select a Container...
+  volumes: Volumes
+  volumesFrom: Volumes From
+  volumeDriver:
+    label: Driver for custom volumes
+    placeholder: 'e.g. rancher-nfs; Default: local'
+    suggestion: 'Volume drivers in use:'
+  noLaunchConfigs: There are no other launch configs in this service to share volumes with.
+  noHostContainers: This host has no containers to use the volumes from.
+  onlySingleHost: Only available when adding a container to a particular host.
+  errors:
+    incomplete: Incomplete volume definition
+    absoluteMountPoint: Volume mount points must be absolute paths
+  add:
+    label: Add Volume...
+    existing: Use an existing volume
+    new: Create a new volume
+    bindMount: Bind-mount a host directory
+    fromContainer: Use volumes from another container
+    fromLaunchConfig: Use volumes from a sidekick
+    custom: Add custom volume entry
+
+hookPage:
+  receiver:
+    header: Receiver Hooks
+    buttonText: Add Receiver
+    content: "Receiver hooks give you a URL that can be hit to trigger an action inside of {appName}."
+    noData: No receiver hooks.
+  scaleService:
+    label: Scale a Service or Load Balancer
+    detailPrefix: "Scale {action} "
+    detailLink: "{displayService}"
+    detailSuffix: "by {amount}"
+  scaleHost:
+    label: Scale the number of Hosts
+    detail: "Matching {labels} {action} by {amount}"
+  serviceUpgrade:
+    label: Upgrade a Service
+    detail: "Matching {labels} when <code>{tag}</code> changes"
+  fields:
+    kind:
+      label: Kind
+    detail:
+      label: Detail
+    url:
+      label: Trigger URL
+
+
+hostSettings:
+  header: Host Registration URL
+  subtext: What base URL should hosts use to connect to the {appName} API?
+  hostUrl:
+    local: "This site's address:"
+    new:
+      labelText: "Something else:"
+      placeholder: "e.g. http://example.com:8080"
+  helpText:
+    static1: "Don't include <code>/v1</code> or any other path, but if you are doing"
+    static2: "in front of {appName}, be sure to use <code>https://</code>."
+    isRancher: '<a href="{docsBase}/installing-rancher/installing-server/basic-ssl-config/" target="_blank">SSL termination</a>'
+    sslTerm: SSL termination
+  notPublic:
+    alert: |
+      Are you sure all the hosts you will create will be able to reach <code>{activeValue}</code> ?<br/>It looks like a private IP or local network.
+  badTld:
+    alert: |
+      The <code>.local</code> Top-Level Domain is reserved by RFC6762 for Multicast DNS.  Using this as your Registration URL is not recommended and may cause DNS resolution issues.  Please choose a different hostname or IP.
+
+hostPod:
+  supportState:
+    unsupported: Unsupported Docker version
+    untested: Untested Docker version
+  groupedInstances:
+    namespace: 'Namespace:'
+    stack: 'Stack:'
+    standalone: Standalone Containers
+
+hostTemplatesPage:
+  title: Add Host
+  new:
+    title: Start from scratch
+    helpText: Launch a new host, as well as a repeatable configuration (host template) that can be used to launch additional host with the same configuration.
+    btn: Configure
+  custom: Custom add an existing host that is already running Docker
+  templateBox:
+    button: Launch
+    labels:
+      region: Region
+      zone: Zone
+
+identityBlock:
+  loading: Loading...
+
+infoMultiStats:
+  connecting: Connecting...
+  utilizationStats: Utilization stats are only available while active/running.
+  cpuSection:
+    labelText: CPU
+    system: System
+    user: User
+  networkSection:
+    labelText: Network
+    transmit: Transmit
+    receive: Receive
+  memorySection:
+    labelText: Memory
+    used: Used
+  storageSection:
+    labelText: Storage
+    read: Read
+    write: Write
+
+inputCertificate:
+  key:
+    label: Private Key
+    placeholder: "Paste in the private key, starting with -----BEGIN RSA PRIVATE KEY-----"
+  cert:
+    label: Certificate
+    placeholder: "Paste in the primary certificate, starting with -----BEGIN CERTIFICATE-----"
+  certChain:
+    label: Chain Certs
+    placeholder: "Optional; Paste in the additional chained certificates, starting with -----BEGIN CERTIFICATE-----"
+  metaXML:
+    label: Metadata XML
+    placeholder: "Paste in the IDP Metadata XML"
+
+inputIdentity:
+  placeholder:
+    github: Add a GitHub user or organization name
+    generic: Add a user or group by name
+  dropdownLabel:
+    teams: Your Teams and Organizations
+    groups: Your Groups
+
+inputPassword:
+  buttonText: Generate
+
+inputTextFile:
+  tooltip: Read from a file
+
+labelsSection:
+  kind: Kind
+  title: Labels
+  detail: Key/Value data that can be used in Host Scheduling rules or as part of configuring other advanced options.
+  status: |
+    {count, plural,
+    =0 {No labels}
+    =1 {# label}
+    other {# labels}
+    }
+  key: Key
+  value: Value
+  noData: No labels
+
+loginShibboleth:
+  buttonText: Authenticate with Shibboleth
+
+loginGithub:
+  buttonText: Authenticate with GitHub
+
+loginUserPass:
+  userLabel: Username
+  caasLabel: Email
+  userPlaceholder: e.g. jsmith
+  loginLabel: Log In
+  loggingInLabel: Logging In...
+  passwordLabel: Password
+
+machine:
+  driverAmazon:
+    accessSection: Account Access
+    accessKey:
+      label: Access Key
+      placeholder: Your AWS access key
+    secretKey:
+      label: Secret Key
+      placeholder: Your AWS secret key
+      provided: Provided
+    region:
+      label: Region
+    accessKeyHelp: "Paste in your AWS key pair here. We'll use this key to create your new Instances."
+    loginAction: "Next: Authenticate & select a network"
+    loadingAvailability: Loading Availablility Zone and VPC info from EC2...
+    vpcSection: Availability Zone & VPC
+    availabilityZone: Availability Zone
+    subnet: VPC/Subnet
+    securityGroupSelect: "Next: Select a Security Group"
+    loadingSecurity: Loading security group info from EC2...
+    securityGroupSection: Security Group
+    securityGroup:
+      label: Security Group
+      choose:  Choose an existing group
+      defaultExisting: "Standard: Use the existing <code>{groupName}</code> group"
+      defaultCreate: "Standard: Automatically create a <code>{groupName}</code> group"
+      custom: "Custom: Choose an existing group"
+      updating: Updating Security Group...
+      creating: Creating Security Group...
+    portHelp:
+      link: Learn more
+      text: about the ports that will be opened.
+    needs:
+      label: "For {appName} to work correctly your security group will need to allow traffic:"
+      item1: From the {appName} server to <code>TCP</code> port <code>22</code> <span class="text-muted">(SSH to install and configure Docker)</span>
+      item2: From and To all other hosts on <code>UDP</code> ports <code>500</code> and <code>4500</code> <span class="text-muted">(for IPsec networking)</span></li>
+      item3: These rules will <b>not</b> be added automatically.
+    setInstanceAction: "Next: Set Instance options"
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    instanceType:
+      label: Instance Type
+    rootSize:
+      label: Root Size
+      unit: GB
+    ami:
+      label: AMI
+      placeholder: An Ubuntu AMI
+      rancherList: RancherOS AMI List
+    sshUser:
+      label: SSH User
+      placeholder: e.g. ubuntu
+    iam:
+      label: IAM Profile
+    privateIp:
+      label: Private IP
+    onlyPrivate:
+      label: Use only private IP address
+
+  driverAzure:
+    helpBlock: 'You can find instructions on how to create a Client ID and Secret <a href="https://www.packer.io/docs/builders/azure-setup.html" target="_blank">here</a>.'
+    accountAccessSection: Account Access
+    placementSection: Placement
+    networkSection: Network
+    subscriptionId:
+      label: Subscription ID
+      placeholder: Your Azure subscription ID
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    image:
+      label: Image
+      placeholder: 'canonical:UbuntuServer:16.04.0-LTS:latest'
+    size:
+      label: Size
+    dockerPort:
+      label: Docker Port
+      placeholder: '2376'
+    publishSettingsFile:
+      label: Publish Settings
+      placeholder: Your Publish Settings file
+    environment:
+      label: Environment
+    resourceGroup:
+      label: Resource Group
+      placeholder: 'docker-machine'
+    sshUser:
+      label: SSH User
+      placeholder: usr1
+    storageType:
+      label: Storage Type
+    vnet:
+      label: VNet
+      placeholder: '[resourcegroup:]name'
+    subnet:
+      label: Subnet
+      placeholder: example-sub-name
+    subnetPrefix:
+      label: Subnet Prefix
+      placeholder: 128.42.0.0/21
+    availabilitySet:
+      label: Availability Set
+      placeholder: availability-set-name
+    openPort:
+      label: Open Port
+      placeholder: 'Comma-separated, e.g. 80,443'
+    privateIpAddress:
+      label: Private IP
+      placeholder: 127.0.0.1
+    usePrivateIp:
+      label: Use Private IP To Connect
+    staticPublicIp:
+      label: Public IP
+    noPublicIp:
+      label: No Public IP
+    clientId:
+      label: Client ID
+      placeholder: Your Client ID
+    clientSecret:
+      label: Client Secret
+      placeholder: Your Client Secret
+    region:
+      label: Region
+
+  driverCustom:
+    prep: Prepare host
+    instructions: 'Copy, paste, and run the command below to register a host running a <a href="{docsBase}/hosts/#supported-docker-versions" target="_blank">supported version</a> of Docker with {appName}.  The host should pop up within a minute.'
+    advanced: Advanced options not needed for typical installations
+    detail:
+      ip: The IP address to register the host with typically will be detected automatically.
+      manual: 'If the host is behind a NAT or the same machine that is running the <code>{rancherImage}</code> container you may need to explicitly specify the IP to use in the advanced section below.'
+      firewall: The host agent initiates a connection to the server, so make sure firewalls or security groups allow it to reach the URL in the command.
+      networking: All hosts in the environment will also need to allow traffic between each other for cross-host networking
+      ipsec: 'IPSec: <code>500/udp</code> and <code>4500/udp</code>'
+      vxlan: 'VXLAN: <code>4789/udp</code>'
+
+    detected: |
+      {count, plural,
+        =1 {One new host has registered!}
+        other {# new hosts have registered!}
+      }
+    agentIp:
+        label: Specify the public IP that this host should register as.  If left empty, Rancher will auto-detect the IP to use.
+        placeholder: e.g. 1.2.3.4
+    generating: "Generating registration URL..."
+    windows:
+      windowsHeader: Windows Host
+      linuxHeader: Linux Host
+      step1: Start up a Windows Server 2016 machine somewhere and install the latest version of <a href="https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_server" target="_blank" rel="noreferrer nofollow">Docker</a> on it.
+      step2: "Create a transparent Docker Network:"
+      step2Copy: docker network create -d transparent transparent
+      step3: Copy, paste, and run the command below in PowerShell to start the {appName} agent.
+
+  driverDigitalocean:
+    sizeLabel: |
+      {highMem, select, true {High Memory: } other {}}{memoryGb} GB RAM, {disk} GB Disk, {vcpus, plural,
+        =1 {# vCPU}
+        other {# vCPUs}
+      }
+    accountSection: Account Access
+    authAccountButton: 'Next: Configure Droplet'
+    accessToken:
+      label: Access Token
+      placeholder: Your DigitalOcean API access token
+      help: |
+        A Personal Access Token from the DigitalOcean
+        <a href="https://cloud.digitalocean.com/settings/applications" target="_blank">Apps & API</a> screen
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    image:
+      label: Image
+    sshUser:
+      label: SSH User
+      placeholder: 'usr1'
+    size:
+      label: Size
+    regionSection: Region
+    region:
+      label: Region
+    optionsSection: Options
+    backups:
+      label: Enable Backups
+    ipv6:
+      label: Enable IPv6
+    privateNetworking:
+      label: Enable Private Networking
+
+  driverExoscale:
+    accountSection: Account Access
+    apiKey:
+      label: API Key
+      placeholder: Your Exoscale API Key
+    secretKey:
+      label: Secret Key
+      placeholder: Your Exoscale secret key
+      provided: Provided
+    accountHelp: Paste in your Exoscale key pair here.  We'll use this key to create your new Instances.
+    loginAction: "Next: Authenticate & select a Security Group"
+    loadingSecurity: Loading security group info from Exoscale...
+    securityGroupSection: Security Group
+    securityGroup:
+      label: Security Group
+      defaultExisting: "Standard: Use the existing <code>{groupName}</code> group"
+      defaultCreate: "Standard: Automatically create a <code>{groupName}</code> group"
+      custom: "Custom: Choose an existing group"
+      updating: Updating Security Group...
+      creating: Creating Security Group...
+    portHelp:
+      link: Learn more
+      text: about the ports that will be opened.
+    needs:
+      label: "For {appName} to work correctly your security group will need to allow traffic:"
+      item1: From the {appName} server to <code>TCP</code> port <code>22</code> <span class="text-muted">(SSH to install and configure Docker)</span>
+      item2: From and To all other hosts on <code>UDP</code> ports <code>500</code> and <code>4500</code> <span class="text-muted">(for IPsec networking)</span></li>
+      item3: These rules will <b>not</b> be added automatically.
+    selectSecurityGroupAction: "Next: Set Instance options"
+    loadingInstance: Fetching available Instance settings...
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    instanceProfile:
+      label: Instance Profile
+    diskSize:
+      label: Root Size
+    sshUser:
+      label: SSH User
+      placeholder: 'usr1'
+
+  driverOther:
+    driverSection: Driver
+    driver:
+      label: Driver
+    optionsSection: "{driverName} Options"
+    instanceSection: Instance
+
+  driverPacket:
+    accountSection: Account Access
+    projectId:
+      label: Project
+      placeholder: Your Packet project ID
+    apiKey:
+      label: API Key
+      placeholder: Your Packet API key
+    apiKeyHelp: From the Packet <a href="https://app.packet.net/portal#/api-keys" target="_blank">API Keys</a> screen
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    loginAction: "Next: Authenticate & select an instance"
+    authentication: Authenticating
+    location: Location
+    planDetails:
+      label: Instance Details
+      cpu: CPUs
+      memory: Memory
+      drives: Drives
+      network: NICs
+    image:
+      label: Image
+    size:
+      label: Size
+    regionSection: Region
+    region:
+      label: Region
+
+  driverRackspace:
+    accountSection: Account Access
+    username:
+      label: Username
+      placeholder: Your RackSpace username
+    apiKey:
+      label: API Key
+      placeholder: Your RackSpace API key
+    accountHelp: From the Account Settings screen of the RackSpace control panel
+    regionSection: Region
+    region:
+      label: Region
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    flavor:
+      label: Flavor
+
+  driverVsphere:
+    accountSection: Account Access
+    vcenter:
+      label: vCenter Host
+      placeholder: vCenter or ESXi hostname/IP
+    vcenterPort:
+      label: vCenter Port
+    username:
+      label: Username
+    password:
+      label: Password
+    instanceSection: Instance
+    instanceOptionsSection: Instance Options
+    cpuCount:
+      label: CPUs
+    memorySize:
+      label: Memory
+      unit: MB
+    diskSize:
+      label: Disk
+      unit: MB
+    boot2dockerUrl:
+      label: OS ISO URL
+      placeholder: "Default: Latest boot2docker image"
+    schedulingSection: Scheduling
+    dataCenter:
+      label: Data Center
+    pool:
+      label: Pool
+    host:
+      label: Host
+      placeholder: "Use '/' if using a cluster"
+    network:
+      label: Network
+    dataStore:
+      label: Data Store
+
+  driverAliyunecs:
+    accountSection: Account Access Section
+    accessKey:
+      label: Access Key*
+      placeholder: Your Aliyun Account Access Key
+    accessKeySecret:
+      label: Access Key Secret*
+      placeholder: Your Key's secret
+    apiEndpoint:
+      label: Api Endpoint
+      placeholder: Private Aliyun Api Server Endpoint
+    instanceSection: Instance Section
+    instanceOptionsSection: Instance Options Section
+    instanceDescription:
+      label: Instance Description
+      placeholder: Instance Description
+    instanceType:
+      label: Instance Type
+      placeholder: Instance Type
+    systemImage:
+      label: System image
+      placeholder: System image
+    instanceTag:
+      label: Instance Tag
+      placeholder: Your Instance Tag in Aliyun
+    internetMaxBandwidth:
+      label: Internet Max Bandwidth
+      placeholder: 1 to 100
+    aliyunSLB:
+      label: Aliyun SLB ID
+      placeholder: Aliyun SLB ID
+    storageSection: Storage Info
+    isOptimized:
+      label: Instance Storage I/O Optimized
+      placeholder: none or optimized
+    systemDiskCategory:
+      label: System Disk Category
+      placeholder: When Storage is optimized, you can input cloud_efficiency, cloud_ssd or ephemeral_ssd.
+    dataDiskCategory:
+      label: Data Disk Category
+      placeholder: When Storage is optimized, you can input cloud_efficiency, cloud_ssd or ephemeral_ssd.
+    dataDiskSize:
+      label: Data Disk Size
+      placeholder: Disk Size
+    region:
+      label: Region
+      placeholder: Region
+    zone:
+      label: Available Zone
+      placeholder: Blank for auto select
+    networkSection: Network Section
+    routeCIDR:
+      label: Route CIDR
+      placeholder: e.g. 192.168.1.0/24
+    vpcId:
+      label: Aliyun VPC ID
+      placeholder: Aliyun VPC ID
+    vswitchId:
+      label: Aliyun Vswitch ID
+      placeholder: Aliyun Vswitch ID
+    privateIp:
+      label: Private IP
+      placeholder: Private IP in Private Network
+    privateAddressOnly:
+      label: Private Address Only
+    securitySection: Security Section
+    securityGroup:
+      label: Security Group
+      placeholder: Security Group
+    sshPassword:
+      label: SSH Password
+      placeholder: Set Instance SSH Password, Blank for Auto set
+
+modalAboutComponent:
+  component: Component
+  version: Version
+  cattle: Cattle
+  cli: CLI
+  ui: User Interface
+  compose: Compose
+  machineService: Machine Service
+
+modalAddPayment:
+  header: Add New Payment Method
+  save: Save
+  errors:
+    cc: Invalid credit card number
+    exp: Invalid Expiry
+    cvc: Invalid CVC number
+    street: A street is required.
+    city: A city is required.
+    state: A state is required.
+    zip: A zipcode is required.
+  form:
+    currency:
+      label: Select your currency
+    cc:
+      label: Credit Card Number
+      placeholder: '•••• •••• •••• ••••'
+    default:
+      label: Default Card
+    name:
+      label: Name On Credit Card
+      placeholder: 'John Smith'
+    exp:
+      label: Expiration
+      placeholder: '••/••'
+    cvc:
+      label: CVC
+      placeholder: '•••'
+    address:
+      addressLine1:
+        label: Address
+        placeholder: 742 Evergreen Terrace
+      addressLine2:
+        label: Address (cont)
+        placeholder: Apt. 123
+      city:
+        label: City
+        placeholder: Springfield
+      state:
+        label: State
+        placeholder: OR
+      zip:
+        label: Zip Code
+        placeholder: '99999'
+      country:
+        label: Country
+        placeholder: United States
+  currencies:
+    yuan: "Chinese Yuan (¥)"
+    euro: "Euro (€)"
+    dollar: "US Dollar ($)"
+
+
+modalAuditlogInfo:
+  header: Additional Log Info
+  request: "Request Object:"
+  response: "Response Object:"
+
+modalContainerStop:
+  header: "Are you sure you want to stop"
+  helpText: "The container will be forcibly terminated if it does not stop itself before the timeout expires"
+  protip: "ProTip: Hold the {key} key while clicking stop to bypass this confirmation."
+  label: Timeout
+  button: Stop
+
+modalContainerToService:
+  title: 'Convert "{instanceName}" to a Service'
+  detail: 'This will create a new service based on this container and make this container part of the service.'
+  action: Convert
+
+modalConfirmDeactivate:
+  header: Are you sure you want to
+  protip: "ProTip: Hold the {key} key while clicking {isServiceButton} to bypass this confirmation."
+  cancel: Cancel
+  buttons:
+    project:
+      message: deactivate your environment
+      button: Deactivate
+    environment:
+      message: stop services for
+      button: Stop Services
+    default:
+      message: deactivate
+      button: Deactivate
+
+modalConfirmRemovePayment:
+  header: 'Confirm Payment Removal'
+  title: 'Are you sure you want to delete'
+  card: 'Card ending in {card}'
+
+modalEditDriver:
+  header:
+    create: Add Machine Driver
+    edit: Edit Machine Driver
+  url:
+    label: Download URL
+    help: The URL to download the machine driver binary 64-bit Linux.
+  uiUrl:
+    label: Custom UI URL
+    help: "Optional: The URL to load for customized Add Hosts screen for this driver."
+    link: See <a href="https://github.com/rancher/ui-driver-skel" target="_blank">ui-driver-skel</a> for more info.
+  checksum:
+    label: Checksum
+    help: "Optional: Verify that the downloaded driver matches the expected checksum."
+
+modalEditSetting:
+  title: Edit Advanced Setting
+  name:
+    label: Name
+  value:
+    label: Value
+    prompt: Select a Value...
+  reset:
+    label: Reset to Default
+
+modalFeedback:
+  header: Welcome to {appName}!
+  subtitle: "Before you get started, please tell us a little about yourself..."
+  send: Get Started
+
+modalHostEvacuate:
+  header: "Are you sure you want to evacuate"
+  helpText: "This will deactivate the host(s) and delete all non-infrastructure containers running on it."
+  protip: "ProTip: Hold the {key} key while clicking stop to bypass this confirmation."
+  button: Evacuate
+
+modalProcessError:
+  header: Exception Info
+  cause: "Cause:"
+  none: N/A
+  stackTrace: "Stack Trace:"
+  close: Close
+
+modalRollbackService:
+  title: 'Rollback "{instanceName}"'
+  titleWithSidekicks: 'Rollback "{instanceName}" & {count, plural, =1 {# sidekick} other {# sidekicks}}'
+  action: Rollback
+  revisionId:
+    label: To Revision
+
+modalShell:
+  title: "Shell: {instanceName}"
+
+modalShortcuts:
+  world: World
+  time: Time
+  title:
+    rancher: "WELCOME TO WARP ZONE!"
+    pl: Keyboard Shortcuts
+  navigation: Page Navigation
+  a: Apps
+  b: Balancers
+  c: Containers
+  d: DNS
+  e: Manage Environments
+  h: Hosts
+  k: API Keys
+  other: Other Stuff
+  g: Toggle view grouping
+  n: "Add New [current resource]"
+  s: Toggle show system
+  t: Next page tab
+  v: Volumes
+  slash: Focus search field
+  question: You are here
+  admin: Only For Admins
+  p: Processes
+  theme: Cycle theme ({currentTheme})
+
+modalWelcome:
+  header: Welcome to {appName}!
+  closeModal: Got It
+
+newBalancer:
+  header:
+    add: Add Load Balancer
+    edit: Edit Load Balancer
+    upgrade: Upgrade Load Balancer
+  error:
+    noRules: "You must have one or more listening ports and target rules"
+    noSourcePort: "Source Port is required on each rule"
+    invalidSourcePort: "Invalid source port: '{num}'"
+    invalidTargetPort: "Invalid target port: '{num}'"
+    mixedPort: "Port {num} has multiple rules with conflicting access/protcols"
+    noTarget: "Target is required on each rule"
+    noTargetPort: "Target Port is required on each rule"
+    needsCertificate: "A certificate is required because there are SSL/TLS port rules"
+
+newCatalog:
+  version:
+    prompt: Choose a version...
+    default: The default at the time (currently {version})
+  saveUpgrade: Upgrade
+  saveNew: Launch
+  saveConfigure: Configure
+  upgrade: "Upgrade:"
+  catalog: "Catalog:"
+  category: "Category:"
+  support: "Support:"
+  official: Officially Certified
+  maintainedBy: Maintained by community members
+  maintainer: "Maintainer:"
+  license: "License:"
+  url: "Project URL:"
+  titleAdd: "Add {name} Stack"
+  titleUpgrade: "Upgrade {name} Stack"
+  titleConfigure: "Configure {name} Stack"
+  templateVersion: Template Version
+  selectVersionAdd: Select a version of the template to deploy
+  selectVersionUpgrade: Select a version of the template to upgrade to
+  selectVersionConfigure: Select a version of the template to configure
+  newStack: New Stack
+  config: Configuration Options
+  unknownType: "Unrecognized question type:"
+  startService: Start services after creating
+  preview: Preview
+  txt: answers.txt
+  noConfig: This template has no configuration options
+
+newContainer:
+  add:
+    container: Add Container
+    service: Add Service
+    globalService: Add Global Service
+    sidekick: 'Add Sidekick'
+    sidekickName: 'Add Sidekick of "{name}"'
+  upgrade:
+    container: Upgrade Container
+    service: Upgrade Service
+    sidekick: Upgrade Sidekick
+    sidekickName: 'Upgrade Sidekick of "{name}"'
+  selectUpgrade: Select one or more services to upgrade.
+  saveUpgrade: Upgrade
+  saveNew: Launch
+  name:
+    placeholder: e.g. myapp
+  description:
+    placeholder: e.g. My Application
+  environment:
+    label: Environment Variables
+    addAction: Add Variable
+    keyLabel: Variable
+    keyPlaceholder: e.g. FOO
+    valueLabel: Value
+    valuePlaceholder: e.g. bar
+  sidekick:
+    header: Upgrade service
+    title: Select service launch config to upgrade
+    detail: '"{service}" has sidekicks.  Which launch config do you want to upgrade?'
+    primary: Primary
+    sidekick: Sidekick
+
+  errors:
+    noSidekick: Choose a service to add the sidekick to
+    duplicateName: 'There is already a sidekick named "{name}" in the service "{service}"'
+
+newPassword:
+  placeholder: New Password
+  password: New Password
+  confirmPassword: Confirm Password
+  passwordNoMatch: Passwords do not match
+
+newReceiver:
+  title:
+    edit: Edit Receiver
+    add: Add Receiver
+  name:
+    placeholder: "e.g. scale-web"
+  driver:
+    label: Kind
+  action:
+    label: Action
+    up: Scale Up
+    down: Scale Down
+  deleteOption:
+    label: When Scaling Down, Remove
+    mostRecent: The most recently created Host
+    leastRecent: The oldest Host
+  hostSelector:
+    label: Host Selector
+    addActionLabel: Add Selector Label
+    help:
+      up: Hosts with matching labels will be used as the template for deploying the new {by, plural, =1 {host} other {hosts}}.
+      down: Hosts with matching labels will be candidates for being removed during scale down.
+  image:
+    label: Docker Image name
+  service:
+    label: Target Service
+  serviceSelector:
+    label: Service Selector
+    addActionLabel: Add Selector Label
+    help: Services matching all of the given label will be upgraded
+  amount:
+    label: By
+  min:
+    label: Minimum Scale
+    placeholder: e.g. 1
+  max:
+    label: Maximum Scale
+    placeholder: e.g. 20
+  tag:
+    label: Image Tag
+    placeholder: "e.g. latest"
+    help: Only registry pushes to the given tag will cause a service upgrade.
+
+newSecret:
+  title:
+    edit: Edit Secret
+    add: Add Secret
+  name:
+    placeholder: e.g. api-token
+  description:
+    placeholder: e.g. Secret token for the API
+  value:
+    label: Secret Value
+    placeholder: The secret value
+
+orchestrationWelcome:
+  simple:
+    title: Simple
+  enhanced:
+    title: Enhanced with Kubernetes
+
+pageFooter:
+  notARelease: (Not a Release)
+  help: 'Help & Docs'
+  issues: File an Issue
+  forums: Forums
+  slack: Slack
+  download:
+    link: Download CLI
+    mac: macOS
+    windows: Windows
+    linux: Linux
+  showSystem: Show System
+
+pagination:
+  certificate: |
+    {pages, plural,
+    =0 {No Certificates}
+    =1 {{count} {count, plural, =1 {Certificate} other {Certificates}}}
+    other {{from} - {to} of {count} Certificates}}
+  container: |
+    {pages, plural,
+    =0 {No Containers}
+    =1 {{count} {count, plural, =1 {Container} other {Containers}}}
+    other {{from} - {to} of {count} Containers}}
+  containerService: |
+    {pages, plural,
+    =0 {No Containers/Services}
+    =1 {{count} {count, plural, =1 {Container/Service} other {Containers/Services}}}
+    other {{from} - {to} of {count} Containers/Services}}
+  dnsRecord: |
+    {pages, plural,
+    =0 {No DNS Records}
+    =1 {{count} {count, plural, =1 {DNS Record} other {DNS Records}}}
+    other {{from} - {to} of {count} DNS Records}}
+  driverOptions: |
+    {pages, plural,
+    =0 {No Options}
+    =1 {{count} {count, plural, =1 {Driver Option} other {Driver Options}}}
+    other {{from} - {to} of {count} Driver Options}}
+  entry: |
+    {pages, plural,
+    =0 {No Entries}
+    =1 {{count} {count, plural, =1 {Entry} other {Entries}}}
+    other {{from} - {to} of {count} Entries}}
+  event: |
+    {pages, plural,
+    =0 {No Events}
+    =1 {{count} {count, plural, =1 {Event} other {Events}}}
+    other {{from} - {to} of {count} Events}}
+  generic: |
+    {pages, plural,
+    =0 {No Items}
+    =1 {{count} {count, plural, =1 {Item} other {Items}}}
+    other {{from} - {to} of {count} Items}}
+  host: |
+    {pages, plural,
+    =0 {No Hosts}
+    =1 {{count} {count, plural, =1 {Host} other {Hosts}}}
+    other {{from} - {to} of {count} Hosts}}
+  link: |
+    {pages, plural,
+    =0 {No Links}
+    =1 {{count} {count, plural, =1 {Link} other {Links}}}
+    other {{from} - {to} of {count} Links}}
+  loadBalancer: |
+    {pages, plural,
+    =0 {No Load Balancers}
+    =1 {{count} {count, plural, =1 {Load Balancer} other {Load Balancers}}}
+    other {{from} - {to} of {count} Load Balancers}}
+  mounts: |
+    {pages, plural,
+    =0 {No Mounts}
+    =1 {{count} {count, plural, =1 {Mount} other {Mounts}}}
+    other {{from} - {to} of {count} Mounts}}
+  port: |
+    {pages, plural,
+    =0 {No Ports}
+    =1 {{count} {count, plural, =1 {Port} other {Ports}}}
+    other {{from} - {to} of {count} Ports}}
+  rule: |
+    {pages, plural,
+    =0 {No Rules}
+    =1 {{count} {count, plural, =1 {Rule} other {Rules}}}
+    other {{from} - {to} of {count} Rules}}
+  service: |
+    {pages, plural,
+    =0 {No Services}
+    =1 {{count} {count, plural, =1 {Service} other {Services}}}
+    other {{from} - {to} of {count} Services}}
+  volume: |
+    {pages, plural,
+    =0 {No Volumes}
+    =1 {{count} {count, plural, =1 {Volume} other {Volumes}}}
+    other {{from} - {to} of {count} Volumes}}
+  containerHighlightSubset: "<b>{subset} of {count}</b> Containers"
+  containerNoSubset: "0 of {count} Containers"
+
+projectRow:
+  none: No description
+  orchestration: Orchestration
+
+publicEndpoints:
+  endpoint: Endpoint
+  bindIpAddress: Bind IP
+  publicPort: Public Port
+  target: Target
+  privatePort: Container Port
+  noData: There are no published ports
+  noMatch: No ports match the current search
+
+physicalStats:
+  title: Physical Attributes
+  detail: Physical machine attributes
+
+registryRow:
+  address: Address
+  username: Username
+  created: Created
+
+reservationParameters:
+  label: Resource Limit
+  memory:
+    labelText: 'Memory'
+    placeholder: 'Default: Entire host'
+    unit: 'MB'
+  milliCpu:
+    labelText: CPU
+    placeholder: 'Default: Entire host'
+    unit: 'mCPU'
+
+saveCancel:
+  saving: Saving...
+  saved: Saved!
+  edit: Save
+  create: Create
+  cancel: Cancel
+
+schema:
+  inputBoolean:
+    y: "True"
+    n: "False"
+  inputCertificate:
+    prompt: Choose a Certificate...
+  inputContainer:
+    prompt: Choose a Container...
+  inputEnum:
+    option: Choose an option...
+  inputHost:
+    label: Choose a Host...
+  inputService:
+    prompt: Choose a Service...
+  inputSecret:
+    prompt: Choose a Secret...
+
+schedulingRuleRow:
+  theHost: The host
+  must: must
+  should: should
+  shouldNot: should not
+  mustNot: must not
+  haveA: have a
+  of: of
+  hostLabel: host label
+  containerLabel: container with label
+  serviceName: service with the name
+  containerName: container with the name
+
+serviceLink:
+  withAlias:
+      sameStack: "{service} as {alias}"
+      differentStack: "{stack}/{service} as {alias}"
+  noAlias:
+      sameStack: "{service}"
+      differentStack: "{stack}/{service}"
+
+serviceLog:
+  time: Time
+  level: Level
+  event: Event
+  detail: Detai
+  noMatch: No events match the current search
+  noData: No events have occurred recently
+
+siteAccess:
+  header: Site Access
+  helpText: "Configure who should be allowed to log in and use {appName}."
+  unrestricted: "Allow any valid {individuals}"
+  restricted: "Allow members of Environments, plus Authorized {individuals} and {collection}"
+  required: "Restrict access to only Authorized {individuals} and {collection}"
+  listHeader: "Authorized {individuals} and {collection}"
+  noIdentity: None
+  users: Users
+  groups: Groups
+  organizations: Organizations
+
+stackRow:
+  label: "Stack: {name}"
+  standalone: Standalone
+
+storagePoolSection:
+  readOnly: "(read-only)"
+  hosts:
+    header: Hosts
+    none: No Hosts
+  volumes:
+    header: Volumes
+    add: Add Volume
+    none: No Volumes
+  models:
+    table:
+      header:
+        volumeName: 'Volume Name'
+        mounts: 'Mounts (Container: Path)'
+
+svgServiceContainer:
+  sidekicks: Sidekicks
+
+tableCountSelect:
+  header: Table Rows per Page
+
+telemetryOpt:
+  header: Statistics
+  subtext: |
+    Rancher Labs would like to collect anonymous information about the configuration of your installation to help make {appName} better.<br/>Your data will not be shared with anyone else, and no specific resource names or addresses are collected.
+  learnMore:
+    label: Learn More
+  label: Allow collection of anonymous statistics
+
+tooltipLink:
+  list: List
+  composeYaml: Compose YAML
+
+tooltipWarning:
+  notConfigured: Access Control Not Configured
+  dismiss: Dismiss
+
+upgradeBtn:
+  version:
+    current: 'Current'
+  status:
+    none: 'None'
+    loading: 'Checking upgrades...'
+    current: 'Up to date'
+    available: 'Upgrade available'
+    inprogress: 'Upgrade in progress'
+    upgraded: 'Upgraded: Finish Upgrade'
+    notfound: 'Template version not found'
+    error: 'Error checking for upgrade'
+    required: 'Upgrade required'
+
+viewEditDescription:
+  form:
+    name:
+      placeholder: e.g. lab
+    description:
+      placeholder: e.g. Environment for developer experimentation
+
+viewEditProject:
+  showEdit:
+    edit: "Edit Environment:"
+    add: Add Environment
+    template: Environment Template
+    accessControl: Access Control
+    noMembers: Add one or more members who can use this environment.
+  networkPolicy:
+    label: Network Policy
+    description: Control what containers are allowed to communicate with each other over the Managed Network.
+    unsupported: This environment has network policy rules which are not yet supported by the UI.  Please use the API to manage the policy.
+    noManager: Network Policies are available only for environments using Cattle Orchestration with the Network Policy Manager infrastructure template deployed.
+    withinStack: Within Stack
+    withinService: Within Service
+    withinLinked: Between Linked Services
+    default: Everything Else
+    allow: Allow
+    deny: Deny
+
+  header: "Environment:"
+  description: Description
+  helpBlock: |
+    Access Control is not enabled.<br/>
+    Anybody with access to the API/UI acts as an admin and will be able to use any environment.
+
+volumesPage:
+  title: Volume
+  noMatch: No volumes match the current search
+  banner:
+    driver: Driver
+    size: Size
+    stack: Stack
+    uri: URI
+    perCont: On Container
+    host: Host
+  scope:
+    label: Scope
+    stack: Stack
+    container: Per Container
+    standalone: Environment
+  driver:
+    label: Driver
+  driverOptions:
+    title: Driver Options
+    detail: Map of key value pairs representing driver options
+    labels:
+      key: Key
+      value: Value
+      noData: No Options
+  mounts:
+    label: Mounts
+    detail: Physical mounts related to the volume
+    table:
+      instance: Instance
+      path: Path
+      permission: Permissions
+      volume: Volume
+      noData: No Mounts
+
+vmConsole:
+  header: "Console:"
+  protip: "ProTip: Hold the {key} key when opening shell access to launch a new window."
+  canvas: Canvas not supported.
+  footerActions:
+    buttonSend: Send Ctrl-Alt-Delete
+    buttonCancel: Close
+
+volumeRow:
+  mounts:
+    readOnly: "(read-only)"
+
+waitOrchestration:
+  count: '({sub} of {count})'
+
+waitKubernetes:
+  addHost: 'Add at least one host'
+  activateHost: 'Waiting for a host to be active'
+  createStack: 'Creating Kubernetes system stack'
+  startServices: 'Starting services'
+  waitApi: 'Waiting for Kubernetes API'
+
+##############################
+# Mixins
+##############################
+containerChoices:
+  hostGroup: "Host: {name}"
+  hostGroupWithState: "Host: {name} ({state})"
+  unknownHost: "Host: ???"
+  containerOption: "{name}"
+
+driver:
+  multiHostNames: "Hosts will be named <b>{first}</b> &mdash; <b>{last}</b>"
+
+##############################
+# Services
+##############################
+allServices:
+  stackGroup: "Stack: {name}"
+
+##############################
+# Navigation
+##############################
+nav:
+  srToggleDropdown: Toggle Dropdown
+  environment:
+    label: Environment
+    all: All Environments
+    your: Your Environments
+    selected: Selected Environment
+    manage: Manage Environments
+    edit: 'Edit "{name}"'
+  notReady: Setting Up...
+  k8s:
+    tab: Kubernetes
+  containers:
+    tab: Containers
+    systemTab: System
+    balancers: Balancers
+    containers: Containers
+    dns: DNS
+    volumes: Volumes
+    addContainer: Add Container
+    addBalancer: Add Balancer
+    addDns: Add Record
+    addVolume: Add Volume
+    groupNone: Flat List
+    groupStack: Group by Stack
+    importCompose: Import compose.yml
+  hosts:
+    tab: Hosts
+  catalog:
+    all: All
+    library: Library
+    community: Community
+  apps:
+    tab: Apps
+    apps: Applications
+    launch: Launch from Catalog
+  infra:
+    tab: Resources
+    storagePage: Storage
+    certificates: Certificates
+    registries: Registries
+    secrets: Secrets
+    keys: API Keys
+    hooks: Webhooks
+    templateKeys: Template Keys
+  admin:
+    tab: Admin
+    audit: Audit Log
+    processes: Processes
+    accounts: Accounts
+    access: Access Control
+    machine: Machine Drivers
+    settings: Settings
+    ha: High Availability
+  user:
+    label: "User Menu: {username}"
+    logout: Log Out
+  userPreferences:
+    link: "Preferences"
+  pipelines:
+    tab: Pipeline
+
+##############################
+# Resource Actions
+##############################
+action:
+  activate: Activate
+  addContainer: Add Container
+  addSidekick: Add a Sidekick
+  approve: Approve  
+  cancelUpgrade: Cancel Upgrade
+  cancelRollback: Cancel Rollback
+  clone: Clone
+  console: Open Console
+  convertToService: Convert to Service
+  deactivate: Deactivate
+  deny: Deny
+  edit: Edit
+  evacuate: Evacuate
+  execute: Execute Shell
+  exportConfig: Export Config
+  garbageCollect: Cleanup
+  logs: View Logs
+  machineConfig: Machine Config
+  pause: Pause Operations
+  remove: Remove
+  replay: Replay
+  restart: Restart
+  retry: Retry
+  rerun: Rerun
+  run: Run
+  rollback: Rollback
+  setDefault: Set as Default
+  start: Start
+  stop: Stop
+  upgrade: Upgrade
+  upgradeOrEdit: Upgrade/Edit
+  viewConfig: View Config
+  viewGraph: View Graph
+  viewInApi: View in API
+  viewInstance: View Instance
+
+##############################
+# Resource Actions
+##############################
+validation:
+  required: '"{key}" is required'
+  arrayLength:
+    exactly: '"{key}" should contain {count, plural, =1 {# item} other {# items}}'
+    between: '"{key}" should contain between {min} and {max} {max, plural, =1 {item} other {items}}'
+    min: '"{key}" should contain at least {count} {count, plural, =1 {item} other {items}}'
+    max: '"{key}" should contain at most {count} {count, plural, =1 {item} other {items}}'
+  stringLength:
+    exactly: '"{key}" should be {count, plural, =1 {# character} other {# characters}}'
+    between: '"{key}" should be between {min} and {max} {max, plural, =1 {character} other {characters}}'
+    min: '"{key}" should be at least {count} {count, plural, =1 {character} other {characters}}'
+    max: '"{key}" should be at most {count} {count, plural, =1 {character} other {characters}}'
+  number:
+    exactly: '"{key}" should be exactly {val}'
+    between: '"{key}" should be between {min} and {max}'
+    min: '"{key}" should be at least {val}'
+    max: '"{key}" should be at most {val}'
+  chars: '"{key}" contains {count, plural, =1 {an invalid character} other {# invalid characters}}: {chars}'
+
+##############################
+# Model Properties
+##############################
+model:
+  account:
+    kind:
+      registeredAgent: Registered Agent
+      agent: Agent
+      service: Service
+      user: User
+      admin: Admin
+      project: Environment
+  identity:
+    displayType:
+      user: User
+      team: Team
+      group: Group
+      org: Organization
+      localUser: Local User
+      unknown: "{type}?"
+  projectMember:
+    role:
+      member: Member
+      owner: Owner
+      readonly: Read-Only
+      restricted: Restricted
+  scaleService:
+    min: Minimum Scale
+    max: Maximum Scale
+    amount: By

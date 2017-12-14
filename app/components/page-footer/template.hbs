@@ -1,0 +1,34 @@
+{{!-- <a href="#" class="btn btn-sm bg-transparent" {{action "showAbout"}} aria-label="About Rancher">{{if settings.rancherVersion settings.rancherVersion (t 'pageFooter.notARelease')}}</a>
+
+{{#if (or app.isCaas settings.isRancher)}}
+  {{#if projectId}}
+    <a href="{{href-to 'authenticated.project.help' projectId}}" role="button" class="btn btn-sm bg-transparent">{{t 'pageFooter.help'}}</a>
+  {{/if}}
+  <a role="button" class="btn btn-sm bg-transparent" target="blank" rel="nofollow noreferer" href="{{settings.issueUrl}}">{{t 'pageFooter.issues'}}</a>
+  <a role="button" class="btn btn-sm bg-transparent" target="blank" rel="nofollow noreferer" href="{{forumBase}}">{{t 'pageFooter.forums'}}</a>
+  <a role="button" class="btn btn-sm bg-transparent" target="blank" rel="nofollow noreferer" href="{{slackBase}}">{{t 'pageFooter.slack'}}</a>
+  {{#if showWechat}}
+    <a class="btn btn-sm bg-transparent" {{action "showWechat"}}>{{t 'pageFooter.wechat'}}</a>
+  {{/if}}
+{{/if}}
+
+<div class="pull-right">
+  <div class="compose-download inline-block dropup">
+    <a class="dropdown-toggle hand btn btn-sm bg-transparent" data-toggle="dropdown" aria-expanded="false">
+      <i class="icon icon-download"></i> {{t 'pageFooter.download.link'}} <i class="icon icon-chevron-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-right text-right" role="menu" style="min-width: 0">
+      <li><a href="{{cli.darwin}}">{{t 'pageFooter.download.mac'}} <i class="icon icon-fw icon-apple"></i></a></li>
+      <li><a href="{{cli.windows}}">{{t 'pageFooter.download.windows'}} <i class="icon icon-fw icon-windows"></i></a></li>
+      <li><a href="{{cli.linux}}">{{t 'pageFooter.download.linux'}} <i class="icon icon-fw icon-linux"></i></a></li>
+    </ul>
+  </div>
+</div> --}}
+<div class="pull-right">
+  {{language-dropdown classNames="dropup"}}
+</div>
+{{!-- {{#if prefs.showSystemControl}}
+  <div class="pull-right">
+    <label class="btn btn-sm">{{input type="checkbox" checked=prefs.showSystemResources}} {{t 'pageFooter.showSystem'}}</label>
+  </div>
+{{/if}} --}}

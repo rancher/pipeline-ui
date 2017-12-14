@@ -1,0 +1,69 @@
+{{#sortable-table
+  tableClassNames="double-rows"
+  bulkActions=bulkActions
+  body=body
+  sortBy=sortBy
+  stickyHeader=stickyHeader
+  fullRows=true
+  search=false
+  groupByKey=groupByKey
+  groupByRef=groupByRef
+  headers=headers as |sortable kind inst dt|
+  }}
+  {{#if (eq kind "row")}}
+    <tr class="main-row">
+      {{#if bulkActions}}
+        <td valign="middle" class="row-check" style="padding-top: 2px;">
+          {{check-box nodeId=inst.id}}
+        </td>
+      {{/if}}
+      <td class="text-muted" data-title="{{dt.isActivate}}">
+      <span class="badge-state {{inst.statusClass}}">
+          {{#if inst.isActivate}}
+            {{t 'pipelinesPage.active'}}
+          {{else}}
+            {{t 'pipelinesPage.inactive'}}
+          {{/if}}
+        </span>
+      </td>
+      <td data-title="{{dt.name}}" class="clip">
+        {{#link-to "pipelines.pipeline" inst.id (query-params mode="review")}}
+          {{inst.name}}
+        {{/link-to}}
+      </td>
+      <td data-title="{{dt.repository}}" class="clip text-muted">
+        <p class="mt-10 mb-5">{{inst.repository}}</p>
+        <p class="mt-5 mb-10">{{inst.branch}}</p>
+      </td>
+      <td data-title="{{dt.runCount}}" class="clip text-muted">
+        {{#if inst.runCount}}
+          {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=(date-str inst.lastRunTime) tagName="span" tooltipFor="tooltip-basic"}}
+            {{#link-to "pipelines.activity" inst.lastRunId}}
+              <p class="mt-0 mb-0">#{{inst.runCount}} {{inst.lastRunStatus}}</p>
+              <p class="text-muted text-italic text-small mt-0 mb-0">{{date-from-now inst.lastRunTime}}</p>
+            {{/link-to}}
+          {{/tooltip-element}}
+        {{else}}
+          N/A
+        {{/if}}
+      </td>
+      <td data-title="{{dt.nextRunTime}}" class="clip">
+      {{#if inst.nextRunTime}}
+        {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=(date-str inst.nextRunTime) tagName="span" tooltipFor="tooltip-basic"}}
+          {{date-from-now inst.nextRunTime}}
+        {{/tooltip-element}}
+      {{else}}
+          N/A
+      {{/if}}
+      </td>
+      
+      <td data-title="{{dt.actions}}" class="actions">
+        {{action-menu model=inst showPrimary=true}}
+      </td>
+    </tr>
+  {{else if (eq kind "nomatch")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">{{t 'pipelinesPage.table.noMatch'}}</td></tr>
+  {{else if (eq kind "norows")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">{{t 'pipelinesPage.table.noData'}}</td></tr>
+  {{/if}}
+{{/sortable-table}}

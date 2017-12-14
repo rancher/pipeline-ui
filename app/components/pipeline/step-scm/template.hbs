@@ -1,0 +1,139 @@
+{{!-- <section class="header has-tabs clearfix">
+  <ul class="tab-nav">
+    <li {{action "changeSCMType" 'git'}}>
+      <a href="javascript:void(0);" class="{{if (eq selectedModel.sourceType 'git') 'active' (if (eq modalOpts.type 'review') 'hide')}} ember-view">Git</a>
+    </li>
+    <li {{action "changeSCMType" 'github'}}>
+      <a href="javascript:void(0);" class="{{if (eq selectedModel.sourceType 'github') 'active' (if (eq modalOpts.type 'review') 'hide')}} ember-view">Github</a>
+    </li>
+
+    <li {{action "changeSCMType" 'github'}}>
+      <a href="javascript:void(0);" class="{{if (eq selectedModel.sourceType 'github') 'active' (if (eq modalOpts.type 'review') 'hide')}} ember-view">Github</a>
+    </li>
+
+  </ul>
+</section> --}}
+{{#if (eq selectedModel.sourceType 'git')}}
+  <div class="pt-20"></div>
+  <div class="inline-form">
+    <label>Repository{{field-required}}</label>
+    <div class="pt-10"></div>
+      {{input class="form-control" value=selectedModel.repository placeholder="https://github.com/rancher/ui.git" disabled=(if (eq modalOpts.type 'review') true false)}}
+  </div>
+
+  <div class="pt-20"></div>
+  <div class="inline-form">
+    <label>Branch {{field-required}}</label>
+    <div class="pt-10"></div>
+    {{input class="form-control js-disable-hint" value=selectedModel.branch placeholder="master" disabled=(if (eq modalOpts.type 'review') true false)}}
+  </div>
+{{/if}}
+
+{{#if (eq selectedModel.sourceType 'github')}}
+  {{#if statusFetching}}
+    <i class="icon icon-spinner icon-spin"></i>
+  {{else}}
+    {{#if showBranch}}
+      <div class="pt-20"></div>
+      <div class="inline-form">
+        <label>{{t 'newPipelineStep.stepType.scm.user'}}{{field-required}}</label>
+        <div class="pt-10"></div>
+        {{#if (eq modalOpts.type 'review')}}
+          {{input class="form-control" value=selectedModel.gitUser disabled=(if (eq modalOpts.type 'review') true false)}}
+        {{else}}
+          {{#power-select
+            options=accountsInfo
+            searchField="login"
+            selected=selectedGitUser
+            onchange=(action (mut selectedGitUser))
+            as |account|
+          }}
+            {{#identity-block 
+              identity=account
+              link=false
+            }}
+            {{/identity-block}}
+          {{/power-select}}
+        {{/if}}
+      </div>
+
+      <div class="pt-20"></div>
+      <div class="inline-form">
+        <label>{{t 'pipelineHistories.repository'}}{{field-required}} {{#if repoRefresh}} <i class="icon icon-spin"></i> {{else}}
+          {{#tooltip-element 
+          type="tooltip-basic"
+          model='fetch from source code management'
+          tooltipTemplate='tooltip-static'
+          aria-describedby="tooltip-base"
+          tooltipFor="audit-log"}}
+          <button {{action "reloadRepo"}} class="btn bg-transparent"><i class="icon icon-refresh"></i></button>
+        {{/tooltip-element}}
+      {{/if}}  </label>
+        <div class="pt-10"></div>
+        {{#if (eq modalOpts.type 'review')}}
+          {{input class="form-control" value=selectedModel.repository disabled=(if (eq modalOpts.type 'review') true false)}}
+        {{else}}
+          {{#if repoFetching}}
+            <i class="icon icon-spinner icon-spin"></i>
+          {{else}}
+            {{#power-select
+              options=repos
+              searchField="clone_url"
+              selected=selected
+              onchange=(action selectRepo)
+              as |repo|
+            }}
+              {{repo.clone_url}}
+            {{/power-select}}
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="pt-20"></div>
+      <div class="inline-form">
+        <label>{{t 'newPipelineStep.stepType.scm.branch'}}{{field-required}}</label>
+        <div class="pt-10"></div>
+        {{input class="form-control js-disable-hint js-auto-focus" value=selectedModel.branch placeholder="master" disabled=(if (eq modalOpts.type 'review') true false)}}
+      </div>
+      <div class="pt-20"></div>
+      <div class="inline-form">
+        <div class="pt-10"></div>
+        <label>
+          {{#if (not-eq modalOpts.type 'review')}}
+            {{#if selected.permissions.admin}}
+              {{check-box class="form-control" checked=selectedModel.webhook disabled=(if (eq modalOpts.type 'review') true false) }}
+            {{else}}
+              {{check-box class="form-control" checked=false disabled=true }}
+            {{/if}}
+          {{else}}
+              {{check-box class="form-control" checked=selectedModel.webhook disabled=(if (eq modalOpts.type 'review') true false) }}
+          {{/if}}
+          {{t 'newPipelineStep.stepType.scm.webhook'}}
+        </label>
+        {{#tooltip-element 
+          type="tooltip-basic"
+          model=(t 'newPipelineStep.stepType.scm.webhookTip')
+          tooltipTemplate='tooltip-static'
+          aria-describedby="tooltip-base"
+          tooltipFor="audit-log"}}
+          <i class="icon icon-help text-info"></i>
+        {{/tooltip-element}}
+        {{#if (not-eq modalOpts.type 'review')}}
+          {{#if (and (not-eq selected.permissions.admin true) selected)}}
+            <div class="banner bg-warning">
+              <div class="banner-icon"><span class="icon icon-alert"></span></div>
+              <div class="banner-message">
+                <p>{{t 'newPipelineStep.stepType.scm.noPermission'}}</p>
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{else}}
+      <p>{{t 'newPipelineStep.stepType.scm.settingWarning1'}} {{#link-to "pipelines.ready.settings" (query-params forceLoad=true)  target="_blank"}}{{t 'newPipelineStep.stepType.scm.settingWarning2'}}{{/link-to}} {{t 'newPipelineStep.stepType.scm.settingWarning3'}}</p>
+      <p class="text-warning">{{t 'newPipelineStep.stepType.scm.note'}}: {{t 'newPipelineStep.stepType.scm.finishOauth1'}}<a href="javascript:void();" {{action "reload"}}>{{t 'newPipelineStep.stepType.scm.finishOauth2'}}</a> {{t 'newPipelineStep.stepType.scm.finishOauth3'}}</p>
+    {{/if}}
+  {{/if}}
+{{/if}}
+
+
+

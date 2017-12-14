@@ -1,0 +1,15 @@
+{{#click-outside action=(action "hideSelectList")}}
+<section class="pipeline-approver-select-wrap">
+  {{input type="text" value=state.inputVal focus-in=(action 'showSelectList') placeholder="Search"}}
+  <ul class="pipeline-approver-list" class={{if state.selecting '' 'hide'}} style="max-height: 300px;overflow: auto;border-bottom: 1px solid black">
+    {{#each filteredModel as |item index|}}
+      <li {{action 'select' item index}}>
+        {{item.name}} 
+        {{#if item.selected}}
+          <i class="icon icon-check"></i>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</section>
+{{/click-outside}}

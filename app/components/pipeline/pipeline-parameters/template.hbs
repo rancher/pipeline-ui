@@ -1,0 +1,20 @@
+{{#accordion-list-item
+  title=(t 'newPipeline.parameters')
+  detail=(t 'newPipeline.parameterTip')
+  statusClass='bg-success clip pull-right inline'
+  expandAll=preview
+  expand=(action expandFn)
+}}
+  {{form-key-value
+    initialMap=env
+    changed=(action (mut env))
+    allowEmptyValue=false
+    editing=(if preview false true)
+    normalHeader=""
+    addActionLabel="newContainer.environment.addAction"
+    keyLabel="newContainer.environment.keyLabel"
+    keyPlaceholder="newContainer.environment.keyPlaceholder"
+    valueLabel="newContainer.environment.valueLabel"
+    valuePlaceholder="newContainer.environment.valuePlaceholder"
+  }}
+{{/accordion-list-item}}

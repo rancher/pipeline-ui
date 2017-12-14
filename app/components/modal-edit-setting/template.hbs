@@ -1,0 +1,45 @@
+<section class="header">
+  <h1>{{t 'modalEditSetting.title'}}</h1>
+</section>
+<section class="horizontal-form container-fluid">
+  <div class="row inline-form">
+    <label>{{t 'modalEditSetting.name.label'}}</label>
+    <div class="text-mono">{{model.key}}</div>
+    <p class="text-info">{{model.description}}</p>
+  </div>
+
+  <div class="row inline-form">
+    <label>{{t 'modalEditSetting.value.label'}}</label>
+    <div>
+      {{#if (eq model.kind 'multiline')}}
+        {{textarea class="form-control" value=value rows=10}}
+      {{else if (eq model.kind 'int')}}
+        {{input-integer value=value class="form-control"}}
+      {{else if (eq model.kind 'boolean')}}
+        <div class="radio">
+          <label>{{radio-button selection=value value="true"}} True</label>
+        </div>
+        <div class="radio">
+          <label>{{radio-button selection=value value="false"}} False</label>
+        </div>
+      {{else if (eq model.kind 'enum')}}
+        <select class="form-control" onchange={{action (mut value) value="target.value"}}>
+          {{#unless (array-includes model.options value)}}
+            <option value="" selected=true>{{t 'modalEditSetting.value.prompt'}}</option>
+          {{/unless}}
+          {{#each model.options as |choice|}}
+            <option value="{{choice}}" selected={{eq choice value}}>{{choice}}</option>
+          {{/each}}
+        </select>
+      {{else}}
+        {{input type="text" value=value class="form-control"}}
+      {{/if}}
+    </div>
+  </div>
+</section>
+
+{{#save-cancel editing=true saveDisabled=removing save="save" cancel="cancel"}}
+  {{#if model.canDelete}}
+    <button {{action "remove"}} class="btn btn-success">{{t 'modalEditSetting.reset.label'}}</button>
+  {{/if}}
+{{/save-cancel}}

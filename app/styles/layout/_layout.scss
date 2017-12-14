@@ -1,0 +1,100 @@
+HTML {
+  height: 100%;
+}
+
+BODY {
+  direction: ltr;
+  background-color : $body-bg;
+  min-height       : 100%;
+  // font-weight      : normal;
+  position         : relative;
+
+  &.no-spin .icon-spin {
+    -webkit-animation : none;
+    animation         : none;
+  };
+}
+
+#application {
+  padding-top: 10px;
+  padding-bottom: 70px; // So the footer doesn't cover the end of the body
+  min-height: 150px; // header + footer + a bit
+}
+
+// Articles (above the page info/warnings)
+.articles {
+  position         : relative;
+  z-index          : 3;
+  background-color : white;
+
+
+  ARTICLE {
+    position   : relative;
+    padding    : 7px 10px;
+    text-align : center;
+
+    &.close {
+      position : absolute;
+      cursor   : pointer;
+      top      : 0;
+      right    : 0;
+      bottom   : 0;
+      padding  : 8px 10px;
+    }
+
+    &.warning {
+      @extend .bg-error;
+
+      A,
+      A:hover,
+      A:focus,
+      A:active,
+      A:visited{
+        color       : white;
+        font-weight : $bold-weight;
+      }
+    }
+  }
+}
+
+MAIN {
+  position: relative;
+}
+
+.footer-actions {
+  padding-top: 10px;
+  text-align     : center;
+  position       : relative;
+}
+
+.modal-container .footer-actions {
+  margin-bottom: 0;
+}
+
+.box {
+  background: $accent-bg;
+  padding: 20px;
+  border: solid 1px $accent-border;
+
+  hr {
+    border-color: darken($border, 5%);
+  }
+
+  h4 {
+    border-bottom: solid 2px darken($border, 5%);
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  &.bg-secondary {
+    @extend .bg-secondary;
+
+    hr {
+      opacity: .3;
+    }
+  }
+
+  .accordion {
+    background: $body-bg;
+  }
+}

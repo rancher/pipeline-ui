@@ -1,0 +1,56 @@
+<div class="pipeline-child-limit">
+{{#if (eq model.type 'scm')}}
+ {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=model.repository tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip" style="width: 100%;">{{model.repository}}</p>
+    <p class="text-small mt-0 mb-0 clip italian text-italic" style="width: 100%;">{{model.branch}}</p>
+  {{/tooltip-element}}
+{{/if}}
+
+{{#if (eq model.type 'task')}}
+  {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=model.image tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip">{{upper-case model.type}}: {{model.image}}</p>
+    <p class="text-small mt-0 mb-0 clip text-italic">{{model.command}}</p>
+  {{/tooltip-element}}
+{{/if}}
+
+{{#if (eq model.type 'build')}}
+  {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=model.targetImage tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip">{{upper-case model.type}}: {{model.targetImage}}</p>
+    <p class="text-small mt-0 mb-0 clip text-italic">
+      {{#if model.push}}
+        push
+      {{else}}
+        --
+      {{/if}}
+    </p>
+  {{/tooltip-element}}
+{{/if}}
+
+{{#if (eq model.type 'upgradeService')}}
+  {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=serviceSubtitle tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip">{{upper-case model.type}}</p>
+    <p class="text-small mt-0 mb-0 clip text-italic">
+      {{serviceSubtitle}}
+    </p>
+  {{/tooltip-element}}
+{{/if}}
+
+{{#if (eq model.type 'upgradeStack')}}
+  {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=stackSubtitle tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip">{{upper-case model.type}}</p>
+    <p class="text-small mt-0 mb-0 clip text-italic">
+      {{stackSubtitle}}
+    </p>
+  {{/tooltip-element}}
+{{/if}}
+
+{{#if (eq model.type 'upgradeCatalog')}}
+  {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=catalogSubtitle tagName="span" tooltipFor="tooltip-basic"}}
+    <p class="mt-0 mb-0 clip">{{upper-case model.type}}</p>
+    <p class="text-small mt-0 mb-0 clip text-italic">
+      {{catalogSubtitle}}
+    </p>
+  {{/tooltip-element}}
+{{/if}}
+
+</div>

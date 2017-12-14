@@ -1,0 +1,18 @@
+<td data-title="{{t 'generic.state'}}:" class="state">
+  {{badge-state model=model}}
+</td>
+<td data-title="{{t 'generic.name'}}:">
+  <a href="{{href-to 'authenticated.project.index' model.id}}" {{action "switchTo" model.id}}>{{model.displayName}}</a>
+</td>
+<td data-title="{{t 'generic.description'}}:">
+  {{#if model.description}}{{model.description}}{{else}}<span class="text-muted">{{t 'projectRow.none'}}</span>{{/if}}
+</td>
+<td data-title="{{t 'projectRow.orchestration'}}:">
+  {{model.displayOrchestration}}
+</td>
+<td data-title="{{t 'generic.default'}}:">
+  {{#if model.isDefault}}<i class="icon icon-check"></i>{{else}}<span class="text-muted">&ndash;</span>{{/if}}
+</td>
+<td data-title="{{t 'generic.actions'}}:"class="actions">
+  {{action-menu model=model}}
+</td>

@@ -1,0 +1,135 @@
+<div class="pt-20"></div>
+<section class="box mb-20">
+  <h2>{{t 'newPipelineStep.stepType.catalog.select'}} {{t 'catalogSettings.header'}}</h2>
+  <p class="text-muted">{{t 'catalogSettings.subtext'}}</p>
+  <hr>
+  <div>
+    {{#if loadingCatalog}}
+      <i class="icon icon-spinner icon-spin"></i>
+    {{else}}
+      {{#if showCatalog}}
+        {{#if (not-eq modalOpts.type 'review')}}
+          <div class="form-control-static">
+            {{#if editCatalog}}
+              <button class="btn bg-primary icon-btn" {{action "add"}}>
+                <span class="darken"><i class="icon icon-plus"/></span>
+                <span>{{t 'envCatalog.addActionLabel'}}</span>
+              </button>
+            {{else}}
+              <button class="btn bg-primary" {{action "editCatalog"}}>
+                {{t 'generic.edit'}}
+              </button>
+            {{/if}}
+          </div>
+        {{/if}}
+        {{#if (or global.length ary.length)}}
+          <table class="table fixed">
+            <thead>
+              <tr class="">
+                <th width="200">{{t 'catalogSettings.more.name.label'}}</th>
+                <th width="30">&nbsp;</th>
+                <th>{{t 'catalogSettings.more.url.label'}}</th>
+                <th width="30">&nbsp;</th>
+                <th width="200">{{t 'catalogSettings.more.branch.label'}}</th>
+                <th width="30">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#if editCatalog}}
+              {{#each ary as |row index|}}
+                <tr class="main-row">
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.name.label'}}:">
+                    {{input class="form-control input-sm name" type="text" value=row.name placeholder=(t 'catalogSettings.more.name.placeholder')}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.url.label'}}:">
+                    {{#power-select
+                      options=repos
+                      searchField="clone_url"
+                      selected=row.selected
+                      onchange=(action (mut row.selected))
+                      onclose=(action 'repoSelected' row index)
+                      as |repo|
+                    }}
+                      {{repo.clone_url}}
+                    {{/power-select}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.branch.label'}}:">
+                    {{input class="form-control input-sm" type="text" value=row.branch placeholder=(t 'catalogSettings.more.branch.placeholder')}}
+                  </td>
+                  <td class="pt-5 pb-5 text-right">
+                    <button class="btn bg-primary btn-sm" {{action "remove" row}}><i class="icon icon-minus"/><span class="sr-only">{{t 'generic.remove'}}</span></button>
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              {{#each ary as |row|}}
+                <tr class="main-row">
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.name.label'}}:">
+                    {{row.name}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.url.label'}}:">
+                    {{row.url}}
+                  </td>
+                  <td>&nbsp;</td>
+                  <td class="pt-5 pb-5" data-title="{{t 'catalogSettings.more.branch.label'}}:">
+                    {{row.branch}}
+                  </td>
+
+                  <td class="pt-5 pb-5 text-right">
+                    {{radio-button selection=catalogId value=row.id}}
+                  </td>
+                </tr>
+              {{/each}}
+            {{/if}}
+            </tbody>
+          </table>
+        {{/if}}
+      {{else}}
+        <p>{{t 'newPipelineStep.stepType.catalog.authWarning'}}</p>
+      {{/if}}
+    {{/if}}
+    
+    
+  </div>
+
+  {{#if editCatalog}}
+    {{top-errors errors=errors}}
+    {{save-cancel classNames="pt-20" cancel='cancel' editing=true save="save"}}
+  {{/if}}
+</section>
+<div class="pt-20"></div>
+
+<section class="box mb-20">
+  <h2>{{t 'newPipelineStep.stepType.catalog.selectApp'}}</h2>
+  <p class="text-muted">{{t 'newPipelineStep.stepType.catalog.selectAppTip'}}</p>
+  <hr>
+  {{#power-select
+    options=templates
+    searchField="name"
+    selected=selectedTemplate
+    onchange=(action (mut selectedTemplate))
+    disabled=(if (eq modalOpts.type 'review') true false)
+    as |template|
+  }}
+    <div style="position: relative;top:0;" class="pl-10 pr-10">
+      <p class="mb-5">{{template.name}}</p>
+      <p class="text-muted text-italic text-small mt-0">{{template.description}}</p>
+      <img style="position:absolute;right:10px;top:0;bottom:0; margin:auto;height: 50px;" src={{template.links.icon}} />
+    </div>
+  {{/power-select}}
+</section>
+
+<div class="pt-20"></div>
+{{pipeline/pipeline-catalog-template
+  selectedModel=selectedModel
+  templateResource=selectedTemplate
+  versionLinks=selectedTemplate.versionLinks
+  versionsArray=selectedTemplateVersions
+  parentRoute=parentRoute
+  modalOpts=modalOpts
+  showName=(and (not editing) (not model.stack.system))
+  cancel=(action "cancel")
+}}

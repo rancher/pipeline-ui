@@ -1,0 +1,20 @@
+<div class="text-right">
+  {{#link-to "pipelines.import" classNames="btn btn-sm bg-default mr-10"}}{{t 'pipelinesPage.import'}}{{/link-to}}
+  <button class="btn bg-link btn-sm icon-btn p-0">
+    {{#link-to "pipelines.new-pipeline" class="btn bg-link icon-btn p-0"}}
+      <span class="darken"><i class="icon icon-plus text-small"/></span>
+      <span>{{t 'pipelinesPage.add'}}</span>
+    {{/link-to}}
+  </button>
+</div>
+
+<div class="mt-10"></div>
+<section class="instances">
+  {{pipeline/pipeline-jobs-table
+      body=filtered
+      sortBy=sortBy
+      bulkActions=bulkActions
+      search=true
+      paging=true
+    }}
+</section>

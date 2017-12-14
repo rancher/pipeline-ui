@@ -1,0 +1,56 @@
+{{#if (eq index 0)}}
+<td rowspan="{{labelArray.length}}" style="position:relative;">
+  {{new-select
+    classNames="form-control input-sm"
+    content=expressionsRelation
+    localizedLabel=true
+    value=conditions.mode
+    disabled=(if editing false true)
+  }}
+  <p class="text-small text-info mt-0 mb-0 pull-left" style="position: absolute;">{{t selectedInfo}}</p>
+</td>
+{{/if}}
+<td></td>
+<td>
+  {{#if editing}}
+    {{#power-select
+      options=envvars
+      selected=rule.env
+      onchange=(action "selecteEnv")
+      as |env|
+    }}
+      {{env}}
+    {{/power-select}}
+  {{else}}
+    <div><strong>{{rule.env}}</strong></div>
+  {{/if}}
+</td>
+<td></td>
+<td>
+  {{#if editing}}
+    {{new-select
+      classNames="form-control input-sm"
+      content=comparations
+      value=rule.opt
+    }}
+  {{else}}
+    <div><strong>{{rule.opt}}</strong></div>
+  {{/if}}
+</td>
+<td></td>
+<td>
+  {{#if editing}}
+    {{input
+      type="text"
+      classNames="form-control input-sm"
+      value=rule.value
+    }}
+  {{else}}
+    <div><strong>{{rule.value}}</strong></div>
+  {{/if}}
+</td>
+{{#if editing}}
+  <div class="input-group-btn">
+    <button class="btn bg-primary btn-sm" {{action "remove"}}><i class="icon icon-minus"/></button>
+  </div>
+{{/if}}

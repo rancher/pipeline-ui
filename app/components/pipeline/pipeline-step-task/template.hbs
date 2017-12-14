@@ -1,0 +1,106 @@
+<div class="pt-20"></div>
+<div class="inline-form">
+  <div class="pt-10"></div>
+  <label>{{check-box class="form-control" checked=selectedModel.isService disabled=(if (eq modalOpts.type 'review') true false)}}
+    {{t 'newPipelineStep.stepType.task.runAsService'}}
+    {{#tooltip-element 
+      type="tooltip-basic"
+      model=(t 'newPipelineStep.stepType.task.runAsServiceTip')
+      tooltipTemplate='tooltip-static'
+      aria-describedby="tooltip-base"
+      tooltipFor="audit-log"}}
+      <i class="icon icon-help text-info"></i>
+    {{/tooltip-element}}
+  </label>
+</div>
+{{#if selectedModel.isService}}
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'generic.name'}}{{field-required}}</label>
+  <div class="pt-10"></div>
+  {{input
+    class="js-var-hint"
+    value=selectedModel.alias
+    placeholder="mysql"
+    disabled=(if (eq modalOpts.type 'review') true false)
+  }}
+</div>
+{{/if}}
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.image'}}{{field-required}}</label>
+  <div class="pt-10"></div>
+  {{#if (eq modalOpts.type 'review')}}
+    {{input
+      value=selectedModel.image
+      disabled=(if (eq modalOpts.type 'review') true false)
+    }}
+  {{else}}
+    {{input-suggest
+      value=selectedModel.image
+      choices=pipeline.images
+      placeholder="hello-world:latest"
+      disabled=(if (eq modalOpts.type 'review') true false)
+    }}
+  {{/if}}
+</div>
+
+<section class="header has-tabs clearfix">
+  <ul class="tab-nav">
+    <li {{action "changeTaskModel" true}}>
+      <a href="javascript:void(0);" class="{{if (eq selectedModel.isShell true) 'active' (if (eq modalOpts.type 'review') 'hide')}} ember-view">{{t 'newPipelineStep.stepType.task.shellScript'}}</a>
+    </li>
+    <li {{action "changeTaskModel" false}}>
+      <a href="javascript:void(0);" class="{{if (eq selectedModel.isShell false) 'active' (if (eq modalOpts.type 'review') 'hide')}} ember-view">{{t 'newPipelineStep.stepType.task.customEntryPoint'}}</a>
+    </li>
+  </ul>
+</section>
+
+{{#if selectedModel.isShell}}
+  <div class="inline-form">
+    <label>{{t 'newPipelineStep.stepType.task.command'}}(shell) {{field-required}}</label>
+    <div class="pt-10"></div>
+    {{pipeline/pipeline-codemirror
+      value=selectedModel.shellScript
+      valueUpdated=(action (mut selectedModel.shellScript))
+      options=(hash autofocus=true theme="monokai" lineNumbers=true mode="shell" readOnly=(if (eq modalOpts.type 'review') true false))
+      }}
+  </div>
+{{else}}
+  <div class="inline-form">
+    <label>{{t 'newPipelineStep.stepType.task.entryPoint'}}</label>
+    <div class="pt-10"></div>
+    {{input
+      value=selectedModel.entrypoint
+      placeholder="If you want use the default entrypoint, just leave me empty"
+      disabled=(if (eq modalOpts.type 'review') true false)
+    }}
+  </div>
+  <div class="pt-20"></div>
+  <div class="inline-form">
+    <label>{{t 'newPipelineStep.stepType.task.command'}}</label>
+    <div class="pt-10"></div>
+    {{input
+      value=selectedModel.args
+      placeholder="Arguments of entrypoint"
+      disabled=(if (eq modalOpts.type 'review') true false)
+    }}
+  </div>
+{{/if}}
+
+
+<div class="pt-30"></div>
+  {{form-key-value
+    allowMultilineValue=false
+    initialMap=selectedModel.env
+    changed=(action (mut selectedModel.env))
+    allowEmptyValue=false
+    editing=(if (eq modalOpts.type 'review') false true)
+    normalHeader=(t 'newContainer.environment.label')
+    addActionLabel="newContainer.environment.addAction"
+    keyLabel="newContainer.environment.keyLabel"
+    keyPlaceholder="newContainer.environment.keyPlaceholder"
+    valueLabel="newContainer.environment.valueLabel"
+    valuePlaceholder="e.g. bar"
+    disabled=(if (eq modalOpts.type 'review') true false)
+  }}

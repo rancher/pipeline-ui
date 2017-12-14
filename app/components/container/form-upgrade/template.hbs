@@ -1,0 +1,74 @@
+{{#accordion-list-item
+      title=(t 'formUpgrade.title')
+      detail=(t 'formUpgrade.detail' appName=settings.appName)
+      status=status
+      statusClass=statusClass
+      expandAll=expandAll
+      expand=(action expandFn)
+}}
+
+  {{#input-or-display editable=editing value=service.startFirst}}
+    <div class="row">
+      <div class="col span-6">
+        <label class="acc-label">{{t 'formUpgrade.behavior'}}</label>
+        <div class="radio mb-10">
+          <label>{{radio-button selection=service.startFirst value=false}} {{t 'formUpgrade.stopFirst.label'}}</label>
+          <p class="help-block">{{t 'formUpgrade.stopFirst.detail'}}</p>
+        </div>
+      </div>
+      <div class="col span-6">
+        <label>&nbsp;</label>
+        <div class="radio mb-10">
+          <label>{{radio-button selection=service.startFirst value=true}} {{t 'formUpgrade.startFirst.label'}}</label>
+          <p class="help-block">{{t 'formUpgrade.startFirst.detail'}}</p>
+        </div>
+      </div>
+    </div>
+  {{/input-or-display}}
+
+  <hr/>
+
+  <div class="row box">
+    <div class="col span-6">
+      <label class="acc-label">{{t 'formUpgrade.batchSize.label'}}</label>
+      {{#input-or-display editable=editing value=service.batchSize}}
+        <div class="input-group">
+          {{input-integer min=1 step=100 classNames="form-control" value=service.batchSize}}
+          <span class="input-group-addon bg-default">{{t 'generic.containers'}}</span>
+        </div>
+        <p class="help-block">{{t 'formUpgrade.batchSize.detail'}}</p>
+      {{/input-or-display}}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">{{t 'formUpgrade.interval.label'}}</label>
+      {{#input-or-display editable=editing value=interval}}
+        <div class="input-group">
+          {{input-number min=0 classNames="form-control" value=interval}}
+          <span class="input-group-addon bg-default">{{t 'generic.seconds'}}</span>
+        </div>
+      {{/input-or-display}}
+      <p class="help-block">{{t 'formUpgrade.interval.detail'}}</p>
+    </div>
+  </div>
+
+  <div class="row box">
+    <div class="row span=12">
+      <label class="acc-label">{{t 'formUpgrade.prePull.label'}}</label>
+      <p class="help-block">{{t 'formUpgrade.prePull.detail'}}</p>
+      {{#if editing}}
+        <div class="radio mb-10">
+          <label>{{radio-button selection=instance.prePullOnUpgrade value="all"}} {{t 'formUpgrade.prePull.all'}}</label>
+        </div>
+        <div class="radio mb-10">
+          <label>{{radio-button selection=instance.prePullOnUpgrade value="existing"}} {{t 'formUpgrade.prePull.existing'}}</label>
+        </div>
+        <div class="radio mb-10">
+          <label>{{radio-button selection=instance.prePullOnUpgrade value="none"}} {{t 'formUpgrade.prePull.none'}}</label>
+        </div>
+      {{else}}
+        {{t (concat 'formUpgrade.prePull.' (if instance.prePullOnUpgrade instance.prePullOnUpgrade 'none'))}}
+      {{/if}}
+    </div>
+  </div>
+{{/accordion-list-item}}

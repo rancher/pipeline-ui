@@ -1,0 +1,95 @@
+{{#if (eq type 'scm')}}
+  <div class="banner bg-info">
+    <div class="banner-icon"><span class="icon icon-info"></span></div>
+    <div class="banner-message">
+      <p>{{t 'newPipelineStep.stepType.scm.warning'}}</p>
+    </div>
+  </div>
+  {{pipeline/step-scm
+    selectedModel=selectedModel
+    modalOpts=modalOpts
+  }}
+{{else}}
+  <div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.label'}}</label>
+  <div class="pt-10"></div>
+  <div>
+  {{new-select
+    content=stepsTypeChoices
+    optionLabelPath="id"
+    optionValuePath="id"
+    value=type
+    disabled=(if (eq modalOpts.type 'review') true false)
+  }}
+  </div>
+</div>
+{{/if}}
+
+{{#if (eq type 'build')}}
+  {{pipeline/step-build
+    pipeline=pipeline
+    selectedModel=selectedModel
+    modalOpts=modalOpts
+  }}
+{{/if}}
+
+{{#if (eq type 'task')}}
+  {{pipeline/pipeline-step-task
+    pipeline=pipeline
+    selectedModel=selectedModel
+    modalOpts=modalOpts
+  }}
+{{/if}}
+
+{{#if (eq type 'upgradeService')}}
+  {{pipeline/pipeline-step-service
+    pipeline=pipeline
+    selectedModel=selectedModel
+    modalOpts=modalOpts
+  }}
+{{/if}}
+
+{{#if (eq type 'upgradeStack')}}
+  {{pipeline/pipeline-step-stack
+    pipeline=pipeline
+    selectedModel=selectedModel
+    modalOpts=modalOpts
+  }}
+{{/if}}
+
+{{#if (eq type 'upgradeCatalog')}}
+  {{pipeline/pipeline-step-catalog
+    pipeline=pipeline
+    selectedModel=selectedModel
+    editing=editing
+    modalOpts=modalOpts
+  }}
+{{/if}}
+
+{{#if (not-eq type 'scm')}}
+<div class="pt-20"></div>
+<label>{{t 'newPipelineStep.stepType.timeout'}}</label>
+<div class="pt-10"></div>
+<div class="input-group">
+  {{input-number min='3' classNames="form-control" disabled=(if (eq modalOpts.type 'review') true) value=selectedModel.timeout}}
+  <span class="input-group-addon bg-default">{{t 'newPipelineStep.stepType.minutes'}}</span>
+</div>
+<p class="text-info text small mt-0 mb-0">{{t 'newPipelineStep.stepType.timeoutWarning'}}</p>
+{{/if}}
+
+{{#if (not-eq type 'scm')}}
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{check-box class="form-control" checked=selectedModel.expressions disabled=(if (eq modalOpts.type 'review') true)}}
+    {{t 'newPipelineStep.stepType.conditions'}} 
+  </label>
+  <div class="pt-10"></div>
+  {{#if selectedModel.expressions}}
+    {{pipeline/pipeline-expressions
+      pipeline=pipeline
+      model=selectedModel
+      editing=(if (not-eq modalOpts.type 'review') true false)
+    }}
+  {{/if}}
+</div>
+{{/if}}

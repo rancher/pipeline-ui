@@ -1,0 +1,32 @@
+<td data-title="{{t 'generic.state'}}:" >
+  {{badge-state model=model}}
+</td>
+<td data-title="{{t 'generic.id'}}:" >
+  {{model.id}}
+</td>
+<td data-title="{{t 'accountsPage.index.table.kind'}}:" >
+  {{t (concat-str 'model.account.kind.' model.kind character='')}}
+</td>
+{{#if isLocal}}
+  <td data-title="{{t 'accountsPage.index.table.username'}}:" >
+    {{#if model.username}}
+      {{model.username}}
+    {{else}}
+      <span class="text-muted">{{t 'accountsPage.index.table.noName'}}</span>
+    {{/if}}
+  </td>
+  <td data-title="{{t 'generic.name'}}:" class="force-wrap">
+    {{model.displayName}}
+  </td>
+{{else}}
+  <td data-title="{{t 'accountsPage.index.table.identity'}}" >
+    {{#if (and model.externalId model.externalIdType)}}
+      {{identity-block externalIdType=model.externalIdType externalId=model.externalId}}
+    {{else}}
+      <span class="text-muted">{{t 'accountsPage.index.table.noName'}}</span>
+    {{/if}}
+  </td>
+{{/if}}
+<td data-title="{{t 'generic.actions'}}:" class="actions">
+  {{action-menu model=model}}
+</td>

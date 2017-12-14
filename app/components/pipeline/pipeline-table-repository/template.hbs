@@ -1,0 +1,39 @@
+{{#sortable-table
+  tableClassNames="double-rows"
+  bulkActions=false
+  body=body
+  sortBy=sortBy
+  stickyHeader=stickyHeader
+  fullRows=true
+  search=false
+  groupByKey=groupByKey
+  groupByRef=groupByRef
+  headers=headers as |sortable kind inst dt|
+  }}
+  {{#if (eq kind "row")}}
+    <tr class="main-row">
+      <td data-title="{{dt.name}}" class="clip">
+        <a href="{{href-to "pipelines.pipeline" inst.id}}">{{inst.name}}</a>
+      </td>
+      <td data-title="{{dt.runCount}}" class="clip text-muted">
+        {{#if inst.runCount}}
+          {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=(date-str inst.lastRunTime) tagName="span" tooltipFor="tooltip-basic"}}
+            {{#link-to "pipelines.activity" inst.lastRunId}}
+              <p class="mt-0 mb-0">#{{inst.runCount}} {{inst.lastRunStatus}}</p>
+              <p class="text-muted text-italic text-small mt-0 mb-0">{{date-from-now inst.lastRunTime}}</p>
+            {{/link-to}}
+          {{/tooltip-element}}
+        {{else}}
+          N/A
+        {{/if}}
+      </td>
+      <td data-title="{{dt.actions}}" class="actions">
+        {{action-menu model=inst showPrimary=true}}
+      </td>
+    </tr>
+  {{else if (eq kind "nomatch")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">There are no matched pipelines</td></tr>
+  {{else if (eq kind "norows")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">There are no pipelines to show</td></tr>
+  {{/if}}
+{{/sortable-table}}

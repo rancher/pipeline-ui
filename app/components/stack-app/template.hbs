@@ -1,0 +1,34 @@
+<div class="stack-info">
+  <div class="catalog-icon">
+    <img src="{{app.baseAssets}}assets/images/generic-catalog.svg" data-src={{model.catalogTemplateInfo.links.icon}}/>
+  </div>
+  <div class="stack-info-row box">
+    <div class="stack-info-top">
+      {{action-menu model=model classNames="pull-right"}}
+      <div>
+        {{#link-to "stack" projects.current.id model.id}}{{model.displayName}}{{/link-to}}
+      </div>
+    </div>
+    <hr>
+    <div class="stack-info-bottom">
+      <div class="multi-bar">
+        {{progress-bar-multi
+            labelKey="state"
+            valueKey="count"
+            values=model.serviceStates.byColor
+            tooltipValues=model.serviceStates.byName
+        }}
+      </div>
+      {{#upgrade-btn model=model classNames="btn-sm" as |btn|}}
+        {{#if btn.upgradeInfo.version}}
+          {{btn.upgradeInfo.version}}
+          {{t (concat-str 'upgradeBtn.status.' btn.upgradeStatus character='')}}
+        {{else}}
+          {{t (concat-str 'upgradeBtn.status.' btn.upgradeStatus character='')}}
+        {{/if}}
+      {{/upgrade-btn}}
+    </div>
+  </div>
+</div>
+{{#if expanded}}
+{{/if}}

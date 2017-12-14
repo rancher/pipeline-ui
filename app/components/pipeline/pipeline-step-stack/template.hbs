@@ -1,0 +1,51 @@
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.stack.stackName'}} {{field-required}}</label>
+  <div class="pt-10"></div>
+  {{input
+    class="js-var-hint"
+    value=selectedModel.stackName
+    placeholder="stack name"
+    disabled=(if (eq modalOpts.type 'review') true false)
+  }}
+</div>
+
+<div class="pt-20"></div>
+<section class="box mb-20">
+<h4>{{t 'newPipelineStep.stepType.stack.editTemplate'}}</h4>
+<div class="tabs">
+  <ul class="tab-header" role="tablist">
+    <li role="tab" {{action "selectPreviewTab" "dockerCompose"}} class="{{if (eq previewTab 'dockerCompose') 'active' ''}}"><a href="#">docker-compose.yml {{copy-to-clipboard clipboardText=selectedModel.dockerCompose size="small"}}</a></li>
+
+    <li role="tab" {{action "selectPreviewTab" "rancherCompose"}} class="{{if (eq previewTab 'rancherCompose') 'active' ''}}"><a href="#">rancher-compose.yml {{copy-to-clipboard clipboardText=selectedModel.rancherCompose size="small"}}</a></li>
+  </ul>
+
+  <div role="tabpanel">
+    {{#if (eq previewTab 'dockerCompose')}}
+    <div>
+      {{pipeline/pipeline-codemirror 
+        value=selectedModel.dockerCompose 
+        valueUpdated=(action (mut selectedModel.dockerCompose))
+        options=(hash autofocus=true lineNumbers=true mode="yaml" tabSize="2" readOnly=(if (eq modalOpts.type 'review') true false))
+      }}
+    </div> 
+    {{/if}}
+    {{#if (eq previewTab 'rancherCompose')}}
+    <div>
+      {{pipeline/pipeline-codemirror 
+        value=selectedModel.rancherCompose 
+        valueUpdated=(action (mut selectedModel.rancherCompose))
+        options=(hash autofocus=true lineNumbers=true mode="yaml" tabSize="2" readOnly=(if (eq modalOpts.type 'review') true false))
+      }}
+    </div> 
+    {{/if}}
+  <p class="text-info text-small">{{t 'newPipelineStep.stepType.stack.editTemplateTip'}}</p>
+  </div>
+</div>
+
+</section>
+
+{{pipeline/pipeline-step-env-setting
+  model=selectedModel
+  modalOpts=modalOpts
+}}

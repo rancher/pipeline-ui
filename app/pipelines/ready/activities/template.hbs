@@ -1,0 +1,20 @@
+<section>
+  {{#each waitingForApproval as |approval|}}
+    {{pipeline/activity-approve
+      activity=approval
+      showName=true
+    }}
+  {{/each}}
+</section>
+
+<section class="instances">
+  {{pipeline-table
+      body=filtered
+      sortBy=sortBy
+      bulkActions=bulkActions
+      search=true
+      paging=true
+      showHost=true
+      descending=descending
+    }}
+</section>

@@ -1,0 +1,24 @@
+{{#sortable-table
+  tableClassNames="double-rows"
+  body=filtered
+  sortBy=sortBy
+  bulkActions=bulkActions
+  search=search
+  searchText=searchText
+  extraSearchFields=extraSearchFields
+  extraSearchSubFields=extraSearchSubFields
+  paging=paging
+  stickyHeader=stickyHeader
+  subRow=subRow
+  subRows=subRows
+  pagingLabel=pagingLabel
+  fullRows=true
+  headers=headers as |sortable kind inst dt|}}
+  {{#if (eq kind "row")}}
+    {{container-row model=inst dt=dt bulkActions=bulkActions showHost=showHost showActions=true showPrimaryActions=false fullColspan=sortable.fullColspan subRow=subRow}}
+  {{else if (eq kind "nomatch")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">{{t 'containersPage.table.noMatch'}}</td></tr>
+  {{else if (eq kind "norows")}}
+    <tr><td colspan="{{sortable.fullColspan}}" class="text-center text-muted lacsso pt-20 pb-20">{{t 'containersPage.table.noData'}}</td></tr>
+  {{/if}}
+{{/sortable-table}}

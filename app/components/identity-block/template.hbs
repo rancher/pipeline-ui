@@ -1,0 +1,40 @@
+{{yield}}
+{{#if avatar}}
+  <div class="gh-avatar">
+    {{#if avatarSrc}}
+      {{#if (and url link)}}
+        <a href="{{url}}" target="_blank">
+          <img src="{{avatarSrc}}" width="{{size}}" height="{{size}}">
+        </a>
+      {{else}}
+        <img src="{{avatarSrc}}" width="{{size}}" height="{{size}}">
+      {{/if}}
+    {{else}}
+      <div class="gh-placeholder"></div>
+    {{/if}}
+  </div>
+{{/if}}
+<div class="gh-block-content">
+  <div class="clip gh-block-name">
+    {{#if loading}}
+      {{t 'identityBlock.loading'}}
+    {{else}}
+      {{#if (and url link)}}
+        <a href="{{url}}" target="_blank">{{login}}</a>
+      {{else}}
+        {{#if login}}
+          {{login}}
+        {{else}}
+          &nbsp;
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+  <div class="gh-block-detail text-small clip">
+    {{#if displayDescription}}
+      {{displayDescription}}
+    {{else}}
+      &nbsp;
+    {{/if}}
+  </div>
+</div>

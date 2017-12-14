@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+# cd to app root
+CWD=$(dirname $0)
+if [[ `basename $(pwd)` = 'scripts' ]]; then
+  cd ../
+else
+  cd `dirname $CWD`
+fi
+
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+apt-get install -y nodejs phantomjs yarn
+update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+yarn config set cache-folder /var/cache/npm
+
+yarn global add bower

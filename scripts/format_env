@@ -1,0 +1,2 @@
+export RANCHER=$(echo $CATTLE_URL|cut -d "/" -f 1-3)
+yarn start -- --ssl=false

@@ -1,0 +1,56 @@
+<section>
+  <h2>
+    <b class="text-warning">{{t 'authPage.shibboleth.enabled.header' providerName=(t providerName)}}</b>
+  </h2>
+  <div>
+    {{t (concat-str 'authPage.shibboleth.enabled.' model.accessMode character='') appName=settings.appName providerName=(t providerName) users=numUsers orgs=numOrgs}}
+  </div>
+</section>
+
+<section>
+  <div class="row">
+    <h3>{{t 'authPage.shibboleth.enabled.authenticated.header.text'}}</h3>
+    <hr/>
+    <div class="col span-4 pl-0">
+      <div>
+        <b>{{t 'authPage.shibboleth.enabled.displayName'}}</b> <span class="text-muted">{{config.displayNameField}}</span>
+      </div>
+      <div>
+        <b>{{t 'authPage.shibboleth.enabled.userName'}}</b> <span class="text-muted">{{config.userNameField}}</span>
+      </div>
+    </div>
+    <div class="col span-4">
+      <div>
+        <b>{{t 'authPage.shibboleth.enabled.userId'}}</b> <span class="text-muted">{{config.uidField}}</span>
+      </div>
+      <div>
+        <b>{{t 'authPage.shibboleth.enabled.groupsField'}}</b> <span class="text-muted">{{config.groupsField}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{site-access
+  model=model
+  collection='siteAccess.organizations'
+}}
+
+<section>
+  <h3>{{t 'authPage.shibboleth.enabled.disableAccess.header' htmlSafe=true}}</h3>
+  <hr/>
+
+  <p>
+    {{t 'authPage.shibboleth.enabled.disableAccess.warning' appName=settings.appName htmlSafe=true}}
+  </p>
+
+  {{#if confirmDisable}}
+    <button class="btn bg-error" {{action "disable"}}>
+      <i class="icon icon-alert"></i> {{t 'authPage.shibboleth.enabled.disableAccess.confirmDisable'}}
+    </button>
+  {{else}}
+    <button class="btn bg-error" {{action "promptDisable"}}>
+      <i class="icon icon-umbrella"></i> {{t 'authPage.shibboleth.enabled.disableAccess.disable'}}
+    </button>
+  {{/if}}
+
+</section>

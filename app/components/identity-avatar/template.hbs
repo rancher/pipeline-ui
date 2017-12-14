@@ -1,0 +1,12 @@
+{{yield}}
+{{#if avatarSrc}}
+  {{#if (and url link)}}
+    <a href="{{url}}" target="_blank">
+      <img src="{{avatarSrc}}" width="{{size}}" height="{{size}}">
+    </a>
+  {{else}}
+    <img src="{{avatarSrc}}" width="{{size}}" height="{{size}}">
+  {{/if}}
+{{else}}
+  <div class="gh-placeholder"></div>
+{{/if}}

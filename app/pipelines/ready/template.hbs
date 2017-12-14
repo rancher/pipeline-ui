@@ -1,0 +1,16 @@
+<section class="header has-tabs clearfix">
+   <ul class="tab-nav">
+    <li>{{#link-to "pipelines.ready.pipelines"}}{{t 'nav.pipelines.tab'}}{{/link-to}}</li>
+    <li>{{#link-to "pipelines.ready.activities"}}{{t 'pipelineHistories.history'}}{{/link-to}}</li>
+  </ul>
+
+  <ul class="tab-nav pull-right">
+    <li>
+      {{#link-to "pipelines.ready.settings"}}
+        <i class="bg-transparent icon icon-gear"></i>
+      {{/link-to}}
+    </li>
+  </ul>
+
+</section>
+{{outlet}}

@@ -1,0 +1,2283 @@
+---
+languageName: "Française"
+languageContribute: "Aider à traduire Rancher"
+generic:
+  actions: Actions
+  activate: Activé
+  all: Tous
+  any: N’importe quel
+  as: Comme
+  cancel: Annuler
+  closeModal: Fermer
+  created: Crée le
+  createdDate: "Crée le {date}"
+  default: Defaut
+  description: Description 
+  details: Détails
+  disable: Désactiver
+  disabled: Desactivé
+  domainName: Nom de Domaine
+  enable: Activer
+  enabled: Activé
+  entrypoint: Point d’entrée
+  healthy: Sans erreur
+  host: Hôte
+  id: ID
+  image: Image
+  internal: Interne
+  ipAddress: Addresse IP
+  limit: Limite
+  loading: "Chargement..."
+  missing: "*%ABSENT%*"
+  moreActions: Plus
+  na: 's/o'
+  name: Nom
+  none: Aucun
+  ports: Ports
+  remove: Retirer
+  role: Rôle
+  save: Enregistrer
+  saved: Enregistré
+  saving: Enregistrement en cours
+  search: Rechercher
+  service: Service
+  stack: Pile
+  state: Etat
+  test: Test
+  testing: En test
+  to: A
+  total: Total
+  type: Catégorie
+  unknown: Inconnu
+  uuid: UUID
+realmNames:
+  all: Tous
+accountsPage:
+  index:
+    header: Utilisateur
+    localLink: Ajout utilisateur
+    table:
+      id: Id
+      kind: Type
+      username: Nom d'utilisateur
+      identity: Identité
+      noData: Il n'y a pas encore de comptes
+      noName: Aucun
+  new:
+    header: Ajout Utilisateur
+    form:
+      username:
+        labelText: Nom d'utilisateur
+        placeholder: "ex. jsmith"
+      password:
+        labelText: Mot de passe
+      name:
+        labelText: Nom
+        placeholder: "ex. John Smith"
+      type:
+        labelText: Type de compte
+      description:
+        labelText: Description 
+        placeholder: "e.g. Compte de John Smith"
+apiPage:
+  header: Clés API d'environnement
+  actionButton: Ajouter une clé API d'environnement
+  content: |
+    Les clés API sont liées à l'environnement (<code>{displayName}</code>) et ne peuvent être utilisées que dans celui-ci. Elles peuvent être modifiées par tout utilisateur ayant accès a cet environnement.
+  table:
+    state: Etat
+    name: Nom
+    description: Description 
+    publicValue: Clef d'accès
+    created: Crée le
+    noData: Aucune clé API
+    noName: Aucun
+    noDescription: Aucun
+    noPublicValue: Pas de valeur publique
+  account:
+    header: Clés API utilisateur
+    buttonText: Ajouter une clé API utilisateur
+    content:
+      paragraph1: Les clés API utilisateurs sont liées à votre compte utilisateur
+      paragraph2: "Elles permettent de modifier les clés API d'environnement auxquelles vous avez accès"
+auditLogsPage:
+  header: Journaux de logs
+  form:
+    eventType:
+      placeholder: Evenement
+    resourceType:
+      placeholder: "Evenement:"
+      dropdownPlaceholder: 'Choisir un envenement'
+    resourceId:
+      placeholder: Ressource ID
+    requestIp:
+      placeholder: IP Source
+    authType:
+      placeholder: "Authentification:"
+      dropdownPlaceholder: 'Choisir une authentification:'
+    clearButtonText: Effacer
+    searchButtonText: Rechercher
+  table:
+    time: Heure
+    eventType: Evenement
+    description: Description 
+    environment: Environnement
+    resourceTypeId: "Ressource Heure:Id"
+    identity: Utilisateur
+    authIp: "Autorisation & IP"
+authPage:
+  shibboleth:
+    enabled:
+      header: "{providerName} est activé"
+      required: |
+        {appName} est configurée pour permettre l'accès à {orgs, plural, =0 {no organizations} =1 {# organization} other {# organizations} } et {users, plural, =0 {no users} =1 {# user} other {# users} }.
+      restricted: |
+        {appName} est configurée pour permettre l'accès aux membres de l'environnement, {orgs, plural, =0 {no organizations} =1 {# organization} other {# organizations} } et {users, plural, =0 {no users} =1 {# user} other {# users} }.
+      unrestricted: "{appName} est configuré pour autoriser l’accès à n’importe quel utilisateur {providerName}."
+      authenticated:
+        header:
+          text: Authentification
+      disableAccess:
+        header: "Zone dangereuse&trade;"
+        warning: '<b class="text-danger">Attention:</b> Désactiver le contrôle d''accès donne le contrôle complet à {appName}, à quiconque accède à cette page ou l''API .'
+        confirmDisable: "Êtes-vous sûr ? Cliquez encore une fois pour vraiment désactiver le contrôle d'accès"
+        disable: Désactiver le contrôle d’accès
+      groupsField: 'Groupes :'
+      displayName: 'Nom Public :'
+      userName: 'Nom d''utilisateur :'
+      userId: 'Identifiant de l''Utilisateur :'
+    disabled:
+      header: '1. configurer le compte Shibboleth'
+      label: "{providerName} n’est pas configuré"
+      warning: "{appName} peut être configuré pour restreindre l'accès à un ensemble d'utilisateurs ou groupes {providerName}. Cela n'est pas encore fait, donc quiconque pouvant accéder à cette page (ou à l'API) a un contrôle entier sur le système."
+      name:
+        labelText: Champ Nom Public
+      username:
+        labelText: Champ Nom d’Utilisateur
+      uid:
+        labelText: Champ UID
+      groups:
+        labelText: Champ Groupes
+      testAuth:
+        header: '2. Tester et activer l''authentification'
+        subtext: 'Vérifier que votre application est correctement configurée en testant l''authentification :'
+        buttonText:
+          pre: S’authentifier avec IDP
+          post: En attente de validation d'IDP
+    providerName:
+      shibboleth: Shibboleth
+  root:
+    header: Access Control
+  github:
+    standard: GitHub
+    enterprise: GitHub Enterprise
+    header:
+      enabled:
+        label: "{github} est activé"
+        required: |
+          {appName} est configuré pour autoriser: {orgs, plural,
+          =0 {no organizations}
+          =1 {# organization}
+          other {# organizations}
+          } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+          }.
+        restricted: |
+          {appName} est configuré les membres de l'environnement, {orgs, plural,
+          =0 {no organizations}
+          =1 {# organization}
+          other {# organizations}
+          } and {users, plural,
+          =0 {no users}
+          =1 {# user}
+          other {# users}
+          }.
+        unrestricted: "{appName} est configuré pour autoriser tout les utilisateurs {github}."
+      disabled:
+        label: GitHub n'est pas configuré
+        warning: "Il est possible de configurer {appName} pour restreindre l'accès à des utilisateurs ou des membres d'une organization Github. Non configuré actuellement, quiconque accède à cette page (ou l'API) a le controle complet de la plateforme"
+    authenticated:
+      header:
+        text: Authentification
+        enterpriseHostName: "Hôte enterprise:"
+        clientId:
+          text: "ID client:"
+          helpText: "Pour modifier l'authentification GitHub, desactiver le controle d'accès ci-dessous, puis le parametrer à nouveau."
+      disableAccess:
+        header: "Zone Dangereuse&trade;"
+        warning: '<b class="text-danger">Attention:</b> Désactivé le control d''accès donne le contrôle complet à {appName}, à quiconque accède à cette page (ou l''API) .'
+        confirmDisable: "Désactiver? vraiment? Cliquer à nouveau pour désactiver le contrôle d'accès"
+        disable: Désactiver le contrôle d'accès
+    notAuthenticated:
+      header: "1. Configurer une authentification Github"
+      ul:
+        li1:
+          text: 'Pour GitHub standard, <a href="https://github.com/settings/developers" target="_blank">click here</a> to go applications settings in a new window.'
+          ul:
+            li1: "Pour Github Enterprise, connectez-vous à votre compte, clicker sur settings, puis applications."
+        li2:
+          text: 'Clicker sur "Register new application" et remplir le formulaire:'
+          ul:
+            li1: '<b>Application name:</b> <span class="text-muted">Nom, e.g. Mon {appName}</span>'
+            li2: URL de la Page d'accueil
+            li3: '<b>Application description:</b> <span class="text-muted">Descriptions, optionel</span>'
+            li4: URL de rappel d'Autorisation
+        li3:
+          text: 'Clicker sur "Register Application" '
+      form:
+        header: '2. configurer {appName} pour utiliser votre application pour l’authentification'
+        subtext: 'Copier/Coller le Client ID et le Secret depuis le coins en haut à droite de votre nouvelle application.'
+        clientId:
+          labelText: ID Client
+        clientSecret:
+          labelText: Secret du Client
+        ghEnterprise:
+          labelText: Se connecter à un GitHub Enterprise
+        isGHEnterprise:
+          labelText: Utiliser une connection sécurisée
+        enterpriseHost:
+          labelText: Hôte enterprise
+          placeholder: 'par exemple github.example.com'
+    testAuth:
+      header: '3. Tester et Valider l''authentication'
+      subtext: 'Verifier que votre application est correctement configurée en testant l''authentification:'
+      buttonText:
+        pre: Authentification via GitHub
+        post: En attente de validation de GitHub
+  azuread:
+    header:
+      enabled: 'Authentification Azure AD <b>activé</b>'
+      disabled: 'Authentication Azure AD <b class="text-warning">non configurée</b>'
+    subtext:
+      enabled: '{appName} est configuré pour autoriser les comptes Azure AD'
+      disabled: '{appName} peut être configuré pour restreindre l''accès à un ensemble de comptes définis dans la base de donnée de {appName}. Celà n''est pas encore fait, donc quiconque pouvant accéder à cette page (ou à l''API) a un contrôle entier sur le système.'
+    enabled:
+      header: 'Zone Dangereuse&trade;'
+      warning: '<b class="text-danger">Attention:</b> Désactivé le control d''accès donne le contrôle complet à {appName}, à quiconque accède à cette page (ou l''API) .'
+      reallyDisable: 'Désactiver? vraiment? Cliquer à nouveau pour désactiver le contrôle d''accès'
+      promptDisable: Désactiver contrôle d'accès
+    configure:
+      header: '1. Configurer un compte Azure AD'
+      tenantId:
+        label: ID Client
+        placeholder: Un long identifiant unique (chaîne de caractères) ou UUID
+        help: À partir du portail Azure AD
+      clientId:
+        label: ID client
+        placeholder: Un long identifiant unique (chaîne de caractères) ou UUID
+      domain:
+        label: Domaine
+        placeholder: par exemple youcompany.onmicrosoft.com
+      adminAccountUsername:
+        label: Nom d'utilisateur Admin
+        placeholder: par exemple, rancher-admin
+        help: Un utilisateur qui peut lire des informations sur les autres utilisateurs
+      adminAccountPassword:
+        label: Mot de passe Admin
+    test:
+      header: '2. Tester et activé l''authentication'
+      help: 'Verifier la configuration en testant l''authentification avec votre compte'
+      username:
+        label: Nom d'utilisateur
+        placeholder: 'ex. jsmith'
+      password:
+        label: Mot de passe
+      pre: Authentification via Azure
+      post: En attente de validation d'Azure
+  localAuth:
+    header:
+      enabled: 'L''authentification locale est <b>actvivée</b>'
+      disabled: '<p>L''authentification locale n''est pas configurée</p>'
+    subtext:
+      enabled:
+        text: '{appName} est configuré pour autoriser l’accès aux comptes dans sa base de données locale.'
+        linkText: Gérer les comptes
+      disabled: '{appName} peut être configuré pour restreindre l’accès à un ensemble de comptes définis dans la base de données {appName}.  Ce n''est pas actuellement mis en place, donc quiconque qui atteint cette page (ou l’API) a un contrôle total sur le système.'
+    accessEnabled:
+      header: 'Zone Dangereuse&trade;'
+      warning: '<b class="text-danger">Attention:</b> Désactiver le contrôle d''accès donne le contrôle complet à {appName}, à quiconque accède à cette page ou l''API .'
+      buttonText:
+        disable: 'Êtes-vous sûr ? Cliquez encore une fois pour vraiment désactiver le contrôle d''accès'
+        prompt: Désactiver le contrôle d’accès
+    accessDisabled:
+      header: '1. configurer un utilisateur Admin'
+      helpText: 'Cet utilisateur va devenir l’administrateur qui a un contrôle complet de {appName}.'
+      form:
+        login:
+          labelText: Nom d'utilisateur
+          placeholder: 'p. ex. jsmith'
+        name:
+          labelText: Nom Complet
+          placeholder: 'p. ex. John Smith'
+        password:
+          labelText: Mot de passe
+        confirmPassword:
+          labelText: Confirmer le Mot de Passe
+    accessControl:
+      header: '2. Activer le Contrôle d’Accès'
+      helpText: 'Cliquez pour activer le contrôle d’accès et vous connecter.'
+      buttonText:
+        pre: Activer l'Authentification Locale
+        post: 'Activation...'
+  0:
+    header: Authentification
+catalogPage:
+  index:
+    header: Catalogue
+    manage: Gérer
+    search:
+      label: Chercher
+    certified:
+      rancher:
+        partner: Officiel
+      pl:
+        partner: Officiel
+    noData:
+      singular: Il n’y a aucun modèle compatible.
+      plural: Il n’y a aucun modèle compatible dans ce catalogue.
+    action:
+      launch: Afficher les détails
+      notCompatible: Incompatible
+      alreadyDeployed: Déjà déployé
+certificatesPage:
+  table:
+    cn: Nom de domaine
+    expiresDate: Expire le
+  detail:
+    description: Description 
+    info:
+      labelText: Info
+      valid: Valide à partir de
+      expires: Expire le
+      algorithm: Algorithme
+      issuer: Émetteur
+      serialNumber: Numéro de série
+      version: Version
+    domainNames:
+      labelText: Noms de domaine
+  index:
+    header: Certificats
+    linkTo: Ajouter un certificat
+    table:
+      header:
+        state: État
+        name: Nom
+        domain: Nom de domaine
+        expires: Expire le
+      body:
+        noData: Aucun certificat.
+  new:
+    header: Ajouter un Certificat
+    form:
+      name:
+        placeholder: ex. mondomaine.com
+      description:
+        placeholder: par exemple certificat EV pour mondomaine.fr
+containerPage:
+  portsTab:
+    table:
+      noMatch: Aucun pool ne correspond à la recherche en cours
+containersPage:
+  table:
+    sparkPrefixCpu: 'CPU : '
+    sparkPrefixMemory: 'Mémoire: '
+    sparkPrefixNetwork: 'Réseau: '
+    sparkPrefixStorage: 'Stockage: '
+containerSubpod:
+  childContainers: Conteneurs
+  childSidekicks: Compagnons
+dockerCLI:
+  header: Interface en Ligne de Commande Swarm
+editDns:
+  mode:
+    dnsservice: Un ou plusieurs autres services
+failWhalePage:
+  header: Erreur
+  reloadButton: |
+    <a href="#" onclick="window.location.href = window.location.href; return false;">Rechargez</a> pour essayer de nouveau ou
+  logoutButton: déconnexion
+haPage:
+  header: Haute-Disponibilité
+  setup:
+    prefix: "Plusieurs conteneurs de serveur peuvent être déployés sur des hôtes différents pour que {appName} continue à fonctionner même si un des hôtes échoue.  "
+    link: Consultez la documentation
+    suffix: "pour plus d’informations sur l’installation et l’utilisation."
+  table:
+    address: Adresse Publiée
+    port: Port
+    heartbeat: Dernière Activité détectée
+    clustered: Mis en Grappe
+helpPage:
+  header: Liens utiles & Information
+  environment:
+    header: Qu'est-ce qu' un environnement ?
+    content: |
+      <p>{appName} permet de regrouper les ressources en de multiples environnements. Chacun ayant ses propres ressources d'infrastructure et de services, et appartenant à un ou plusieurs utilisateurs, groupes ou organisations Github.</p>
+      <p>Par exemple, Il est possible de créer des environnements séparés de "dev", "test", et "production" pour garder les ressources isolées les unes des autres, donner un accès "développeur" à toute votre organisation, et restreindre l'accès à l'environnement de "production" à une plus petite équipe.</p>
+    manageLink: Manage Environnements
+  host:
+    header: Qu'est-ce qu'un hôte ?
+    content: |
+      Avant d’ajouter votre premier service ou lancer un conteneur, vous devez ajouter au moins un hôte Linux unique qui prend en charge Docker {minVersion} ou plus et être en mesure d’atteindre le serveur de {appName} via HTTP. {appName} prend en charge l’ajout des hôtes Linux sous la forme d’une machine virtuelle ou physique de fournisseurs de cloud public, nuages privés hébergés ou encore des serveurs physiques.
+    contentLink: En savoir plus
+    addHostLink: Ajouter un Hôte
+  stacks:
+    header: Que sont les services et les piles (stacks) ?
+    content:
+      paragraph1: |
+        Un service est simplement un groupe de conteneurs créés à partir de la même image Docker, mais étend la notion de « lien » Docker afin de tirer parti du service léger de DNS distribué de {appName} pour la découverte de service. Les Services peuvent être ajoutés individuellement ou en déployant un élément du catalogue.
+      paragraph2: Un service est également capable de tirer parti d'autres services intégrés de {appName} comme les équilibreurs de charge, la surveillance de la santé, la mise à niveau et la haute disponibilité.
+      link: En savoir Plus
+    addServiceLink: Gérer les Services
+    addCatalogLink: Ajouter depuis le Catalogue
+    noHosts: Vous n’avez actuellement aucun hôte. Ajoutez, s’il vous plaît, un hôte avant d’ajouter des Services.
+    manageServiceLink: Gérer les Services
+  issues:
+    header:
+      text: Problèmes & Documentation
+      tagline: Oh oh, avez-vous trouvé un problème ?
+      fileBug: Décrire un Bug
+    content:
+      paragraph1: |
+        {appName} est une plate-forme de logiciel open source qui implémente une infrastructure spécialement conçue pour l’exécution de conteneurs en production. Les conteneur Docker très populaires, amènent de nouvelles exigences dans les services d’infrastructure tels que les réseaux, le stockage, l'équilibrage de charge, la sécurité, la découverte des services et la gestion des ressources.
+      graphic1:
+        text: Trouver un bug ?
+        link: Déclarer un problème sur GitHub.
+      graphic2:
+        text: Pour plus d'Information
+        link: |
+          <a href="{docsLink}" target="_blank"> sur l’utilisation de {appName} consultez notre documentation.</a> <br/> ou <a href="{companyLink}/learn/" target="_blank"> suivez notre guide de démarrage rapide.</a>
+      graphic3:
+        text: Besoin d’aide au dépannage ?
+        link: Consulter notre Foire Aux Questions
+  forums:
+    header: Des Forums
+    tagline: Participez à la conversation
+    buttonText: Sur les forums
+    announcements:
+      header: Annonces
+      buttonText: Voir plus de Nouvelles
+    general:
+      header: Généralités
+      buttonText: Voir plus de sujets Généralités
+    rancherOs:
+      header: RancherOS
+      buttonText: Voir plus de sujets RancherOS
+    rancher:
+      header: Rancher
+      buttonText: Voir plus de sujets Rancher
+  commercial:
+    header: Support commercial
+    content: |
+      Dans les laboratoires Rancher, nous fournissons un support commercial, professionnel pour {appName}, incluant un équipe de support disponible 24h/24 et 7j/7, et une correction prioritaire de bugs. De plus, nous fournissons des implémentations, des intégrations et des services de consulting pour des organisations cherchant à installer et dimensionner {appName}. Pour plus d'informations sur tous ces services, envoyer s'il vous plaît, un mél à notre équipe commerciale. <a href="mailto:sales@rancher.com">sales@rancher.com</a>
+hostsPage:
+  addContainer: Ajouter un conteneur
+  index:
+    header: Hôtes
+    addHost: Ajouter un hôte
+    tooltip:
+      listView: Liste 
+      groupedView: Piles groupées & Compagnons
+    columns:
+      emptyMessage: Aucun hôte ou de conteneur.
+  new:
+    header:
+      text: Ajouter un hôte
+    manageLink: Gérer les pilotes docker machine disponibles
+  hostPage:
+    infoMultiStats:
+      provider:
+        labelText: 'Fournisseur :'
+        noHost: Personnalisé
+      docker: 'Docker :'
+      milliCpu:
+        labelText: mCPU
+    portsTab:
+      table:
+        header:
+          ip: Adresse IP
+          port: Port
+          service: Service
+          container: Conteneur
+        body:
+          noData: Cet hôte n’a pas de ports.
+    storageTab:
+      table:
+        header:
+          state: État
+          hostPath: Chemin de l’hôte
+          mounts: Points de montage
+        body:
+          noData: Cet hôte n’a pas de volumes.
+k8sTab:
+  dashboard:
+    header: Tableau de bord Kubernetes
+    dashboard:
+      header: Tableau de bord
+      content: Le tableau de bord Kubernetes est généraliste, une interface utilisateur web pour les clusters Kubernetes. Il permet aux utilisateurs de gérer les applications en cours d’exécution dans le cluster, résoudre les problèmes, ainsi que gérer le cluster proprement dit.
+      button: Interface graphique Kubernetes
+  kubectl:
+    header: Ligne de commande Kubernetes
+    stepOne:
+      generateConfigText: |
+        Pour utiliser <a href="{downloadUrl}" target="_blank"> kubectl</a> (v1.4 + seulement) sur votre poste de travail, cliquez sur le bouton pour générer une clé d’API et un fichier de configuration :
+      generateButton: Générer la Configuration
+    stepTwo:
+      progress: Génération...
+    stepThree:
+      helpText: |
+        Mettez ceci dans <code>~/.kube/config</code> :
+      downloadText: |
+        Ensuite, <a href="{downloadUrl}" target="_blank"> Téléchargez</a> (si nécessaire) et exécuter <code>kubectl</code>
+loginPage:
+  githubMessage: "{appName} Utilise GitHub pour gerer l'authentifiation.  Cliquer sur le bouton ci-dessous pour se connecter (en lecture seule) pour acceder aux information de compte Github."
+  shibbolethMessage: "{appName} utilise Shibboleth pour gérer les comptes.  Cliquez sur le bouton ci-dessous pour vous connecter à l’IDP Shibboleth configuré."
+  shibbolethError:
+    401: "Non autorisé"
+    500: "Erreur interne du serveur"
+    generic: "Un problème a eu lieu ({errorCode}) pendant votre connexion. Veuillez essayer à nouveau."
+  error:
+    authFailed: Nom d'utilisateur ou Mot de passe incorrect.
+    timedOut: Votre session a expiré.  Connectez-vous à nouveau pour continuer.
+machinePage:
+  header: Pilotes Docker Machine
+  inactive: Inactif
+  subtext: "Les pilotes supplémentaires <code>docker-machine</code> peuvent être chargés ici et utilisés dans l’écran Ajouter un hôte."
+  add: Ajouter Machine Driver
+  builtin: Embarqué
+mesosPage:
+  header: Résumé
+  banner:
+    header: Votre cluster
+    content: |
+      Vous avez actuellement  {hosts, plural,
+      =1 {# active host}
+      other {# active hosts}
+      } dans votre cluster Mesos
+    link: Voir ou Ajouter des hôtes
+  launch:
+    header: Démarrer
+    content: Vous pouvez démarrer des frameworks depuis notre catalogue.
+    button: Lancer un Framework
+  manage:
+    header: Administration
+    content: Administrer Mesos Depuis l'interface de Mesos.
+    button: Interface Mesos
+notFoundPage:
+  header: "Cette page n'existe pas!"
+  linkTo: Acceuil
+projectList:
+  index:
+    header: Environnements
+    new: Ajouter un Environnement
+    subtext: |
+      <p>{appName} permet de regrouper les ressources en de multiples <b>environnements</b>.  Chacun ayant ses propres ressources d'infrastructure et services, et appartenant à un ou plusieurs utilisateurs ou groupes.</p>
+      <p>Il est possible de créer des environnements de &quot;dev&quot;, &quot;test&quot; et &quot;production&quot; séparés les uns des autres, et de ne restreindre que les accès à l'environnement de &quot;production&quot;. </p>
+    alert: Aucun environnement actif.  You will need to create or activate one before you can do anything else.
+    table:
+      header:
+        orchestration: Orchestration
+        projectTemplate: Modèle
+  indexTemplate:
+    header: Modèles d'Environnement
+    new: Ajouter un Modèle
+    subtext: |
+      <p>Un modèle d’environnement permet aux utilisateurs de définir une combinaison différente de services d’infrastructure à déployer.</p>
+      <p>Les services d’infrastructure se chargent, mais ne sont pas limités à l’orchestration de conteneurs (cattle, kubernetes, mesos, swarm, gestion du réseau) ou les services Rancher (c’est à dire healthcheck, dns, métadonnées, ordonnancement, découverte du service et stockage)</p>
+    table:
+      header:
+        stacks: Piles
+        isPublic: Public
+      body:
+        noData: "Vous n'avez pas encore de modèles d'environnement."
+registriesPage:
+  index:
+    header: Registres
+    linkTo: Ajouter Registre
+    table:
+      header:
+        state: Etat
+        address: Addresse
+        username: Utilisateur
+        created: Crée le
+      body:
+        noData: "Aucun registre."
+  new:
+    header: Ajouter Registre
+    form:
+      custom:
+        labelText: Addresse
+        placeholder: par exemple github.example.com
+        help: 'Addresse IP ou Nom d''hôte uniquement.Ne pas indiquer de proctocotle (https://)'
+      username:
+        labelText: Utilisateur
+        placeholder: e.g. utilisateur
+      password:
+        labelText: Mot de passe
+        placeholder: e.g. mot de passe
+secretsPage:
+  index:
+    header: Secrets
+    linkTo: Ajouter un Secret
+    noData: Vous n’avez pas encore de Secrets
+    noMatch: Aucun Secret ne correspond à la recherche en cours
+servicePage:
+  multistat:
+    fqdn: 'NDD:'
+    scale: 'Échelle:'
+    image: 'Image:'
+  external:
+    externalIp: IPs externes
+    externalHostname: 'Nom d''hôte externe:'
+  linksTab:
+    header: Liens
+  certsTab:
+    default: Certificat par Défaut
+    additional: Certificats Additionnels SNI
+  new:
+    form:
+      name:
+        placeholder: par exemple myapp
+      description:
+        placeholder: par exemple mon application
+  newBalancer:
+    upgradeImage: "L’image de l'équilibreur sera mis à jour depuis <code>{from}</code> vers <code>{to}</code>."
+    form:
+      name:
+        placeholder: 'par exemple : site web'
+      description:
+        placeholder: p. ex. équilibreur pour mycompany.com
+  portsTab:
+    table:
+      header:
+        port: Port
+        host: IP hôte
+      body:
+        noData: Acun ports pour ce service.
+    notActive: Les ports sont ouvert que si le service est actif.
+  type:
+    loadbalancerservice: Équilibreur de Charge
+    externalservice: Externe
+    kubernetesservice: Service K8s
+    composeservice: Composer le Service
+    networkdriverservice: Service Réseau
+    storagedriverservice: Service de Stockage
+settingsPage:
+  header: Paramétrages
+newStack:
+  startOnCreate:
+    "on": Démarrer automatiquement les
+storagePoolsPage:
+  header: Pilotes de Stockage
+  index:
+    noData: Aucun pilote de stockage
+  newVolume:
+    header: Ajouter un Volume
+    form:
+      driverOptions: Options du Pilote
+      addActionLabel: Ajouter une Option
+processesPage:
+  header: Processus
+  tab:
+    summary: Récapitulatif
+    pools: Réserves
+    running: En cours
+    delayed: Retardé
+    ready: Prêt
+    completed: Récemment Terminé
+  summary:
+    noData: Aucun processus n'est planifié
+    table:
+      running: En Cours d'Exécution
+      ready: Prêt
+      delay: Retardé
+  pools:
+    noData: Aucune Réserve trouvée
+    noMatch: Aucun pool ne correspondre à la recherche en cours
+    table:
+      activeTasks: Actif
+      poolSize: Taille du Pool
+      rejectedTasks: Rejeté
+      completedTasks: Terminée
+      queueSize: Taille de la file d’attente
+      queueRemainingCapacity: File d'attente
+  list:
+    table:
+      resource: Ressource
+      exitReason: Raison de la Sortie
+      startTime: Heure de début
+      endTime: Heure de fin
+      runTime: Durée
+      runAfter: Exécuter Après
+    noMatch: Aucun processus ne correspond à la recherche en cours
+waitingPage:
+  hosts:
+    setup:
+      mesos: Mise en place de Mesos
+      swarm: Mise en place de Swarm
+      kubernetes: Mise en place de Kubernetes
+hostPartial:
+  host:
+    addCommon:
+      quanity: Quantité
+      new:
+        form:
+          name:
+            placeholder: par ex. host01
+ldap:
+  providerName:
+    openldap: OpenLDAP
+    ad: Active Directory
+  header:
+    enabled:
+      label: "{providerName} est activé"
+      required: |
+        {appName} est configuré pour autoriser l'accès à {groups, plural,
+        =0 {no groups}
+        =1 {# group}
+        other {# groups}
+        } and {users, plural,
+        =0 {no users}
+        =1 {# user}
+        other {# users}
+        }.
+      restricted: |
+        {appName} est configuré pour autoriser l’accès aux membres de l’environnement, {groups, plural, =0 {no groups} =1 {# group} other {# groups}} et {users, plural, =0 {no users} =1 {# user} other {# users}}.
+      unrestricted: "{appName} est configuré pour autoriser l’accès à n’importe quel utilisateur {providerName}."
+    disabled:
+      label: "{providerName} n’est pas configuré"
+      warning: "Il est possible de configurer {appName} pour restreindre l'accès à des utilisateurs ou des groupes {providerName}. Non configuré actuellement, quiconque accède à cette page (ou l'API) a le contrôle complet du système."
+  accessEnabled:
+    header: Authentification
+    subtext: "Pour modifier la configuration du serveur, désactivez le contrôle d’accès ci-dessous et puis mettez-le en place à nouveau."
+    general:
+      header: Généralités
+      server: "Serveur:"
+      tls: "TLS :"
+      serviceAccount: "Compte de Service :"
+      searchBase: "Base de la Recherche :"
+      defaultDomain: "Domaine par défaut :"
+    users:
+      header: Utilisateurs
+      objectClass: "Classe de l'Objet :"
+      login: "Champ d'identifiant :"
+      name: "Champ Nom :"
+      search: "Champ Recherche :"
+      enabled: "Champ Statut :"
+      disabledBitMask: "Masque de Bits Désactivé :"
+    group:
+      header: Groupe
+      objectClass: "Classe de l'Objet :"
+      name: "Champ Nom :"
+      search: "Champ de recherche :"
+    disable:
+      header: "Zone Dangereuse&trade;"
+      warning: '<b class="text-danger">Attention:</b> Désactiver le contrôle d''accès donne le contrôle complet à {appName}, à quiconque accède à cette page ou l''API .'
+      confirmDisable:
+        pre: Désactiver le contrôle d’accès
+        post: "Êtes-vous sûr ? Cliquez encore une fois pour vraiment désactiver le contrôle d'accès"
+  accessConfig:
+    header: "1. Configurer un serveur de {providerName}"
+    subtext1: "Entrez l’adresse, le port et le protocole pour se connecter à votre serveur {providerName}.  <code>389</code> est le port standard non sécurisé, <code>636</code> pour TLS."
+    subtext2: "{appName} a besoin d’un compte de service qui a accès (lecture seule) à tous les domaines qui seront capables de se connecter, afin que nous puissions déterminer de quels groupes est membre un utilisateur quand ils fait une requête avec une clé d'API."
+    hostName:
+      labelText: Nom d’Hôte ou Adresse IP
+    port:
+      labelText: Port
+      checkbox: TLS
+    serviceUsername:
+      labelText: Identifiant de Compte de Service
+    servicePassword:
+      labelText: Mot de passe de Compte de Service
+    defaultDomain:
+      helpText: "Ce domaine sera utilisé si un utilisateur se connecte sans en spécifiant un."
+      labelText: Domaine de Connexion par Défaut
+      placeholder: "par exemple mycompany"
+  customizeSchema:
+    header: "2. Personnaliser le Schéma"
+    helpText: "Si votre schéma ne correspond pas au format standard d’Active Directory, vous pouvez le personnaliser ici."
+    users:
+      header: Utilisateurs
+      objectClass:
+        labelText: Classe de l'Objet
+      login:
+        labelText: Champ Identifiant
+      name:
+        labelText: Champ Nom
+      search:
+        labelText: Champ Recherche
+      status:
+        labelText: Champ Statut
+      disabledBitMask:
+        labelText: Masque de bits du Statut Désactivé
+    groups:
+      header: Groupes
+      objectClass:
+        labelText: Classe de l'Objet
+      name:
+        labelText: Champ Nom
+      search:
+        labelText: Champ Recherche
+      groupMemberUser:
+        labelText: Attribut Utilisateur de membre de Groupe
+        placeholder: uid
+      groupDN:
+        labelText: Champ Groupe DN
+        placeholder: Identifiant unique (DN)
+  testAuth:
+    header: "3. Tester et activer l'authentification"
+    helpText: "Vérifier que tout est correctement configuré en testant l’authentification avec votre compte {providerName} :"
+    userName:
+      labelText: Votre nom d'utilisateur
+    password:
+      labelText: Votre Mot de Passe
+    authenticate:
+      pre: Authentifier
+      post: "En test ..."
+servicePartial:
+  noContainers:
+    label: Pas encore de conteneurs.
+    inactive:
+      start: Démarrer
+catalogSettings:
+  header: Catalogue
+  subtext: Les Catalogues contiennent des modèles rancher-compose qui permettent aux utilisateurs de déployer facilement des applications en répondant à quelques questions
+  certified:
+    header:
+      rancher: "Bibliothèque certifiée {appName}"
+      pl: Bibliothèque certifiée
+    detail:
+      rancher: Modèles nécessaires aux fonctionnalités d'infrastructure principales de Rancher telles que le support d'orchestration Kubernetes/Mesos/Swarm. Maintenus et soutenus par les laboratoires Rancher.
+      pl: Modèles officiellement maintenus et requis pour les fonctionnalités essentielles tel que le support de Kubernetes/Mesos/Swarm.
+  community:
+    header:
+      rancher: Contribué par la Communauté
+      pl: Contribué par la Communauté
+    detail:
+      rancher: Modèles créés et maintenus par des membres de la communauté.  Non certifié par les laboratoires Rancher.
+      pl: Modèles créés et maintenus par des membres de la communauté.
+  more:
+    header: Personnalisé
+    helpText: 'Vous pouvez définir vos propres sources de catalogue personnalisé ici.  Chacun a besoin d’un nom unique et une URL que <code>git clone</code> peut gérer (voir <a href="https://git-scm.com/docs/git-clone#_git_urls_a_id_urls_a" target="_blank"> docs</a> pour plus d’informations).'
+    addActionLabel: Ajouter un nouveau Catalogue
+    name:
+      label: Nom
+      placeholder: p. ex. mon catalogue
+    url:
+      label: URL
+      placeholder: 'par exemple https://github.com/mycompany/mycatalog.git'
+    branch:
+      label: Branche
+      placeholder: 'par exemple master'
+confirmDelete:
+  title: 'Êtes-vous sûr de vouloir le supprimer'
+  environmentNote: 'Remarque : Toutes les ressources à l’intérieur de cet environnement seront définitivement supprimées, y compris tous les hôtes qui ont été créés par le biais de {appName}.'
+  protip: 'Astuce Pro : Maintenez la touche {key} tout en cliquant sur Supprimer afin de contourner cette confirmation.'
+  confirmAction: Supprimer
+  cancelAction: Annuler
+  largeDeleteText: '{key} et {othersCount} d’autres'
+containerLogs:
+  title: 'Journaux : {instanceName}'
+  onlyCombined: "<b>Remarque :</b> Seuls les journaux combinés des sorties standard et d'erreurs est disponible pour ce conteneur parce qu’il a été exécuté avec l'option TTY (-t) ."
+  combined: Combiné
+  stdout: Sortie Standard
+  stderr: Erreur Standard
+  protip: 'Astuce : Maintenez la touche {key} lors de l’ouverture des journaux pour lancer une nouvelle fenêtre.'
+  scrollTop: Défiler vers le Haut
+  scrollBottom: Défiler vers le Bas
+  clear: Effacer l’Écran
+  status:
+    initializing: Initialisation...
+    connecting: Connexion en cours...
+    connected: Connecté
+    disconnected: Déconnecté
+    closed: Fermé
+containerShell:
+  protip: 'Astuce : Maintenez la touche {key} lors de l’ouverture de la console pour lancer une nouvelle fenêtre.'
+  status:
+    initializing: Initialisation...
+    error: 'Erreur : {error}'
+    connecting: Connexion en cours...
+    connected: Connecté
+    disconnected: Déconnecté
+    closed: Fermé
+copyToClipboard:
+  tooltip: Copier dans le Presse-papiers
+  copied: Copié !
+dangerZone:
+  header: Paramètres Avancés
+  subtext: "Procéder avec prudence ; les utilisateurs classiques ne devraient pas modifier ces paramètres.  Des valeurs incorrectes peuvent briser votre installation {appName}.  Les paramètres qui ont été modifiés sont indiqués en gras."
+  showLabel: Je comprends que je peux casser des choses en changeant les paramètres avancés.
+devicePermissions:
+  all: Tous
+  none: Aucun
+  read: Lecture
+  write: Écriture
+  mknod: Mknod
+editAccount:
+  title: Modifier le Compte
+  form:
+    name:
+      label: Nom
+      placeholder: p. ex. John Smith
+    kind:
+      label: Type de Compte
+      user: Utilisateur
+      admin: Administrateur
+    description:
+      label: Description 
+      placeholder: par exemple, ce compte est pour John Smith
+    publicValue:
+      label: Nom d'utilisateur
+    oldPassword:
+      label: Mot de passe actuel
+    newPassword:
+      label: Nouveau mot de passe
+    confirmPassword:
+      label: Confirmer le Mot de Passe
+    identity:
+      label: Identité
+editApiKey:
+  title:
+    justCreated: Clé d'API Créée
+    editing: Modifier la clé API
+    new: Nouvelle clé d'API
+  publicValue:
+    label: Clé d’accès (nom d’utilisateur)
+  secretValue:
+    label: Clé secrète (mot de passe)
+  name:
+    placeholder: par exemple serveurs d'Application
+  description:
+    placeholder: par exemple cette clé est utilisée par les serveurs d’application pour déployer les conteneurs
+  saveWarning1: Enregistrer les clés ci-dessus !  C’est le seul moment où vous serez en mesure de voir ce secret.
+  saveWarning2: Si vous le perdez, vous devrez créer une nouvelle clé d'API.
+  noteOptional: Le nom et/ou la description sont facultatifs, et peuvent vous aider à vous rappeler à quoi il servent.  Vous pouvez simplement créer une clé en cliquant sur créer.
+editCertificate:
+  title: Modifier le Certificat
+  name:
+    placeholder: par exemple mondomaine.com
+  description:
+    placeholder: par exemple certificat EV (vérification approfondie) pour mondomaine.com
+  noteKeyWriteOnly: 'Remarque : La clé privée est intentionnellement vide car le champ ne peut être réutilisé.  Vous devrez fournir la clé privée à nouveau pour mettre à jour le certificat, même si elle n’a pas changé.'
+editContainer:
+  title:
+    vm: Modifier la Machine Virtuelle (VM)
+    container: Modifier le Conteneur
+  name:
+    placeholder: par exemple myapp
+  description:
+    placeholder: par exemple Mon Application
+editHost:
+  title: Modifier l’Hôte
+  hostname:
+    label: Nom de l’hôte
+    help: Tel que rapporté par le système d’exploitation hôte.
+  customName:
+    label: Nom Personnalisé
+    placeholder: p. ex. dev1
+    help: Si cela est laissé vide, le nom d’Hôte sera montré comme le Nom.
+  description:
+    label: Description
+    placeholder: par exemple mon hôte de développement
+  labels:
+    label: Étiquettes
+  ips:
+    label: IPs de l'Orchestrateur
+    valueLabel: Adresse IP
+    valuePlaceholder: par exemple 1.2.3.4
+    addActionLabel: Ajouter une adresse IP
+    help: Si fourni, l'orchestrateur sélectionnera et reliera les ports publiés à une des adresses IP publiques données.
+editProjectTemplate:
+  title:
+    add: Ajouter un Modèle
+    edit: 'Éditer un Modèle : {displayName}'
+  orchestration: Orchestration
+  stackEdit: Éditer une Configuration
+  stackRequired: Obligatoire
+  access:
+    label: Partage en cours
+    private: 'Privé : disponible seulement pour moi'
+    public: 'Public : Disponible pour tous les utilisateurs (administrateur seulement)'
+  error:
+    conflict: Conflit
+    enabling: 'La version séléctionnée de la pile "{stackName}" de la catégorie {tplCategory} ne supporte pas l''orchestration {orchestration}.'
+    changing: 'La pile "{stackName}" courante de la catégorie {tplCategory} ne supporte pas l''orchestration {orchestration}.'
+editRegistry:
+  title: Modifier le Registre
+  address:
+    label: Adresse
+  email:
+    label: E-mail
+    placeholder: par exemple you@example.com
+  username:
+    label: Nom d'utilisateur
+    placeholder: par exemple nom d’utilisateur
+  password:
+    label: Mot de Passe
+    placeholder: par exemple mot de passe
+editService:
+  title: Modifier le Service
+editStack:
+  title: Modifier la Pile
+  name:
+    label: Nom
+    placeholder: par exemple myapp
+  description:
+    label: Description
+    placeholder: par exemple Pile MonAppli
+  group:
+    label: Étiquettes
+    placeholder: par exemple, frontend, production
+    help: La liste des piles peut être filtrée par étiquettes (séparées par des virgules)
+stackHeader:
+  outputs: Sorties
+formatIp:
+  noIp: Aucun
+formBalancerRules:
+  noRules: Aucune Règle
+  access:
+    label: Accès
+    public: Public
+    internal: Interne
+  protocol:
+    label: Protocole 
+  sourceIp:
+    label: IP de l'Hôte
+  sourcePort:
+    placeholder: par exemple 80
+  path:
+    label: Chemin d'accès
+    placeholder: par exemple foo
+  hostname:
+    label: Hôte de la Requête
+    placeholder: par exemple exemple.com
+  backendName:
+    label: Infrastructure
+    placeholder: par exemple webapp
+  targetPort:
+    label: Port
+    placeholder: par exemple 80
+  priority:
+    label: Priorité
+  target: Cible 
+  selector:
+    label: Sélecteur
+    placeholder: par exemple foo=bar
+formCommand:
+  command:
+    label: Commande
+    placeholder: par exemple /usr/sbin/httpd -f httpd.conf
+  workingDir:
+    label: Répertoire de Travail
+    placeholder: par exemple /monappli
+  user:
+    label: Utilisateur
+    placeholder: par exemple apache
+  console:
+    label: Console
+    both: 'Interactif &amp; TTY <span class="text-muted"> (-i -t)</span>'
+    interactive: 'Interactif <span class="text-muted"> (-i -t)</span>'
+    terminal: 'TTY <span class="text-muted">(-t)</span>'
+    none: Aucun
+  autoRestart:
+    label: Redémarrage Automatique
+    startOnceFalse: Toujours
+    startOnceTrue: Jamais (démarrer une fois)
+    "no": Jamais
+    onFailure: 'En cas d''Échec <span class="text-muted"> (code de sortie non-0)</span>, pour toujours'
+    onFailureCondPrefix: En cas d’échec, jusqu'à
+    onFailureCondSuffix: |
+      {limit, plural, =1 {time} other {times}}
+    always: Toujours
+formContainerLinks:
+  addActionLabel: Ajouter un Lien
+  targetInstance:
+    label: Conteneur de Destination
+    prompt: Sélectionnez un Conteneur...
+  name:
+    label: Avec pour Nom
+    placeholder: par exemple base de données
+formDisks:
+  addDiskLabel: Ajouter le Disque
+  addRootDiskLabel: Ajouter le Disque Racine
+  name:
+    rootDisk: Disque contenant la Racine
+    label: Nom
+    placeholder: par exemple, données
+  size:
+    label: Taille
+    rootDisk: Déterminé par l’image racine
+  readIops:
+    label: Opérations E/S de Lecture
+    placeholder: par exemple 1000
+  writeIops:
+    label: Opérations E/S d'Écriture
+    placeholder: par exemple 1000
+  driver:
+    label: Pilote
+formEngineOpts:
+  engineInstallUrl:
+    label: URL d’installation de Docker
+    placeholder: 'par exemple http://get.docker.com/'
+    recommended: Recommandé
+    latest: Plus récent
+  engineStorageDriver:
+    label: Pilote de Stockage
+    placeholder: overlay
+  engineOpts:
+    label: Options de Moteur
+    addActionLabel: Ajouter une Option de Moteur
+    keyPlaceholder: par exemple pilote-journalisation
+    valuePlaceholder: par exemple syslog
+  engineLabels:
+    label: Étiquettes de Moteur
+    addActionLabel: Ajouter une Étiquette au Moteur
+    keyLabel: Étiquette
+  engineEnv:
+    label: Environnement du Moteur
+    addActionLabel: Ajouter une Variable d’Environnement
+    keyLabel: Variable
+    keyPlaceholder: p. ex. HTTP_PROXY
+    valuePlaceholder: 'par exemple http://votre-proxy:8080'
+  engineInsecureRegistry:
+    label: Registres Non sécurisés
+    addActionLabel: Ajouter un Registre Non Sécurisé
+    valueLabel: Domaine du Registre
+    valuePlaceholder: par exemple registry.example.com
+  engineRegistryMirror:
+    label: Miroirs de Registre
+    addActionLabel: Ajouter un Registry Miroir
+    valueLabel: URL de Miroir
+    valuePlaceholder: 'par exemple https://mon-miroir.exemple.com:5000'
+formHealthCheck:
+  checkType:
+    none: Aucun
+  request:
+    label: Requête HTTP
+  method:
+    prompt: "Sélectionnez une méthode HTTP :"
+  path:
+    placeholder: Chemin de la requête par exemple /healthcheck
+  version:
+    prompt: "Sélectionnez une Version de HTTP :"
+  host:
+    label: En-tête de l’Hôte
+    placeholder: par exemple www.example.com
+  port:
+    placeholder: p. ex. 80
+  initializingTimeout:
+    label: Limite d’attente lors de l’initialisation
+    unit: ms
+  reinitializingTimeout:
+    label: Réinitialisation de la Limite d'attente
+    unit: ms
+  interval:
+    label: Intervalle de Vérification
+    unit: ms
+  timeout:
+    label: Vérifiez le délai d’attente
+    unit: ms
+  healthyThreshold:
+    label: En bonne santé après
+    unit: succès
+  unhealthyThreshold:
+    label: En mauvaise santé après
+    unit: erreurs
+  strategy:
+    label: Quand en mauvaise Santé
+    none: Ne prendre aucune mesure
+    recreate: Re-créer
+formKeyValue:
+  addAction: Ajouter une Paire
+  key:
+    label: Clé
+    placeholder: Clé
+  separator: "="
+  value:
+    label: Valeur 
+    placeholder: Valeur
+formNameDescription:
+  name:
+    label: Nom
+    placeholder: Nom
+  description:
+    label: Description
+    placeholder: Description
+formNetwork:
+  networkMode:
+    label: Réseau
+    managed:
+      label: Géré
+  retainIp:
+    label: Conserver l'IP
+  hostname:
+    label: Nom de l’Hôte
+    placeholder: par exemple web
+    dockerId: Utilisez l’ID de conteneur Docker
+    containerName: Utilisez le nom du conteneur
+    custom: Configurer un nom d’hôte spécifique
+  domainName:
+    label: Nom de Domaine
+    placeholder: par exemple exemple.com
+  resolvingServers:
+    label: Résolution des Serveurs
+    addActionLabel: Ajouter un Serveur
+    placeholder: par exemple 8.8.4.4
+  searchDomains:
+    label: Domaines de Recherche
+    placeholder: par exemple prod.exemple.com
+    addActionLabel: Ajouter un Domaine
+formPorts:
+  public:
+    placeholder: "par exemple 80"
+  private:
+    placeholder: "par exemple 8080"
+  protocol:
+    label: Protocole 
+  noPorts: Ce conteneur n'expose aucun port.
+  error:
+    privateRequired: Le Port privé de conteneur est requis pour chaque règle de port.
+    publicRequired: Le Port hôte public est requis si l’IP de l’hôte est spécifiée.
+    mixedIpPort: "Port {ip}:{port} /{proto} a plus d’une correspondance."
+    mixedPort: "Le Port {port}/{proto} a plus d’une correspondance."
+formScheduling:
+  canRequestHost:
+    vm: Exécuter <b>toutes les</b> machines virtuelles sur un hôte spécifique
+    containers: Exécutez <b>tous</b> les conteneurs sur un hôte spécifique
+  runSpecific: Exécuter sur un hôte spécifique
+  autoRun: "Exécuter automatiquement sur chaque hôte correspondant aux règles de planification :"
+  autoPick:
+    vm: "Choisir automatiquement les hôtes pour chaque machine virtuelle correspondant aux règles de planification :"
+    container: "Choisir automatiquement les hôtes pour chaque conteneur correspondant aux règles de planification :"
+    host: "Choisir automatiquement un hôte correspondant aux règles de planification :"
+  addRule: Ajouter une Règle d'Ordonnancement
+  condition: Condition
+  field: Champ
+  key: Clé
+  value: Valeur
+formSecrets:
+  noData: Pas de Secrets
+  addLabel: Ajouter un Secret
+  name:
+    placeholder: par exemple db_password
+  secret:
+    label: Secret
+  uid:
+    label: Identifiant utilisateur
+    placeholder: par exemple 0 (root)
+  gid:
+    label: Identifiant du Groupe
+    placeholder: par exemple 0 (wheel)
+  mode:
+    placeholder: p. ex. 0444 (octal)
+formSecurity:
+  privileged:
+    label: Restreint
+  pidMode:
+    label: Mode PID
+  cpuPinning:
+    label: Affinité Processeur (CPU)
+  shares:
+    placeholder: par exemple 1024
+  capabilities:
+    helpBlock:
+      text: Fonctionnalités vous permettent de fournir un contrôle précis sur les privilèges de super utilisateur disponibles pour le conteneur.
+      link: Plus d'informations
+  deviceBinding:
+    label: Liaison du Dispositif
+    addActionLabel: Ajouter une Liaison
+    pathHost:
+      label: Chemin d’accès dans l'Hôte
+      placeholder: par exemple /dev/sdc
+    pathContainer:
+      label: Chemin d’accès dans le Conteneur
+      placeholder: par exemple /dev/xsdc
+    permissions:
+      label: Permissions
+  memoryReservation:
+    label: Mémoire Allouée
+  isolation:
+    label: Isolation
+    default: Par défaut (conteneur)
+    hyperv: HyperV (VM)
+formServiceLinks:
+  service:
+    label: Service de Destination
+  name:
+    label: Avec pour Nom
+    placeholder: par exemple base de données
+formSslTermination:
+  defaultCertificate:
+    prompt: Choisissez un Certificat...
+  alternateCertificate:
+    prompt: Choisissez un Certificat...
+  alternateCerts: Certificats Alternatifs
+  addAlternate: Ajouter le Certificat Alternatif
+  noCertificates: Il n’y a aucun certificat à utiliser.
+  noAlternateCertificates: Il n’y a aucun autre certificat à utiliser.
+formStickiness:
+  none: Aucun
+  cookieName: Nom du Cookie
+  mode: Mode
+  domain: Domaine
+  options: Options
+  indirect: Indirecte
+  sendHeader: Envoyer l’en-tête no-cache
+  onPost: Définie uniquement un cookie avec POST
+  placeholder:
+    sticky: p. ex. affinité
+    domain: par exemple mondomaine.com
+formTargets:
+  title: Cibles
+  hostname:
+    label: Entête de l'Hôte de la Requête
+    placeholder: par exemple svc.com
+  srcPort:
+    label: Port Source
+    placeholder: par exemple 80
+  value:
+    label: Service Cible
+  path:
+    label: Chemin de la Requête 
+    placeholder: par exemple /svc
+  dstPort:
+    label: Port Cible
+    placeholder: par exemple 8080
+  advanced:
+    toggle: Afficher les options de routage avancées
+    detail: Les requêtes directes vers différents services sont basées sur le port, l’en-tête d’Hôte ou le chemin de la requête
+    help1: |
+      Si l’hôte et/ou le chemin d’accès de la requête est spécifié, les connexions vers les ports d’écoute HTTP seront acheminées vers la cible appropriée basée sur la demande. Par exemple, vous pouvez utiliser cela pour envoyer du trafic pour domain1.com à un service différent tel domain2.com, ou domain3.com/admin vers un service différent de domain3.com.
+    help2: |
+      Les requêtes correspondantes seront envoyées au Service cible sur le Port cible. 
+      Si ce n’est pas configuré, alors le port cible par défaut sera utilisé à la place du Port Source.  Si celui-ci n'est pas défini, alors le Port Source sera utilisé.
+formUserData:
+  placeholder: "par exemple informations de Configuration pour le conteneur"
+  isVmPlaceholder: "par exemple informations de Configuration pour la machine virtuelle"
+formUserLabels:
+  addAction: Ajouter une étiquette
+  key:
+    label: Clé
+    placeholder: par exemple foo
+  separator: "="
+  value:
+    label: Valeur 
+    placeholder: par exemple bar
+  protip: 'Astuce : Coller une ou plusieurs lignes de paires clé=valeur dans n’importe quel champ clé pour une saisie facilitée en masse.'
+formValueArray:
+  addActionLabel: Ajouter une valeur
+  valueLabel: Valeur
+  protip: 'Astuce : Coller une ou plusieurs lignes de paires clé=valeur dans n’importe quel champ clé pour une saisie facilitée en masse.'
+formVirtualMachines:
+  vcpus: vCPUs
+  memory: Mémoire
+formVolumes:
+  value:
+    prompt: Sélectionnez un Conteneur...
+  volumes: Volumes
+  volumesFrom: Volumes Depuis
+  volumeDriver:
+    label: Pilote de Volume
+  noLaunchConfigs: Il n’y a aucune autres configurations de lancement de ce service pour partager des volumes avec celui-ci.
+  noHostContainers: Cet hôte n’a aucun conteneurs ayant des volumes sur lesquels se connecter.
+  onlySingleHost: Disponible uniquement lorsque vous ajoutez un conteneur à un hôte particulier.
+  addActionLabel: Ajouter un Volume
+  errors:
+    invalidName: Les noms de volume peuvent uniquement contenir des lettres, chiffres, traits d’union, tirets bas et des points.
+hookPage:
+  receiver:
+    header: Récepteurs de déclencheurs
+    buttonText: Ajouter un Récepteur
+    content: "Les récepteurs de déclencheurs vous donnent une URL qui peut être utilisée pour déclencher une action dans {appName}."
+    noData: Pas de récepteurs de déclencheurs.
+  scaleService:
+    detailPrefix: "Échelle {action} "
+    detailLink: "{displayService}"
+    detailSuffix: "par {amount}"
+  fields:
+    kind:
+      label: Type
+    detail:
+      label: Détail
+    url:
+      label: URL du Déclencheur
+hostSettings:
+  header: URL d’Enregistrement de l'Hôte
+  subtext: Quelle URL de base les hôtes doivent utiliser pour se connecter à l’API de {appName} ?
+  hostUrl:
+    local: "Adresse de ce site :"
+    new:
+      labelText: "Autre chose:"
+      placeholder: "par exemple http://exemple.com:8080"
+  helpText:
+    static1: "N’incluez pas <code>/ v1</code> ou tout autre chemin, mais si vous faites"
+    static2: "en face de {appName}, n’oubliez pas d’utiliser <code>https://</code>."
+    isRancher: '<a href="{docsBase}/installing-rancher/installing-server/basic-ssl-config/" target="_blank"> terminaison SSL</a>'
+    sslTerm: Terminaison SSL
+  notPublic:
+    alert: |
+      Êtes-vous certain que tous les hôtes que vous créerez seront en mesure d’atteindre <code>{activeValue}</code> ? <br/> Cette adresse IP semble privée, ou appartenir à un réseau local.
+hostPod:
+  supportState:
+    unsupported: Version de Docker non supportée
+    untested: Version de Docker non testée
+  groupedInstances:
+    namespace: 'Espace de noms :'
+    stack: 'Pile :'
+    standalone: Conteneurs Autonomes
+identityBlock:
+  loading: Chargement...
+infoMultiStats:
+  connecting: Connexion en cours...
+  utilizationStats: Les statistiques d’utilisation sont disponibles uniquement quand est actif/en cours d’exécution.
+  cpuSection:
+    labelText: Processeur
+    system: Système
+    user: Utilisateur
+  networkSection:
+    labelText: Réseau
+    transmit: Transmettre
+    receive: Recevoir
+  memorySection:
+    labelText: Mémoire
+    used: Utilisé
+  storageSection:
+    labelText: Stockage
+    read: Lecture
+    write: Écriture
+inputCertificate:
+  key:
+    label: Clé Privée
+    placeholder: "Collez la clé privée, commençant par---BEGIN RSA PRIVATE KEY---"
+  cert:
+    label: Certificat
+    placeholder: "Collez le certificat primaire, commençant par -----BEGIN CERTIFICATE-----"
+  certChain:
+    label: Chaîne de Certificats
+    placeholder: "En option ; Collez les certificats additionnels chaînés , commençant par -----BEGIN CERTIFICATE-----"
+  metaXML:
+    label: Métadonnées XML
+    placeholder: "Coller dans les métadonnées XML de l’IDP"
+inputIdentity:
+  placeholder:
+    github: Ajouter un nom d’utilisateur ou d’organisation GitHub
+    generic: Ajouter un utilisateur ou un groupe par son nom
+  dropdownLabel:
+    teams: Vos équipes et organisations
+    groups: Vos Groupes
+inputPassword:
+  buttonText: Générer
+inputTextFile:
+  tooltip: Lire depuis un fichier
+labelsSection:
+  kind: Type
+  key: Clé
+  value: Valeur
+  noData: Pas d'étiquette
+loginShibboleth:
+  buttonText: S’authentifier avec Shibboleth
+loginGithub:
+  buttonText: Authentification avec GitHub
+loginUserPass:
+  userLabel: Nom d'Utilisateur
+  userPlaceholder: par exemple jsmith
+  loginLabel: Se connecter
+  loggingInLabel: Connexion en cours...
+  passwordLabel: Mot de Passe
+machine:
+  driverAmazon:
+    accessSection: Accès du Compte
+    accessKey:
+      label: Clef d'Accès
+      placeholder: Votre clé d’accès AWS
+    secretKey:
+      label: Clé Secrète
+      placeholder: Votre clé secrète AWS
+      provided: Fourni
+    region:
+      label: Région
+    accessKeyHelp: "Collez votre paire de clés de AWS ici. Nous utiliserons cette clé pour créer vos nouvelles Instances."
+    loginAction: 'Suivant : s''Authentifier & sélectionner un réseau'
+    loadingAvailability: Chargement des Informations des Zone de disponibilité et des nuages privés virtuels depuis EC2...
+    vpcSection: Zone de Disponibilité & VPC
+    availabilityZone: Zone de Disponibilité
+    subnet: Nuage Virtuel Privé/Sous-Réseau
+    securityGroupSelect: 'Suivant : Sélectionnez un Groupe de Sécurité'
+    loadingSecurity: Chargement des informations de groupe de sécurité depuis EC2...
+    securityGroupSection: Groupe de Sécurité
+    securityGroup:
+      label: Groupe de Sécurité
+      defaultExisting: 'Standard : Utiliser le groupe <code>{groupName}</code> existant'
+      defaultCreate: 'Standard : Crée automatiquement un groupe <code>{groupName}</code>'
+      custom: 'Personnalisé : Choisissez un groupe existant'
+      updating: Mise à jour du Groupe de Sécurité ...
+      creating: Création du Groupe de Sécurité...
+    portHelp:
+      link: Pour en savoir plus
+      text: sur les ports qui seront ouverts.
+    needs:
+      label: "Pour que {appName} fonctionne correctement, votre groupe de sécurité devra autoriser le trafic :"
+      item1: Depuis le serveur de {appName} via le port <code>TCP</code> <code>22</code> <span class="text-muted"> (SSH pour installer et configurer Docker)</span>
+      item2: Depuis et vers tous les autres hôtes sur les ports<code>UDP</code> <code>500</code> et <code>4500</code> <span class="text-muted"> (pour la gestion de réseau IPsec)</span></li>
+      item3: Ces règles ne seront <b>pas</b> ajoutées automatiquement.
+    setInstanceAction: 'Suivant : Options de l''Ensemble d’Instances'
+    instanceSection: Instance
+    instanceOptionsSection: Options de l'Instance
+    instanceType:
+      label: Type d’Instance
+    rootSize:
+      label: Taille de la Racine
+      unit: GB
+    ami:
+      label: AMI
+      placeholder: Une AMI Ubuntu
+      rancherList: Liste d’AMI rancherOS
+    sshUser:
+      label: Utilisateur SSH
+      placeholder: par exemple ubuntu
+    iam:
+      label: Profil IAM
+    privateIp:
+      label: IP Privée
+    onlyPrivate:
+      label: Utilisez uniquement des adresses IP privées
+  driverAzure:
+    helpBlock: 'Vous pouvez trouver des instructions sur la façon de créer un id client et un secret <a href="https://www.packer.io/docs/builders/azure-setup.html" target="_blank"> ici</a>.'
+    accountAccessSection: Accès du Compte
+    placementSection: Placement
+    networkSection: Réseau
+    subscriptionId:
+      label: ID d'Abonnement
+      placeholder: Votre ID d’abonnement Azur
+    instanceSection: Instance
+    image:
+      label: Image
+      placeholder: 'canonical:UbuntuServer:16.04.0-LTS:latest'
+    size:
+      label: Taille
+    dockerPort:
+      label: Port de Docker
+      placeholder: 'par exemple 2376'
+    publishSettingsFile:
+      label: Paramètres de Publication
+      placeholder: Votre fichier de paramètres de publication
+    environment:
+      label: Environnement
+    resourceGroup:
+      label: Groupe de Ressources
+      placeholder: 'docker-machine'
+    sshUser:
+      label: Utilisateur SSH
+      placeholder: utilisateur1
+    storageType:
+      label: Type de stockage
+    vnet:
+      label: Réseau virtuel
+      placeholder: '[resourcegroup :] nom'
+    subnet:
+      label: Sous-réseau
+      placeholder: exemple-sub-nom
+    subnetPrefix:
+      label: Préfixe de Sous-Réseau
+      placeholder: 128.42.0.0/21
+    availabilitySet:
+      label: Zone de Disponibilité
+      placeholder: nom-de-la-zone-de-disponibilité
+    openPort:
+      label: Port Ouvert
+      placeholder: 'Séparées par des virgules, par exemple 80,443'
+    privateIpAddress:
+      label: IP Privée
+      placeholder: 127.0.0.1
+    usePrivateIp:
+      label: Utilisez une IP Privée pour se connecter
+    staticPublicIp:
+      label: IP publique
+    noPublicIp:
+      label: Aucune IP publique
+    clientId:
+      label: Id Client
+      placeholder: Votre Id Client
+    clientSecret:
+      label: Secret du Client
+      placeholder: Votre Secret du Client
+    region:
+      label: Région
+  driverCustom:
+    step1: 'Démarrage d’une machine Linux quelque part et installer une <a href="{docsBase}/hosts/#supported-docker-versions" target="_blank"> prise en charge par la version</a> de <a href="http://www.docker.com/" target="_blank" rel="noreferrer nofollow"> Docker</a> dessus.'
+    step2: "Assurez-vous que tous les groupes de sécurité ou pare-feus autorisent le trafic :"
+    step2li: Depuis et vers tous les autres hôtes sur les ports<code>UDP</code> <code>500</code> et <code>4500</code> <span class="text-muted"> (pour la gestion de réseau IPsec)</span>
+    step3: 'Facultatif : Ajouter des étiquettes à appliquer à l’hôte.'
+    step4: "Spécifiez l’adresse IP publique qui doit être enregistré pour cet hôte.  Si laissé vide, Rancher détectera automatiquement l’adresse IP à utiliser.  Cela fonctionne en général pour les machines avec IPs public uniques, mais ne fonctionnera pas si la machine est derrière un pare-feu/NAT ou si c’est le même ordinateur qui exécute le conteneur <code>{rancherImage}</code>."
+    agentIp:
+      placeholder: par exemple 1.2.3.4
+    step5Copy: Copiez, collez et exécutez la commande ci-dessous pour inscrire l'hôte
+    generating: "Génération d'une URL d'inscription ..."
+    step5Close:
+      part1: Cliquez sur Fermer ci-dessous.  Le nouvel hôte devrait apparaître sur la
+      link: Hôtes
+      part2: écran dans une minute.
+    close: Fermer
+    windows:
+      step1: 'Démarrage d’une machine Windows Server 2016 quelque part et installer la dernière version de <a href="https://msdn.microsoft.com/en-us/virtualization/windowscontainers/quick_start/quick_start_windows_server" target="_blank" rel="noreferrer nofollow"> Docker</a> sur elle.'
+      step2: "Créer un réseau Docker transparent :"
+      step2Copy: docker network create -d transparent transparent
+      step3: Copiez, collez et exécutez la commande ci-dessous dans PowerShell pour démarrer l’agent de {appName}.
+  driverDigitalocean:
+    sizeLabel: |
+      {highMem, select, true {High Memory: } other {}}{memoryGb} GB RAM, {disk} GB Disque, {vcpus, plural,
+      =1 {# vCPU}
+      other {# vCPUs}
+      }
+    accountSection: Accès du Compte
+    authAccountButton: 'Suivant : Configurer Droplet'
+    accessToken:
+      label: Jeton d'Accès *
+      placeholder: Votre jeton d’accès à l'API DigitalOcean
+      help: |
+        Un jeton d’accès personnel depuis l’écran de DigitalOcean <a href="https://cloud.digitalocean.com/settings/applications" target="_blank"> API & Apps</a>
+    instanceSection: Instance
+    image:
+      label: Image
+    sshUser:
+      label: Utilisateur SSH
+      placeholder: 'utilisateur1'
+    size:
+      label: Taille
+    regionSection: Région
+    region:
+      label: Région
+    optionsSection: Options
+    backups:
+      label: Permettre des Sauvegardes
+    ipv6:
+      label: Activer IPv6
+    privateNetworking:
+      label: Activer les Réseaux Privés
+  driverExoscale:
+    accountSection: Accès du Compte
+    apiKey:
+      label: Clé d'API
+      placeholder: Votre clé d'API Exoscale
+    secretKey:
+      label: Clé Secrète
+      placeholder: Votre clé secrète Exoscale
+      provided: Fourni
+    accountHelp: Collez votre paire de clés de Exoscale ici. Nous utiliserons cette clé pour créer vos nouvelles Instances.
+    loginAction: 'Suivant : s''authentifier & sélectionner un groupe de sécurité'
+    loadingSecurity: Chargement des informations de groupe de sécurité de Exoscale...
+    securityGroupSection: Groupe de Sécurité
+    securityGroup:
+      label: Groupe de Sécurité
+      defaultExisting: 'Standard : Utiliser le groupe <code>{groupName}</code>'
+      defaultCreate: 'Standard : Crée automatiquement un groupe <code>{groupName}</code>'
+      custom: 'Personnalisé : Choisissez un groupe existant'
+      updating: Mise à jour du Groupe de Sécurité...
+      creating: Création de Groupe de Sécurité...
+    portHelp:
+      link: Pour en savoir plus
+      text: À propos des ports qui seront ouverts.
+    needs:
+      label: "Pour que {appName} fonctionne correctement, votre groupe de sécurité devra autoriser le trafic :"
+      item1: Depuis le serveur de {appName} via le port <code>TCP</code> <code>22</code> <span class="text-muted"> (SSH pour installer et configurer Docker)</span>
+      item2: Depuis et vers tous les autres hôtes sur les ports<code>UDP</code> <code>500</code> et <code>4500</code> <span class="text-muted"> (pour la gestion de réseau IPsec)</span></li>
+      item3: Ces règles ne seront <b>pas</b> ajoutées automatiquement.
+    selectSecurityGroupAction: 'Suivant : Options de l''Ensemble d’Instances'
+    loadingInstance: Récupération des paramètres d’Instance disponibles...
+    instanceSection: Instance
+    instanceProfile:
+      label: Profil de l’instance
+    diskSize:
+      label: Taille de la Racine
+    sshUser:
+      label: Utilisateur SSH
+      placeholder: 'utilisateur1'
+  driverOther:
+    driverSection: Pilote
+    driver:
+      label: Pilote
+    optionsSection: "Options de {driverName}"
+  driverPacket:
+    accountSection: Accès du Compte
+    projectId:
+      label: Projet
+      placeholder: ID projet Packet
+    apiKey:
+      label: Clé d'API
+      placeholder: Clé API Packet
+    apiKeyHelp: 'Depuis l’écran <a href="https://app.packet.net/portal#/api-keys" target="_blank"> Clés de l’API</a> Packet'
+    instanceSection: Instance
+    image:
+      label: Image
+    size:
+      label: Taille
+    regionSection: Région
+    region:
+      label: Région
+  driverRackspace:
+    accountSection: Accès du Compte
+    username:
+      label: Nom d'Utilisateur
+      placeholder: Votre nom d’utilisateur RackSpace
+    apiKey:
+      label: Clé d'API
+      placeholder: Votre clé d'API RackSpace
+    accountHelp: Depuis l’écran Paramètres du compte du panneau de contrôle RackSpace
+    regionSection: Région
+    region:
+      label: Région
+    instanceSection: Instance
+    flavor:
+      label: Fonctionnalité
+  driverVsphere:
+    accountSection: Accès du Compte
+    vcenter:
+      label: Hôte vCenter
+      placeholder: vCenter ou nom d'hôte/IP ESXi
+    vcenterPort:
+      label: Port vCenter
+    username:
+      label: Nom d'Utilisateur
+    password:
+      label: Mot de Passe
+    instanceSection: Instance
+    cpuCount:
+      label: Processeurs
+    memorySize:
+      label: Mémoire
+      unit: MB
+    diskSize:
+      label: Disque
+      unit: MB
+    boot2dockerUrl:
+      label: URL DE L’ISO DE L’OS
+      placeholder: 'Par défaut : Dernière image de boot2docker'
+    schedulingSection: Planification en cours
+    dataCenter:
+      label: Centre de Données
+    pool:
+      label: Réserve
+    host:
+      label: Hôte
+      placeholder: "Utiliser « / » si vous utilisez une grappe"
+    network:
+      label: Réseau
+    dataStore:
+      label: Magasin de Données
+  driverAliyunecs:
+    accountSection: Section accès du compte
+    accessKey:
+      label: Clef d'Accès
+      placeholder: Votre clé d’accès de compte Aliyun
+    accessKeySecret:
+      label: Secret de clé d'accès *
+      placeholder: Secret de votre clé
+    apiEndpoint:
+      label: Point d'accès de l'Api
+      placeholder: Point de terminaison de Serveur d’Api Aliyun Privé
+    instanceSection: Section de l’Instance
+    instanceDescription:
+      label: Description de l'instance
+      placeholder: Description de l'instance
+    instanceType:
+      label: Type d’Instance
+      placeholder: Type d’Instance
+    systemImage:
+      label: Image système
+      placeholder: Image système
+    instanceTag:
+      label: Étiquette d'Instance
+      placeholder: Votre étiquette d’Instance dans Aliyun
+    internetMaxBandwidth:
+      label: Bande passante Internet maximale
+      placeholder: 1 à 100
+    aliyunSLB:
+      label: Id de SLB Aliyun
+      placeholder: Id de SLB Aliyun
+    storageSection: Infos de stockage
+    isOptimized:
+      label: Instance de Stockage avec E/S optimisées
+      placeholder: aucun ou optimisé
+    systemDiskCategory:
+      label: Catégorie de Disque Système
+      placeholder: Quand le stockage est optimisé, vous pouvez entrer cloud_efficiency, cloud_ssd ou ephemeral_ssd.
+    dataDiskCategory:
+      label: Catégorie de Disque de Données
+      placeholder: Quand le stockage est optimisé, vous pouvez entrer cloud_efficiency, cloud_ssd ou ephemeral_ssd.
+    dataDiskSize:
+      label: Taille de Disque de Données
+      placeholder: Taille du Disque
+    region:
+      label: Région
+      placeholder: Région
+    zone:
+      label: Zone Disponible
+      placeholder: Vide pour sélection automatique
+    networkSection: Section Réseau
+    routeCIDR:
+      label: Route CIDR
+      placeholder: par exemple 192.168.1.0/24
+    vpcId:
+      label: Id de VPC Aliyun
+      placeholder: Id de VPC Aliyun
+    vswitchId:
+      label: Id de Vswitch Aliyun
+      placeholder: Id de Vswitch Aliyun
+    privateIp:
+      label: Ip Privée
+      placeholder: Ip Privée sur un réseau privé
+    privateAddressOnly:
+      label: Adresse Privée Seulement
+    securitySection: Section Sécurité
+    securityGroup:
+      label: Groupe de Sécurité
+      placeholder: Groupe de Sécurité
+    sshPassword:
+      label: Mot de passe SSH
+      placeholder: Définissez le mot de passe de l'Instance SSH, vide pour une configuration Automatique
+modalAboutComponent:
+  component: Composant
+  version: Version
+  cattle: Cattle
+  cli: Interface de Ligne de Commande (CLI)
+  ui: Interface Utilisateur
+  compose: Compose
+  machineService: Service de la Machine
+modalAuditlogInfo:
+  header: Info complémentaires de connexion
+  request: "Objet de la Requête :"
+  response: "Objet Réponse :"
+modalContainerStop:
+  header: "Êtes-vous sûr de vouloir l'arrêter"
+  helpText: "Le conteneur sera arrêté de force si il ne se stoppe pas lui-même avant le délai d'expiration"
+  protip: 'Astuce Pro : Maintenez la touche {key} tout en cliquant sur arrêter afin de contourner cette confirmation.'
+  label: Délai d'expiration
+  button: Arrêter
+modalConfirmDeactivate:
+  header: Êtes-vous sur de vouloir
+  protip: 'Astuce Pro : Maintenez la touche {key} tout en cliquant sur {isServiceButton} afin de contourner cette confirmation.'
+  cancel: Annuler
+  buttons:
+    project:
+      message: désactiver votre environnement
+      button: Désactiver
+    environment:
+      message: arrêter les services pour
+      button: Arrêter les Services
+    default:
+      message: désactiver
+      button: Désactiver
+modalEditDriver:
+  header:
+    create: Ajout d’un pilote de Machine
+    edit: Modifier le pilote de Machine
+  url:
+    label: Url de Téléchargement
+    help: L’URL de téléchargement des pilotes binaires docker machine 64-bit pour Linux.
+  uiUrl:
+    label: URL de l’interface utilisateur personnalisée
+    help: 'Facultatif : URL pour charger l''écran personnalisé Ajouter des hôtes pour ce pilote.'
+    link: 'Voir <a href="https://github.com/rancher/ui-driver-skel" target="_blank"> ui-pilote-skel</a> pour plus d’informations.'
+  checksum:
+    label: Somme de contrôle
+    help: 'En option : Vérifiez que le pilote téléchargé correspond à la somme de contrôle attendue.'
+modalEditSetting:
+  title: Modifier le paramètre avancé
+  name:
+    label: Nom
+  value:
+    label: Valeur
+  reset:
+    label: Rétablir les valeurs par défaut
+modalFeedback:
+  header: Bienvenue sur {appName} !
+  subtitle: "Avant de commencer, s’il vous plaît parlez-nous un peu de vous..."
+  send: Pour Commencer
+modalProcessError:
+  header: Information de l'exception
+  cause: "Cause:"
+  none: Non Défini
+  stackTrace: "Pile d'exécution :"
+  close: Fermer
+modalShell:
+  title: 'Shell : {instanceName}'
+modalShortcuts:
+  e: Gérer les environnements
+modalWelcome:
+  header: Bienvenue sur {appName} !
+  closeModal: J'ai compris
+newBalancer:
+  header:
+    add: Ajouter un Équilibreur de Charge
+    edit: Modifier l’équilibreur de charge
+    upgrade: Mettre à jour l'Équilibreur de Charge
+  error:
+    noSourcePort: "Le Port Source est requis pour chaque règle"
+    invalidSourcePort: 'Port source invalide : ''{num}'''
+    invalidTargetPort: 'Port cible invalide : ''{num}'''
+    mixedPort: "Le port {num} a plusieurs règles avec des conflits d'accès/de protocole"
+    noTarget: "La Cible est requise pour chaque règle"
+    needsCertificate: "Un certificat est requis parce qu'il y a des règles de port SSL/TLS"
+newCatalog:
+  version:
+    prompt: Choisissez une version...
+    default: La valeur par défaut à l’époque (actuellement {version})
+  saveUpgrade: Mettre à niveau
+  saveNew: Démarrer
+  saveConfigure: Configurer
+  upgrade: "Mettre à niveau:"
+  catalog: "Catalogue :"
+  category: "Catégorie :"
+  support: "Support :"
+  official: Officiellement Certifié
+  maintainedBy: Maintenu par les membres de la communauté
+  maintainer: "Responsable :"
+  license: "Licence :"
+  url: "Url du Projet :"
+  titleAdd: "Ajouter de la Pile {name}"
+  titleUpgrade: "Mise à niveau de la Pile {name}"
+  titleConfigure: "Configurer la Pile {name}"
+  templateVersion: Version du Modèle
+  selectVersionAdd: Sélectionner une version du modèle à déployer
+  selectVersionUpgrade: Sélectionner une version du modèle à mettre à niveau
+  selectVersionConfigure: Sélectionner une version du modèle à configurer
+  newStack: Nouvelle Pile
+  config: Options de Configuration
+  unknownType: "Type de question non reconnu :"
+  startService: Démarrer les services après la création
+  preview: Aperçu 
+  txt: answers.txt
+  noConfig: Ce modèle n’a aucune option de configuration
+newContainer:
+  add:
+    container: Ajouter un conteneur
+  upgrade:
+    container: Mise à niveau du Conteneur
+  selectUpgrade: Sélectionnez un ou plusieurs services à mettre à niveau.
+  saveUpgrade: Mettre à niveau
+  removeSidekick: Supprimer ce Compagnon
+  name:
+    placeholder: par exemple monappli
+  description:
+    placeholder: par exemple Mon Application
+  emptySidekick: "(Compagnon #{num})"
+  addSidekickContainer: Ajoutez le Conteneur Compagnon
+  addSidekickVm: Ajouter une VM compagnon
+newReceiver:
+  title:
+    edit: Modifier le Récepteur
+    add: Ajouter un Récepteur
+  name:
+    placeholder: "p. ex. scale-web"
+  driver:
+    label: Type
+  action:
+    label: Action
+  service:
+    label: Service Cible
+  amount:
+    label: Par
+  min:
+    label: Échelle Minimale
+    placeholder: par exemple 1
+  max:
+    label: Échelle Maximale
+    placeholder: par exemple 80
+newSecret:
+  title:
+    edit: Modifier le Secret
+    add: Ajouter un Secret
+  name:
+    placeholder: par exemple api-token
+  description:
+    placeholder: p. ex. jeton Secret pour l’API
+  value:
+    label: Valeur Secrète
+    placeholder: La valeur secrète
+pageFooter:
+  notARelease: (Pas une Version)
+  issues: Renseigner un Problème
+  forums: Forums
+  slack: Slack
+  download:
+    link: Télécharger l'Interface de Ligne de Commande (CLI)
+    windows: Windows
+    linux: Linux
+projectRow:
+  none: Aucune description
+  orchestration: Orchestration
+projectUpgrade:
+  header: Mettre à jour l'Environnement
+  detail: "{appName} {appVersion} inclut des modifications qui nécessitent la mise à niveau des services système existants et des conteneurs de l’équilibreur de charge."
+  notOwner: "Seul un propriétaire de cet environnement ou un administrateur peut effectuer la mise à niveau."
+  actionButton: Mettre à jour Maintenant
+  banner: Mise à jour de l'Environnement ...
+registryRow:
+  address: Adresse
+  username: Nom d'Utilisateur
+  created: Crée
+reservationParameters:
+  label: Limite de Ressource
+  memory:
+    labelText: 'Mémoire'
+    unit: 'MB'
+  milliCpu:
+    labelText: Processeur
+    unit: 'mCPU'
+saveCancel:
+  saving: Sauvegarde en cours ...
+  saved: Sauvegardé !
+  edit: Enregistrer
+  create: Créer
+  cancel: Annuler
+schema:
+  inputBoolean:
+    "y": "Vrai"
+    "n": "Faux"
+  inputCertificate:
+    prompt: Choisissez un Certificat...
+  inputEnum:
+    option: Choisissez une option...
+  inputService:
+    prompt: Choisissez un Service...
+  inputSecret:
+    prompt: Choisissez un Secret...
+schedulingRuleRow:
+  theHost: L’hôte
+  must: doit
+  should: devrait
+  shouldNot: ne devrait pas
+  mustNot: ne doit pas
+  haveA: ont une
+  of: de
+  hostLabel: étiquette de l’hôte
+  containerLabel: conteneur avec étiquette
+  serviceName: service avec le nom
+  containerName: conteneur avec le nom
+serviceLink:
+  withAlias:
+    sameStack: "{service} en tant que {alias}"
+    differentStack: "{stack}/{service} en tant que {alias}"
+  noAlias:
+    sameStack: "{service}"
+    differentStack: "{stack}/{service}"
+siteAccess:
+  header: Accès au Site
+  helpText: "Configurer ceux qui devraient pouvoir se connecter et utiliser {appName}."
+  unrestricted: "Permettre à n’importe quel {individuals} valide"
+  restricted: "Allow members of Environnements, plus Authorized {individuals} and {collection}"
+  required: "Restreindre l’accès aux seuls {individuals} autorisés et {collection}"
+  listHeader: "{individuals} autorisés et {collection}"
+  noIdentity: Aucun
+  users: Utilisateurs
+  groups: Groupes
+  organizations: Organisations
+storagePoolSection:
+  readOnly: "(lecture seule)"
+  hosts:
+    header: Hôtes
+    none: Aucun Hôte
+  volumes:
+    header: Volumes
+    add: Ajouter un Volume
+    none: Aucun Volume
+  models:
+    table:
+      header:
+        volumeName: 'Nom du Volume'
+        mounts: 'Points de Montage (Conteneur : Chemin d''accès)'
+svgServiceContainer:
+  sidekicks: Compagnons
+swarmTab:
+  dashboard:
+    dashboard:
+      content: Portainer est une interface utilisateur légère qui vous permet de gérer facilement votre cluster Docker swarm
+telemetryOpt:
+  header: Statistiques
+  subtext: |
+    Rancher Labs souhaite recueillir des informations anonymes sur la configuration de votre installation pour aider à améliorer {appName}. <br/> Vos données ne seront pas partagées avec une autre personne, et aucun des noms de ressources spécifiques ou les adresses ne sont collectées.
+  learnMore:
+    label: En savoir Plus
+  label: Permettre la collecte de statistiques anonymes
+tooltipLink:
+  list: Liste 
+  composeYaml: Fichier YAML Docker Compose
+tooltipWarning:
+  notConfigured: Contrôle d’accès non configuré
+  dismiss: Abandonner
+upgradeBtn:
+  version:
+    current: 'Courante'
+  status:
+    none: 'Aucun'
+    loading: 'Vérification des mises à jour...'
+    current: 'À jour'
+    available: 'Mise à jour disponible'
+    inprogress: 'Mise à niveau en cours'
+    upgraded: 'Mis à jour : Finir la Mise à Niveau'
+    notfound: 'Version du modèle non trouvée'
+    error: 'Erreur pendant la recherche de mise à jour'
+viewEditDescription:
+  form:
+    name:
+      placeholder: par exemple lab
+    description:
+      placeholder: par exemple l’environnement d’expérimentation des développeurs
+viewEditProject:
+  showEdit:
+    edit: "Modifier l’Environnement :"
+    add: Ajouter un Environnement
+    template: Modèle d'Environnement
+    accessControl: Contrôle d'Accès
+    noMembers: Ajouter un ou plusieurs membres qui peuvent utiliser cet environnement.
+  networkPolicy:
+    unsupported: Cet environnement a des règles de stratégie de réseau qui ne sont pas encore supportés par l’interface utilisateur.  S’il vous plaît utiliser l’API pour gérer la politique.
+    noManager: Les stratégies de réseau sont disponibles uniquement pour les environnements utilisant Cattle Orchestration avec le modèle de gestionnaire de règles d’infrastructure réseau déployé.
+    allow: Autoriser
+  header: "Environnement :"
+  description: Description
+  helpBlock: |
+    Le contrôle d’accès n’est pas activé. <br/> Toute personne ayant accès à l’API/interface utilisateur agit en tant qu’administrateur et sera en mesure d’utiliser n’importe quel environnement.
+vmConsole:
+  header: "Console :"
+  protip: 'Astuce : Maintenez la touche {key} lors de l’ouverture de la console pour lancer une nouvelle fenêtre.'
+  canvas: Canvas non supporté.
+  footerActions:
+    buttonSend: Envoyer Ctrl-Alt-Delete
+    buttonCancel: Fermer
+volumeRow:
+  mounts:
+    readOnly: "(lecture seule)"
+waitOrchestration:
+  count: '({sub} sur {count})'
+waitKubernetes:
+  addHost: 'Ajouter au moins un hôte'
+  activateHost: 'En attente qu’un hôte soit actif'
+  createStack: 'En création de la pile système Kubernetes'
+  startServices: 'Démarrage des services'
+  waitApi: 'En attente de l''API Kubernetes'
+waitMesos:
+  addHost: 'Ajouter au moins trois hôtes'
+  activateHost: 'En attente que les hôtes soient actifs'
+  createStack: 'Création de la pile système Mesos'
+  startServices: 'Démarrage des services'
+  waitApi: 'Attente de pilotage du Master Mesos'
+waitSwarm:
+  addHost: 'Ajouter au moins un hôte'
+  activateHost: 'En attente qu’un hôte soit actif'
+  createStack: 'En création de la pile système Swarm'
+  startServices: 'Démarrage des services'
+containerChoices:
+  hostGroup: 'Hôte : {name}'
+  hostGroupWithState: 'Hôte : {name} ({state})'
+  unknownHost: 'Hôte : ???'
+  containerOption: "{name}"
+driver:
+  multiHostNames: "Les Hôtes s’appelleront <b>{first}</b> &mdash; <b>{last}</b>"
+allServices:
+  stackGroup: 'Pile : {name}'
+nav:
+  srToggleDropdown: Activer/Désactiver la liste déroulante 
+  environment:
+    label: Environnement
+    all: All Environnements
+    your: Your Environnements
+    selected: Environnement Sélectionné
+    manage: Manage Environnements
+    edit: 'Éditer "{name}"'
+  notReady: En cours...
+  k8s:
+    tab: Kubernetes
+  swarm:
+    tab: Swarm
+    cli: Interface de Ligne de Commande (CLI)
+    system: Infrastructure
+  mesos:
+    tab: Mesos
+    web: Aperçu
+    system: Infrastructure
+  catalog:
+    all: Tout
+    library: Bibliothèque
+    community: Communauté
+  infra:
+    storagePage: Stockage
+    certificates: Certificats
+    registries: Registres
+    secrets: Secrets
+  admin:
+    tab: Administrateur
+    audit: Journaux de Logs
+    processes: Processus
+    accounts: Utilisateurs
+    access: Authentification
+    machine: Pilotes Docker Machine
+    settings: Préférences
+    ha: Haute-Disponibilité
+  user:
+    label: 'Menu Utilisateur : {username}'
+    logout: Deconnecter
+action:
+  activate: Activer
+  cancelUpgrade: Annuler
+  cancelRollback: Annuler
+  clone: Cloner
+  console: Ouvrir une Console
+  deactivate: Desactiver
+  edit: Editer
+  execute: Lancer un Shell
+  exportConfig: Exporter Config
+  finishUpgrade: Terminer mise à jour
+  logs: Voir les Logs
+  machineConfig: Configuration de Docker Machine
+  remove: Supprimmer
+  replay: Rejouer
+  restart: Redemarrer
+  retry: Relancer
+  rollback: Retablir
+  setDefault: Definir par Default
+  start: Demarrer
+  stop: Arreter
+  upgrade: Mettre à jour
+  upgradeOrEdit: Mettre à jour/Modifier
+  viewConfig: Voir Config
+  viewGraph: Voir Graph
+  viewInApi: Vue dans l'API
+  viewInstance: Voir l'Instance
+validation:
+  required: '« {key} » est requis'
+  number:
+    exactly: '« {key} » devrait être exactement {val}'
+    between: '« {key} » doit être comprise entre {min} et {max}'
+    min: '« {key} » doit être au moins {val}'
+    max: '« {key} » doit être au plus {val}'
+model:
+  account:
+    kind:
+      registeredAgent: Agent Enregistré
+      agent: Agent
+      service: Service
+      user: Utilisateur
+      admin: Administrateur
+      project: Environnement
+  identity:
+    displayType:
+      user: Utilisateur
+      team: Équipe
+      group: Groupe
+      org: Organisation 
+      localUser: Utilisateur Local
+      unknown: "{type} ?"
+  projectMember:
+    role:
+      member: Membre
+      owner: Propriétaire
+      readonly: Lecture Seule
+      restricted: Restreint
+  scaleService:
+    min: Échelle Minimale
+    max: Échelle Maximale
+    amount: Par

@@ -1,0 +1,34 @@
+<section class="has-tabs clearfix row">
+  <h1 class="col span-2" style="margin-top: 8px">{{input type="text" value=model.pipeline.name classNames="form-control" placeholder="Pipeline Name"}}</h1>
+</section>
+
+<section class="pipeline-container">
+  {{pipeline-stages
+    pipeline=model.pipeline
+    stagesDraggable=true
+    accounts=model.accounts
+    model=stages
+    editable=true
+    editMode="new"
+  }}
+</section>
+
+<div class="mt-10"></div>
+{{pipeline/pipeline-parameters
+  pipeline=model.pipeline
+}}
+
+<div class="mt-10"></div>
+{{pipeline/pipeline-trigger
+  model=model
+  initial=true
+}}
+
+<div class="mt-10"></div>
+{{top-errors errors=errors}}
+
+<div class="mt-20"></div>
+<div class="text-center pipeline-wrap-header-button">
+    {{#save-cancel class="pipeline-save-cancel" createLabel="newPipeline.add" save="save" cancel="cancel"}}
+    {{/save-cancel}}
+  </div>

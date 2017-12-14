@@ -1,0 +1,47 @@
+<section class="header has-tabs clearfix">
+  <ul class="tab-nav">
+    <li>{{#link-to "containers.index" projects.current.id}}{{t 'nav.containers.containers'}}{{/link-to}}</li>
+    <li>{{#link-to "balancers.index" projects.current.id}}{{t 'nav.containers.balancers'}}{{/link-to}}</li>
+    <li>{{#link-to "dns.index" projects.current.id}}{{t 'nav.containers.dns'}}{{/link-to}}</li>
+    <li>{{#link-to "volumes.index" projects.current.id}}{{t 'nav.containers.volumes'}}{{/link-to}}</li>
+  </ul>
+
+  <div class="right-buttons">
+    {{#if (and (not simpleMode) tagChoices)}}
+      <div class="input-group inline-block mr-10">
+        <span class="input-group-btn inline-block">
+          <button type="button" class="btn bg-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="icon icon-tag"></i> {{if tags tags "All"}} <i class="icon icon-chevron-down"></i></button>
+          <ul class="dropdown-menu" role="menu">
+            <li role="presentation" class="dropdown-header">
+              Stack Tags
+            </li>
+            <li>
+              <a {{action "setTags" ""}}>
+                <i class="icon icon-tag"></i>
+                All
+              </a>
+            </li>
+            <li class="divider"></li>
+            {{#each tagChoices as |tag|}}
+              <li>
+                <a {{action "setTags" tag}}>
+                  <i class="icon icon-tag"></i>
+                  {{tag}}
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        </span>
+      </div>
+    {{/if}}
+
+    {{#unless simpleMode}}
+      <div class="btn-group p-0 mr-10">
+        {{#link-to (query-params byStack="0") classNames="btn btn-sm bg-default" tooltip=(t 'nav.containers.groupNone')}}<i class="icon icon-list"></i>{{/link-to}}
+        {{#link-to (query-params byStack="1") classNames="btn btn-sm bg-default" tooltip=(t 'nav.containers.groupStack')}}<i class="icon icon-list-nested"></i>{{/link-to}}
+      </div>
+    {{/unless}}
+
+    {{yield}}
+  </div>
+</section>

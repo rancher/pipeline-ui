@@ -1,0 +1,25 @@
+<div class="pt-20"></div>
+<div>
+  <label>{{input type="checkbox" checked=otherEnv disabled=(if (eq modalOpts.type 'review') true false)}} {{t 'newPipelineStep.stepType.targetEnv.label'}}</label>
+  <p class="text-small text-info">{{t 'newPipelineStep.stepType.targetEnv.tip'}}</p>
+  {{#if otherEnv}}
+    <div class="pt-20"></div>
+    <div class="inline-form">
+      <label>{{t 'publicEndpoints.endpoint'}}</label>
+      <div class="pt-10"></div>
+      {{input class="form-control" value=model.endpoint placeholder="http://myranhcer/v*/project/***" disabled=(if (eq modalOpts.type 'review') true false)}}
+    </div>
+    <div class="pt-20"></div>
+    <div class="inline-form">
+      <label>{{t 'editApiKey.publicValue.label'}}</label>
+      <div class="pt-10"></div>
+      {{input class="form-control" value=model.accesskey placeholder="*****" disabled=(if (eq modalOpts.type 'review') true false)}}
+    </div>
+    <div class="pt-20"></div>
+    <div class="inline-form">
+      <label>{{t 'editApiKey.secretValue.label'}}</label>
+      <div class="pt-10"></div>
+      {{input class="form-control" type="password" value=model.secretkey placeholder="*****" disabled=(if (eq modalOpts.type 'review') true false)}}
+    </div>
+  {{/if}}
+</div>

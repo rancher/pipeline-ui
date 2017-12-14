@@ -1,0 +1,15 @@
+<td data-title="{{t 'generic.state'}}:" class="state">
+  {{badge-state model=model}}
+</td>
+<td data-title="{{t 'registryRow.address'}}:">
+  {{model.displayAddress}}
+</td>
+<td data-title="{{t 'registryRow.username'}}:">
+  {{#if model.credential.publicValue}}{{model.credential.publicValue}}{{else}}<i class="text-muted">{{t 'generic.none'}}</i>{{/if}}
+</td>
+<td data-title="{{t 'registryRow.created'}}:">
+  {{date-calendar model.created}}
+</td>
+<td data-title="{{t 'generic.actions'}}:" align="actions">
+  {{action-menu model=model}}
+</td>

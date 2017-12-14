@@ -1,0 +1,82 @@
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.build.source'}}</label>
+  <div class="pt-10"></div>
+  <label class="mr-30">{{radio-button selection=selectedModel.sourceType value="sc" disabled=(if (eq modalOpts.type 'review') true false)}}
+      {{t 'newPipelineStep.stepType.build.readSourceCode'}}
+  </label>
+  <label class="mr-30">{{radio-button selection=selectedModel.sourceType value="file" disabled=(if (eq modalOpts.type 'review') true false)}}
+      {{t 'newPipelineStep.stepType.build.readFile'}}
+  </label>
+</div>
+{{#if (eq selectedModel.sourceType 'file')}}
+  <div class="pt-20"></div>
+  {{#if (eq modalOpts.type 'review')}}
+    {{pipeline/pipeline-codemirror
+      value=selectedModel.dockerFileContent
+      valueUpdated=(action (mut selectedModel.dockerFileContent))
+      options=(hash autofocus=true theme="monokai" lineNumbers=true mode="dockerfile" addon="hint/anyword-hint.js" readOnly=(if (eq modalOpts.type 'review') true false))
+    }}
+  {{else}}
+    {{pipeline/pipeline-input-code-file
+      name="Dockerfile"
+      canChangeName=false
+      mode="dockerfile"
+      value=selectedModel.dockerFileContent
+      placeholder="newStack.dockerCompose.placeholder"
+    }}
+  {{/if}}
+{{else}}
+  <div class="pt-20"></div>
+  <div class="inline-form">
+    <label>{{t 'newPipelineStep.stepType.build.dockerFilePath'}}{{field-required}}</label>
+    <div class="pt-10"></div>
+    {{input class="form-control" value=selectedModel.dockerFilePath placeholder="Dockerfile Path" disabled=(if (eq modalOpts.type 'review') true false)}}
+  </div>
+{{/if}}
+
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.build.buildPath'}}{{field-required}}</label>
+  <div class="pt-10"></div>
+  {{input class="form-control" value=selectedModel.buildPath placeholder="Dockerfile Path" disabled=(if (eq modalOpts.type 'review') true false)}}
+</div>
+
+<div class="pt-20"></div>
+<div class="inline-form">
+  <label>{{t 'newPipelineStep.stepType.build.imageTag'}}{{field-required}}</label>
+  <div class="pt-10"></div>
+  {{#if (eq modalOpts.type 'review')}}
+    {{input class="form-control" value=selectedModel.targetImage placeholder="hello-world:latest" disabled=(if (eq modalOpts.type 'review') true false)}}
+  {{else}}
+    {{input-suggest
+      value=selectedModel.targetImage
+      choices=pipeline.images
+      placeholder="hello-world:latest"
+    }}
+  {{/if}}
+</div>
+
+<div class="pt-20"></div>
+<div class="inline-form">
+  <div class="pt-10"></div>
+  <label>
+    {{#if detectingPush}}
+      <i class="icon icon-spinner icon-spin"></i>
+    {{else}}
+      {{check-box class="form-control" checked=selectedModel.push 
+        disabled=(if (eq modalOpts.type 'review') true (if selectedModel.targetImage false true))
+      }}
+    {{/if}}
+    {{t 'newPipelineStep.stepType.build.push'}} {{#if (not-eq detectingPush true)}}{{#if selectedModel.push}}{{#if matchedRegistry}} <i class="icon icon-check text-success"></i> {{else}} <i class="icon icon-x text-error"></i> {{/if}}{{/if}}{{/if}}
+  </label>
+</div>
+{{#if selectedModel.push}}
+  {{#if (not-eq detectingPush true)}}
+  {{#if matchedRegistry}}
+    <p class="text-info">{{t 'newPipelineStep.stepType.build.pushTo'}} <code>{{matchedRegistry.serverAddress}}</code></p>
+  {{else}}
+    <p class="text-error">{{t 'newPipelineStep.stepType.build.pushWarning1'}}<code>{{resolvedRegistry}}</code> {{t 'newPipelineStep.stepType.build.pushWarning2'}} <a href="{{registriesRoute}}" target="_blank">{{t 'newPipelineStep.stepType.build.here'}}</a>{{t 'newPipelineStep.stepType.build.pushWarning3'}}</p>
+  {{/if}}
+  {{/if}}
+{{/if}}

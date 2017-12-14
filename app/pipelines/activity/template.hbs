@@ -1,0 +1,52 @@
+<section class="header has-tabs clearfix">
+  <h1 class="col span-5">
+    <p style="margin:0;line-height:1.5" class="text-small">#{{model.activity.runSequence}}</p>
+    <p style="margin:0;line-height:1" class="text-small text-italic text-muted">by {{model.activity.pipelineSource.name}}</p>
+  </h1>
+
+  <div class="right-buttons">
+    {{#if model.activity.actionLinks.rerun}}
+    <button class="btn bg-link btn-sm icon-btn p-0" {{action 'run'}} disabled={{disableRerun}}>
+        <span class="darken"><i class="icon icon-refresh text-small"/></span>
+        <span>Run Again</span>
+    </button>
+    {{/if}}
+
+    {{#if model.activity.actionLinks.stop}}
+    <button class="btn bg-link btn-sm icon-btn p-0" {{action 'stop'}} disabled={{disableStop}}>
+        <span class="darken"><i class="icon icon-stop text-small"/></span>
+        <span>Stop</span>
+    </button>
+    {{/if}}
+  </div>
+</section>
+
+<section class="pipeline-container">
+  {{pipeline-stages 
+    pipeline=model.activity.pipelineSource
+    stagesDraggable=false 
+    review=true 
+    model=model.activity.pipelineSource.stages}}
+</section>
+
+<div class="mt-10"></div>
+{{pipeline/pipeline-parameters
+  pipeline=model.activity.pipelineSource
+  preview=true
+}}
+
+<div class="mt-40"></div>
+<section class="header has-tabs clearfix">
+  <ul class="tab-nav">
+    <li>
+      <a href="javascript:void(0);" class="{{if isHistory 'active'}} ember-view">Records</a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  {{pipeline/table-activity
+    filteredPipelineHistory=filteredPipelineHistory
+    expendAll=true
+  }}
+</section>

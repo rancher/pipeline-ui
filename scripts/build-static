@@ -1,0 +1,232 @@
+#!/bin/bash
+
+set -eu
+
+BUILD_DEBUG="${BUILD_DEBUG:-}"
+if [[ -n "${BUILD_DEBUG}" ]]; then
+    set -x
+fi
+
+: ${CI_BRANCH=""}
+: ${UPLOAD_LATEST=""}
+
+# cd to app root
+CWD=$(dirname $0)
+if [[ `basename $(pwd)` = 'scripts' ]]; then
+  cd ../
+else
+  cd `dirname $CWD`
+fi
+
+source ./scripts/utils.sh
+
+# -------------------------------------
+
+function printHelp() {
+    cat 1>&2 <<EOF
+build-static Usage:
+  -d - Build debug instead of production build
+  -f - Force: Turn off checks that prevent you from doing bad things
+  -l - Build as "latest" instead of the version in package.json
+  -t - Tag and push tag
+  -u - Upload to GCE
+  -s - Skip tests
+  -c=CDN - Force a CDN path for static asset delivery. Default <releases.rancher.com/ui>
+  -v=VERSION - Force version to be VERSION instead of what is in package.json
+  -p=PROJECT_NAME - name of the Google Cloud project hosting the storage bucket
+EOF
+  exit 1;
+}
+
+# -------------------------------------
+
+# Parse options
+BRANCH=$CI_BRANCH
+CDN="releases.rancher.com/ui"
+
+if [[ -z "$BRANCH" ]]; then
+  BRANCH=$(git symbolic-ref HEAD | sed -e "s/^refs\/heads\///")
+fi
+
+if [[ -z "$BRANCH" ]]; then
+  BRANCH="master"
+fi
+
+PKG_VERSION=$(cat package.json | grep version | head -n 1 | cut -f4 -d'"')
+FORCE=0
+LATEST=0
+MODE=""
+UPLOAD=0
+TAG=0
+TEST=1
+ENVIRONMENT="production"
+FINGERPRINT="yes"
+: ${FORCE_VERSION:=""}
+GS_PROJECT_NAME="${GS_PROJECT_NAME:-Rancher}"
+
+while getopts ":dlustfv:c:p:m:" opt;do
+    case $opt in
+    d)
+        ENVIRONMENT="development"
+        ;;
+    f)
+        FORCE=1
+        ;;
+    l)
+        LATEST=1
+        ;;
+    m)
+        MODE=$OPTARG
+        ;;
+    s)
+        TEST=0
+        ;;
+    t)
+        TAG=1
+        ;;
+    u)
+        UPLOAD=1
+        ;;
+    v)
+        FORCE_VERSION=$OPTARG
+        ;;
+    c)
+        CDN=$OPTARG
+        ;;
+    p)
+        GS_PROJECT_NAME=$OPTARG
+        ;;
+    \?)
+        echo "Invalid arguemnt: ${OPTARG}"
+        printHelp
+        exit 1
+        ;;
+    :)
+        echo "Option -${OPTARG} requires an argument." >&2
+        printHelp
+        exit 1
+        ;;
+    esac
+done
+
+# Why are you trying to do a build when there are uncommitted changes?
+if [[ `git status --porcelain` ]]; then
+  echo "There are uncommited changes.  Please check the number and try again."
+  if [[ $FORCE -ne 1 ]]; then
+    exit 1;
+  fi
+fi
+
+# UPLOAD_LATEST=true is set by Drone for auto upload to CDN
+if [[ "${BRANCH}" == "master" ]] && [[ "${UPLOAD_LATEST}" == "true" ]]; then
+  UPLOAD=2
+  LATEST=1
+fi
+
+# Sanity checking
+if [[ $LATEST -eq 1 ]] && [[ $TAG -eq 1 ]]; then
+  echo "You can't tag latest."
+  if [[ $FORCE -ne 1 ]]; then
+    exit 1;
+  fi
+fi
+
+if ( [[ $TAG -eq 1 ]] || [[ $UPLOAD -ne 0 ]] ) && [[ "${BRANCH}" != "master" ]]; then
+  echo "You can only tag or upload the master branch (you are on '${BRANCH}')."
+  if [[ $FORCE -ne 1 ]]; then
+    exit 1;
+  fi
+fi
+
+if [[ "${FORCE_VERSION}" != "" ]]; then
+  VERSION=${FORCE_VERSION}
+else
+  if [[ $LATEST -eq 1 ]]; then
+    VERSION="latest"
+  else
+    VERSION=${PKG_VERSION}
+  fi
+fi
+
+if [[ $LATEST -eq 1 ]]; then
+  FINGERPRINT="no"
+fi
+
+BUILD_PAR="dist/static"
+BUILD_DIR="${BUILD_PAR}/${VERSION}"
+BUILD_TGZ="${BUILD_PAR}/${VERSION}.tar.gz"
+GS_URL="${GS_URL:-gs://${CDN}}"
+
+GCLOUD_UUID="google/cloud-sdk@sha256:506775439bd4f44d90a3f6784f2b625e55c43635f9f2c4cae24ac4b3dea0277a"
+
+echo "Branch: ${BRANCH}"
+if [[ "${VERSION}" != "${PKG_VERSION}" ]]; then
+  echo "Package Version: ${PKG_VERSION}"
+fi
+echo "Version: ${VERSION}"
+echo "Build Dir: ${BUILD_DIR}"
+echo "Options: Force=${FORCE}, Mode=${MODE}, Latest=${LATEST}, Test=${TEST}, Upload=${UPLOAD}, Tag=${TAG}"
+echo "Current Directory: $(pwd)"
+
+if [[ $TEST -eq 1 ]]; then
+  echo "Testing..."
+  runCmd ./node_modules/.bin/ember test
+  echo "Done Testing."
+else
+  echo "Skipping Tests"
+fi
+
+if [[ $LATEST -ne 1 ]]; then
+  echo "Building Static Tarball..."
+  UI_MODE="${MODE}" RANCHER="" CATALOG="" runCmd ./node_modules/.bin/ember build --environment=${ENVIRONMENT} --output-path=${BUILD_DIR}
+
+  # Create a file containing the version
+  echo "${PKG_VERSION}" > ${BUILD_DIR}/VERSION.txt
+
+  # Create a tarball of the version
+  runCmd tar -czf ${BUILD_TGZ} -C ${BUILD_PAR} ${VERSION}
+fi;
+
+echo "Building Hosted Version..."
+UI_MODE="${MODE}" FINGERPRINT="${FINGERPRINT}" RANCHER="" CATALOG="" BASE_ASSETS="//${CDN}/${VERSION}/" runCmd ./node_modules/.bin/ember build --environment=${ENVIRONMENT} --output-path=${BUILD_DIR}
+
+# Create a file containing the version
+echo "${PKG_VERSION}" > ${BUILD_DIR}/VERSION.txt
+
+if [[ $TAG -eq 1 ]]; then
+  runCmd git tag v${VERSION}
+  runCmd git push --tags
+fi
+
+# Upload asset, either from laptop or from CI pipeline
+if [[ -n "$UPLOAD" ]]; then
+  echo "Uploading..."
+
+  ABS_BUILD_DIR="$(pwd)/${BUILD_DIR}"
+  GS_UPLOAD_COMMAND="gcs_upload_asset project_name=${GS_PROJECT_NAME} version=${VERSION} upload_target=${GS_URL}"
+
+  if [[ $LATEST -ne 1 ]]; then
+    GS_UPLOAD_COMMAND+=" tgz_file=${BUILD_TGZ}"
+  else
+    GS_UPLOAD_COMMAND+=" is_latest=true"
+  fi
+
+  if [[ $UPLOAD -eq 1 ]]; then
+    runCmd "${GS_UPLOAD_COMMAND} upload_source=${BUILD_DIR} disable_svcacct_auth=true"
+  fi
+
+  if [[ $UPLOAD -eq 2 ]]; then
+    GS_SERVICE_ACCOUNT_KEYFILE="$(TMPDIR=$(pwd) && mktemp -t gs_service_account_keyfile.XXXXXXX)"
+    echo "${GS_SERVICE_ACCOUNT_KEY}" > "${GS_SERVICE_ACCOUNT_KEYFILE}"
+
+    GS_UPLOAD_COMMAND+=" service_account_id=${GS_SERVICE_ACCOUNT_ID}"
+    runCmd "docker run --rm --name gcloud-config \
+            -v ${GS_SERVICE_ACCOUNT_KEYFILE}:/tmp/keyfile.json \
+            -v $(pwd)/scripts:/opt/rancher/scripts \
+            -v ${ABS_BUILD_DIR}:/upload \
+            ${GCLOUD_UUID} \
+            /opt/rancher/scripts/${GS_UPLOAD_COMMAND}"
+
+    rm "${GS_SERVICE_ACCOUNT_KEYFILE}"
+  fi
+fi

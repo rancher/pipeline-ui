@@ -1,0 +1,110 @@
+{{#if settings.isRancher}}
+  <div class="row bg-info p-10 text-mono" style="color: white;">
+  <div class="col span-4 text-right">
+      <large class="text-uppercase">{{settings.appName}}</large>
+      <div><i class="icon icon-container"/> x {{containerCount}}</div>
+    </div>
+    <div class="col span-4 text-right">
+      <large></large>
+      <div>022482</div>
+    </div>
+    <div class="col span-2 text-right">
+    <large class="text-uppercase">{{t 'modalShortcuts.world'}}</large>
+    <div>1-2</div>
+  </div>
+
+  <div class="col span-2 text-right">
+    <large class="text-uppercase">{{t 'modalShortcuts.time'}}</large>
+    <div>{{time}}</div>
+  </div>
+  </div>
+
+{{/if}}
+
+<h1 class="text-mono text-center pt-20">{{t (if settings.isRancher 'modalShortcuts.title.rancher' 'modalShortcuts.title.pl')}}</h1>
+
+<div class="row">
+  <div class="col span-6">
+      <h3 class="m-0">{{t 'modalShortcuts.navigation'}}</h3>
+      <hr class="mt-5 mb-15">
+      <p class="m-5">
+        <span width="90"><code>a</code></span>
+        <span>{{t 'modalShortcuts.a'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>b</code></span>
+        <span>{{t 'modalShortcuts.b'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>c</code></span>
+        <span>{{t 'modalShortcuts.c'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>d</code></span>
+        <span>{{t 'modalShortcuts.d'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>e</code></span>
+        <span>{{t 'modalShortcuts.e'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>h</code></span>
+        <span>{{t 'modalShortcuts.h'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>Shift-K</code></span>
+        <span>{{t 'modalShortcuts.k'}}</span>
+      </p>
+     <p class="m-5">
+        <span><code>v</code></span>
+        <span>{{t 'modalShortcuts.v'}}</span>
+      </p>
+  </div>
+  <div class="col span-6">
+      <h3 class="m-0">{{t 'modalShortcuts.other'}}</h3>
+      <hr class="mt-5 mb-15">
+      <p class="m-5">
+        <span width="90"><code>g</code></span>
+        <span>{{t 'modalShortcuts.g'}}</span>
+      </p>
+      <p class="m-5">
+        <span width="90"><code>n</code></span>
+        <span>{{t 'modalShortcuts.n'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>s</code></span>
+        <span>{{t 'modalShortcuts.s'}}</span>
+      </p>
+      <p class="m-5">
+        <span width="90"><code>t</code></span>
+        <span>{{t 'modalShortcuts.t'}}</span>
+      </p>
+      <p class="m-5">
+        <span width="90"><code>Shift-T</code></span>
+        <span>{{t 'modalShortcuts.theme' currentTheme=currentTheme}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>/</code></span>
+        <span>{{t 'modalShortcuts.slash'}}</span>
+      </p>
+      <p class="m-5">
+        <span><code>?</code></span>
+        <span>{{t 'modalShortcuts.question'}}</span>
+      </p>
+
+    {{#if isAdmin}}
+      <div>
+        <h3 class="m-0">{{t 'modalShortcuts.admin'}}</h3>
+        <hr class="mt-5 mb-15">
+        <p class="m-5">
+          <span width="90"><code>p</code></span>
+          <span>{{t 'modalShortcuts.p'}}</span>
+        </p>
+      </div>
+    {{/if}}
+  </div>
+</div>
+
+<div class="footer-actions">
+  <button {{action "cancel"}} class="btn bg-primary">{{t 'generic.closeModal'}}</button>
+</div>

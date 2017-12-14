@@ -1,0 +1,53 @@
+{{top-errors errors=errors}}
+<section class="header clearfix">
+    <h2>Run Pipeline</h2>
+</section>
+
+<div class="pt-20"></div>
+<div class="row">
+  <div class="col span-12">
+    <label class="pb-5">Pipelines</label>
+    <div class="pt-10"></div>
+    {{pipeline/pipeline-approver-search-input
+        model=pipelineList
+        approverSelect=(action 'pipelineSelect')
+    }}
+    <div class="pt-10"></div>
+    <section class="instances">
+      {{#sortable-table
+        classNames="grid sortable-table"
+        bulkActions=false
+        paging=true
+        fullRows=true
+        search=false
+        sortBy=sortBy
+        headers=headers
+        body=selectedList
+        fullRows=true
+        as |sortable kind model dt|
+      }}
+      <tr class="main-row">
+        {{#if (eq kind "row")}}
+          <td data-title="{{t 'generic.name'}}:" >
+            {{model.name}}
+          </td>
+          <td data-title="{{t 'generic.name'}}:" >
+          {{#tooltip-element style="100%;" inlineBlock=true type="tooltip-basic" tooltipTemplate="tooltip-static" model=(date-str model.lastRunTime) tagName="span" tooltipFor="tooltip-basic"}}
+              <p class="mt-0 mb-0">#{{model.runCount}} {{model.lastRunStatus}}</p>
+              <p class="text-muted text-italic text-small mt-0 mb-0">{{date-from-now model.lastRunTime}}</p>
+            {{/tooltip-element}}
+          </td>
+          <td data-title="{{t 'generic.actions'}}:" class="actions">
+            <a href="javascript:;" {{action "pipelineSelect" model}}><i class="icon icon-close text-error"></i></a>
+          </td>
+        {{else if (eq kind "norows")}}
+          <td colspan="{{if isLocal '6' '5'}}" class="text-center pt-20 pb-20"><span class="text-muted">Not found what you need? click</span> <a href="javascript:void(0);" {{action "toAddPipelinePage"}}>here</a><span class="text-muted"> to add a new pipeline</span></td>
+        {{/if}}
+      </tr>
+      {{/sortable-table}}
+    </section>
+ </div>
+</div>
+
+{{#save-cancel classNames=className createLabel="pipelinesPage.run" save="save" cancel="cancel"}}
+{{/save-cancel}}

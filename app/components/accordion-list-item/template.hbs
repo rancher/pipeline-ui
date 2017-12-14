@@ -1,0 +1,15 @@
+<div class="accordion-header" {{action expand this}} class={{className}}>
+  <div class="expand"><i role="button" class="icon icon-play eased text-small btn bg-transparent p-10 {{if expanded 'icon-rotate-90'}}"><span class="visually-hidden">Open accordion</span></i></div>
+  <div class="title">
+    <span class="m-0">{{title}}</span>
+    <p class="help-block">{{detail}}</p>
+  </div>
+  <div class="badge-state {{statusClass}}">
+    {{status}}
+  </div>
+</div>
+<div class="accordion-content {{unless expanded 'hide'}}">
+  {{#if everExpanded}}
+    {{yield this}}
+  {{/if}}
+</div>

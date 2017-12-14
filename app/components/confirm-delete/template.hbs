@@ -1,0 +1,27 @@
+{{#if showProtip}}
+  <div class="protip">{{t 'confirmDelete.protip' key=alternateLabel}}</div>
+  <hr>
+{{/if}}
+<div class="container-header-text">
+  {{t 'confirmDelete.title'}}:
+  <div class="display-name">
+    {{#if (lte resources.length 10)}}
+      {{#each resources as |resource|}}
+          <div>{{resource.displayName}}</div>
+      {{/each}}
+    {{else}}
+      <div>{{t 'confirmDelete.largeDeleteText' key=resources.firstObject.displayName othersCount=(sub resources.length 1)}}</div>
+    {{/if}}
+  </div>
+</div>
+
+{{#if isEnvironment}}
+  <div class="mb-15">
+    {{t 'confirmDelete.environmentNote' appName=settings.appName}}
+  </div>
+{{/if}}
+
+<div class="footer-actions">
+  <button {{action "confirm"}} class="btn bg-error">{{t 'confirmDelete.confirmAction'}}</button>
+  <button {{action "cancel"}} class="btn bg-transparent">{{t 'confirmDelete.cancelAction'}}</button>
+</div>
