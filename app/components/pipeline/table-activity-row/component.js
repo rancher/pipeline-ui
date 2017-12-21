@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  stageIndex: 0,
-  stepIndex: 0,
-  activityLogs: null,
   init(){
     this._super();
     this.set('activityLogs', {});
@@ -18,16 +15,20 @@ export default Ember.Component.extend({
     if(runningStep === -1) {
       return
     }
-    this.get('logModel').set('stageIndex',runningStage);
-    this.get('logModel').set('stepIndex',runningStep);
+    this.get('logModel').setProperties({
+      'stageIndex': runningStage,
+      'stepIndex': runningStep
+    });
   }.observes('activity.activity_stages.@each.status'),
   logModel: function(){
     return this.get('logStatus')[this.get('index')];
-  }.property('logStatus.{stageIndex,stepIndex}','index'),
+  }.property('logStatus.@each.{stageIndex,stepIndex,activityLogs}','index'),
   actions: {
     showLogsActivity: function(model,stageIndex,stepIndex){
-      this.get('logModel').set('stageIndex',stageIndex);
-      this.get('logModel').set('stepIndex',stepIndex);
+      this.get('logModel').setProperties({
+        'stageIndex': stageIndex,
+        'stepIndex': stepIndex
+      });
     },
   }
 });

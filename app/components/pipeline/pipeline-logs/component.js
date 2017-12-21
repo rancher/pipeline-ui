@@ -64,26 +64,36 @@ export default Ember.Component.extend(ThrottledResize, {
       return
     }
     return inst.activityLogs[key];
-  }.property('instance.stageIndex','instance.stepIndex', 'showLogsTrigger'),
+  }.property('instance.{stageIndex,stepIndex,activityLogs}', 'showLogsTrigger'),
   showLogsTrigger: '',
   observeInstance: function() {
-    this.disconnect();
-    Ember.run.next(this, 'exec');
-  }.observes('instance'),
+    let status = this.get('status');
+    let socket = this.get('socket');
+    if(status === 'connected' && socket){
+      this.disconnect();
+      Ember.run.next(this, 'exec');
+    }else{
+      this.exec();
+    }
+  }.observes('instance.{stageIndex,stepIndex}'),
   didInsertElement: function() {
     this._super();
     // Ember.run.next(this, 'exec');
   },
 
   exec: function() {
-    this.connect();
+    let status = this.get('status');
+    if(status=== 'connecting' || status=== 'disconnected'){
+      this.connect();
+    }
   },
 
   connect: function() {
-
     this.set('status', 'initializing');
     var body = this.$('.log-body')[0];
     var $body = $(body);
+    // inst should be get from outside of the onmessage, cause inst may have changed when onmessage callback 
+    var inst = this.get('instance');
     var onmessage = (message) => {
       this.set('status', 'connected');
 
@@ -114,7 +124,7 @@ export default Ember.Component.extend(ThrottledResize, {
           AnsiUp.ansi_to_html(Util.escapeHtml(msg)) +
           '</div>';
       });
-      var inst = this.get('instance');
+      
       var logsAry = inst.activityLogs;
       var key = inst.stageIndex + '-' + inst.stepIndex;
       Ember.set(logsAry, key, logs);
@@ -127,9 +137,8 @@ export default Ember.Component.extend(ThrottledResize, {
       // }
     };
 
-    var instance = this.get('instance');
-    var activity = instance.activity;
-    var params = `?activityId=${activity.id}&stageOrdinal=${instance.stageIndex}&stepOrdinal=${instance.stepIndex}`;
+    var activity = inst.activity;
+    var params = `?activityId=${activity.id}&stageOrdinal=${inst.stageIndex}&stepOrdinal=${inst.stepIndex}`;
     var url = ("ws://" + window.location.host + this.get('pipeline.pipelinesEndpoint') + '/ws/log' + params);
     var socket = new WebSocket(url);
     this.set('socket', socket);
