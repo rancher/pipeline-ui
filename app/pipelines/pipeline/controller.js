@@ -15,7 +15,9 @@ export default Ember.Controller.extend({
     if(!pipelineHistory){
       return;
     }
-    let filteredPipelineHistory = pipelineHistory.filter(ele=>ele.pipelineSource.id === pipeline.id);
+    let filteredPipelineHistory = pipelineHistory
+      .filter(ele=>ele.pipelineSource.id === pipeline.id)
+        .sort((a,b)=>b.start_ts - a.start_ts);
     return filteredPipelineHistory;
   }.property('pipelineHistory'),
   editable: function(){
