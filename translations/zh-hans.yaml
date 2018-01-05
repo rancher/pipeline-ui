@@ -256,6 +256,7 @@ authPage:
           text2: '点击 "Save application" '
       form:
         header: '2. 设置 {appName} 使用你的GitHub应用验证'
+        headerVariable: '2. 设置 {appName} 使用你的 {SCM} 应用验证'
         subtext: '将新创建GitHub应用的Client ID和Secret复制粘贴到下方的对应输入框中'
         subtextVariable: '将新创建{GitHub}应用的Client ID和Secret复制粘贴到下方的对应输入框中'
         clientId:
@@ -271,6 +272,7 @@ authPage:
         enterpriseHost:
           labelText: 企业版主机
           placeholder: '例如:github.example.com'
+          placeholder2: '例如:gitlab.example.com'
     testAuth:
       header: '3. 测试并启用验证'
       subtext: '测试以确认你的配置是否正确'

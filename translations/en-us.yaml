@@ -299,7 +299,9 @@ authPage:
           text2: 'Click "Save application" '
       form:
         header: '2. Configure {appName} to use your application for authentication'
+        headerVariable: '2. Configure {appName} to use your {SCM} for authentication'
         subtext: 'Copy and paste the Client ID and Secret from the upper-right corner of your newly-created application.'
+        subtextVariable: 'Copy and paste the Client ID and Secret from the upper-right corner of your newly-created application.'
         clientId:
           labelText: Client ID
         clientSecret:

@@ -40,7 +40,7 @@ export default Ember.Service.extend({
   filterSystemStack(stacks) {
     return (stacks || []).find((stack) => {
       let info = stack.get('externalIdInfo');
-      return (info.kind === C.EXTERNAL_ID.KIND_CATALOG || info.kind === C.EXTERNAL_ID.KIND_SYSTEM_CATALOG) &&
+      return info && (info.kind === C.EXTERNAL_ID.KIND_CATALOG || info.kind === C.EXTERNAL_ID.KIND_SYSTEM_CATALOG) &&
         info.base === C.EXTERNAL_ID.KIND_INFRA &&
         info.name === 'pipeline';
     });

@@ -6,16 +6,16 @@ export default Ember.Route.extend({
   model: function() {
     var pipeline = this.get('pipeline');
     if(!pipeline.ready||!pipeline.ready.ready){
-      return []
+      return [];
     }
     var pipelineStore = this.get('pipelineStore');
     var model = pipelineStore.findAll('pipeline');
-    return model
+    return model;
   },
   afterModel: function(model, transition) {
     var params = transition.queryParams;
     if(params.forceLoad === 'true'){
-      return
+      return;
     }
     if(transition.intent.name === 'pipelines.ready' || transition.targetName === 'pipelines.ready.index'){
       // skip to pipelines page when there is no pipeline
