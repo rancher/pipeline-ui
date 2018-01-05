@@ -27,14 +27,14 @@ export default Ember.Component.extend(ModalBase, NewOrEdit, {
   sortBy: 'name',
   userList: [],
   errors: [],
-  syncParallel: function(){
+  syncParallel:  Ember.on('init',Ember.observer('parallel',function(){
     var parallel = this.get('parallel');
     if(parallel === 'true'){
       this.set('model.parallel', true);
     }else{
       this.set('model.parallel', false);
     }
-  }.observes('parallel'),
+  })),
   selectedList: function() {
     var selectedList = this.get('userList').filter(ele => !!ele.selected);
     return selectedList;
