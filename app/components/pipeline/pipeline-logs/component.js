@@ -83,7 +83,7 @@ export default Ember.Component.extend(ThrottledResize, {
 
   exec: function() {
     let status = this.get('status');
-    if(status=== 'connecting' || status=== 'disconnected'){
+    if(status === 'connecting' || status === 'disconnected' || status === 'closed'){
       this.connect();
     }
   },
