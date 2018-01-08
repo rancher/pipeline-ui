@@ -76,7 +76,7 @@
   {{#if matchedRegistry}}
     <p class="text-info">{{t 'newPipelineStep.stepType.build.pushTo'}} <code>{{matchedRegistry.serverAddress}}</code></p>
   {{else}}
-    <p class="text-error">{{t 'newPipelineStep.stepType.build.pushWarning1'}}<code>{{resolvedRegistry}}</code> {{t 'newPipelineStep.stepType.build.pushWarning2'}} <a href="{{registriesRoute}}" target="_blank">{{t 'newPipelineStep.stepType.build.here'}}</a>{{t 'newPipelineStep.stepType.build.pushWarning3'}}</p>
+    <p class="text-error">{{t 'newPipelineStep.stepType.build.pushWarning1'}}<code>{{resolvedRegistry}}</code> {{t 'newPipelineStep.stepType.build.pushWarning2'}} <a href="{{registriesRoute}}" target="_blank">{{t 'newPipelineStep.stepType.build.here'}}</a> {{t 'newPipelineStep.stepType.build.pushWarning3'}}</p>
   {{/if}}
   {{/if}}
 {{/if}}

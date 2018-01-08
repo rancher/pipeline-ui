@@ -2868,6 +2868,7 @@ newPipelineStep:
       finishOauth2: 点击这里
       finishOauth3: 加载代码仓库
     build:
+      here: 这里
       label: 镜像构建
       source: Dockerfile地址
       readSourceCode: 从代码仓库获取

@@ -697,6 +697,7 @@ newPipelineStep:
       finishOauth2: click here
       finishOauth3: to load your repository
     build:
+      here: here
       label: build
       source: Source of Dockerfile
       readSourceCode: Read from source code
