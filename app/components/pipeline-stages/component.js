@@ -42,7 +42,9 @@ export default Ember.Component.extend({
   envObserver: function(){
     var env = this.get('env');
     var systemVars = this.get('systemVars');
-    this.set('envvars',env.concat(systemVars));
+    var allVars = env.concat(systemVars)
+    this.set('envvars',allVars);
+    this.get('codeMirror').set('hintAry', allVars);
   }.observes('env'),
   review: function(){
     return !this.get('editable');
@@ -56,10 +58,11 @@ export default Ember.Component.extend({
       forceReload: true
     }).then((res) => {
       var hintAry = JSON.parse(res).map(ele => ('${' + ele + '}'));
+      var allVars = env.concat(hintAry);
       this.set('envvarsLoading', false);
       this.set('systemVars', hintAry);
-      this.set('envvars', hintAry.concat(env));
-      this.get('codeMirror').set('hintAry', hintAry);
+      this.set('envvars', allVars);
+      this.get('codeMirror').set('hintAry', allVars);
     });
   },
   actions: {
