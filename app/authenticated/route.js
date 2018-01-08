@@ -142,8 +142,7 @@ export default Ember.Route.extend(Subscribe, PromiseToCb, {
       this.send('logout', transition, isAuthFail, (isAuthFail ? undefined : msg));
       return;
     }
-
-    this.replaceWith('settings.projects');
+    this.replaceWith('authenticated.project.index');
     return ret;
   },
 
