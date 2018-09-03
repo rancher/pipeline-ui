@@ -139,7 +139,8 @@ export default Ember.Component.extend(ThrottledResize, {
 
     var activity = inst.activity;
     var params = `?activityId=${activity.id}&stageOrdinal=${inst.stageIndex}&stepOrdinal=${inst.stepIndex}`;
-    var url = ("ws://" + window.location.host + this.get('pipeline.pipelinesEndpoint') + '/ws/log' + params);
+    const scheme = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+    var url = (scheme + window.location.host + this.get('pipeline.pipelinesEndpoint') + '/ws/log' + params);
     var socket = new WebSocket(url);
     this.set('socket', socket);
     socket.onopen = () => {
